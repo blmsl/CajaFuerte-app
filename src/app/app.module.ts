@@ -5,25 +5,21 @@ import { Storage } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 
-import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
 import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ListMasterPage } from '../pages/list-master/list-master';
+import { FavoritesPage } from '../pages/favorites/favorites';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
-import { MenuPage } from '../pages/menu/menu';
 import { SettingsPage } from '../pages/settings/settings';
 import { SearchPage } from '../pages/search/search';
 
 import { User } from '../providers/user';
-import { Api } from '../providers/api';
 import { Settings } from '../providers/settings';
-import { Items } from '../mocks/providers/items';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
@@ -56,18 +52,16 @@ export function provideSettings(storage: Storage) {
  */
 let pages = [
   MyApp,
-  CardsPage,
   ContentPage,
   LoginPage,
-  MapPage,
   SignupPage,
   TabsPage,
   TutorialPage,
   WelcomePage,
   ListMasterPage,
+  FavoritesPage,
   ItemDetailPage,
   ItemCreatePage,
-  MenuPage,
   SettingsPage,
   SearchPage
 ];
@@ -83,11 +77,7 @@ export function entryComponents() {
 export function providers() {
   return [
     Storage,
-
     User,
-    Api,
-    Items,
-
     { provide: Settings, useFactory: provideSettings, deps: [ Storage ] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

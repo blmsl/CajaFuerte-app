@@ -5,60 +5,26 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { Settings } from '../providers/providers';
 
 import { FirstRunPage } from '../pages/pages';
-import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
 import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ListMasterPage } from '../pages/list-master/list-master';
-import { MenuPage } from '../pages/menu/menu';
+import { FavoritesPage } from '../pages/favorites/favorites';
 import { SettingsPage } from '../pages/settings/settings';
 import { SearchPage } from '../pages/search/search';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <i class="fa fa-{{p.icon}} {{p.color}}" aria-hidden="true"></i>
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
   rootPage = FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
-
-  pages: any[] = [
-    { title: 'Tutorial', component: TutorialPage, icon: 'book', color: 'faGreen' },
-    { title: 'Welcome', component: WelcomePage, icon: 'handshake-o', color: 'faOrange' },
-    { title: 'Tabs', component: TabsPage, icon: 'window-restore', color: 'faLightBlue' },
-    { title: 'Cards', component: CardsPage, icon: 'address-card', color: 'faYellow' },
-    { title: 'Content', component: ContentPage, icon: 'file-word-o', color: 'faOrange' },
-    { title: 'Login', component: LoginPage, icon: 'unlock', color: 'faGreen' },
-    { title: 'Signup', component: SignupPage, icon: 'pencil', color: 'primary' },
-    { title: 'Map', component: MapPage, icon: 'map-o', color: 'faYellow' },
-    { title: 'Master Detail', component: ListMasterPage, icon: 'tasks', color: 'faOrange' },
-    { title: 'Menu', component: MenuPage, icon: 'bars', color: 'faLightBlue' },
-    { title: 'Settings', component: SettingsPage, icon: 'cog', color: 'faGreen' },
-    { title: 'Search', component: SearchPage, icon: 'search', color: 'faOrange' }
-  ]
 
   constructor(translate: TranslateService, platform: Platform, settings: Settings) {
     // Set the default language for translation strings, and the current language.

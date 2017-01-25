@@ -5,9 +5,10 @@
   "LOGIN": "Sign in",
   "SIGNUP": "Sign up",
 
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Search",
-  "TAB3_TITLE": "Settings",
+  "TAB1_TITLE": "Accounts",
+  "TAB2_TITLE": "Favorites",
+  "TAB3_TITLE": "Search",
+  "TAB4_TITLE": "Settings",
 
   "MAP_TITLE": "Map",
 
@@ -37,7 +38,8 @@
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
   "SIGNUP_BUTTON": "Sign up",
 
-  "LIST_MASTER_TITLE": "Items",
+  "LIST_MASTER_TITLE": "Accounts",
+  "FAVORITES_TITLE": "Favorites",
 
   "ITEM_CREATE_TITLE": "New Item",
   "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",

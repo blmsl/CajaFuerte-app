@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
-import { ItemDetailPage } from '../item-detail/item-detail';
-import { ItemCreatePage } from '../item-create/item-create';
-
 import { Item } from '../../models/item';
 
 @Component({
-  selector: 'page-list-master',
-  templateUrl: 'list-master.html'
+  selector: 'page-favorites',
+  templateUrl: 'favorites.html'
 })
-
-export class ListMasterPage {
-
+export class FavoritesPage {
+  
   currentItems: Item[];
 
   constructor(
@@ -28,11 +24,5 @@ export class ListMasterPage {
 
   deleteItem(item) {
     
-  }
-
-  openItem(item: Item) {
-    this.navCtrl.push(ItemDetailPage, {
-      item: item
-    });
   }
 }

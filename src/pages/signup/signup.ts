@@ -6,12 +6,6 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { MainPage } from '../../pages/pages';
 import { User } from '../../providers/user';
 
-/*
-  Generated class for the Signup page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
@@ -40,20 +34,6 @@ export class SignupPage {
   }
 
   doSignup() {
-    // Attempt to login in through our User service
-    this.user.signup(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-
-      this.navCtrl.push(MainPage); // TODO: Remove this when you add your signup endpoint
-
-      // Unable to sign up
-      let toast = this.toastCtrl.create({
-        message: this.signupErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
+    this.navCtrl.push(MainPage);
   }
 }

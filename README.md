@@ -9,9 +9,9 @@
 - Run `npm install` from the project root.
 - Run `ionic serve` in a terminal from the project root
 
-## Live Demo
+## Read About It
 
- - coming soon
+ - [CajaFuerte: Online Information Manager App](https://luiscabrera.site/tech/2017/01/23/CajaFuerte-password-manager.html)
 
 
 ## Contribute
