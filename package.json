@@ -1,5 +1,5 @@
 {
-  "name": "firevault",
+  "name": "CajaFuerte",
   "author": "Luis Cabrera",
   "homepage": "http://luiscabrera.site/",
   "private": true,
@@ -19,6 +19,7 @@
     "@angular/platform-browser": "2.2.1",
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
+    "@ionic/cloud-angular": "^0.9.1",
     "@ionic/storage": "1.1.7",
     "font-awesome": "^4.7.0",
     "ionic-angular": "2.0.0",
@@ -26,8 +27,8 @@
     "ionicons": "3.0.0",
     "ng2-translate": "^4.0.0",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "0.6.26",
-    "sw-toolbox": "3.4.0"
+    "sw-toolbox": "3.4.0",
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",

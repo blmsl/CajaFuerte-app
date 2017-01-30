@@ -1,4 +1,5 @@
 page-welcome {
+  
   .splash-bg {
     position: relative;
     background: url('../assets/img/splashbg.png') no-repeat transparent;
@@ -27,8 +28,14 @@ page-welcome {
     width: 128px;
     height: 128px;
   }
-  .splash-intro {
+  .splash-title {
     font-size: 18px;
+    font-weight: bold;
+    max-width: 80%;
+    margin: auto;
+  }
+  .splash-subtitle {
+    font-size: 15px;
     font-weight: bold;
     max-width: 80%;
     margin: auto;

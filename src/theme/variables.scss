@@ -24,11 +24,25 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:      #1b6893,
+  secondary:    #32db64,
+  danger:       #ff3b2f,
+  light:        #f4f4f4,
+  dark:         #222,
+  favorite:     #69BB7B,
+  energized:    #f57d00,
+  twitter:      #53ACEB,
+  github:       #000000,
+  instagram:    #235D8D,
+  mllightblue:  #31C0E6,
+  mldarkblue:   #00A2E8,
+  mlgreen:      #28a54c,
+  mlred:        #CE1B31,
+  mlpurple:     #4B0082,
+  mlnavbar:     (base: #172F39,contrast: #31C0E6),
+  mlitemdivider:#D3EAF0,
+  mliconarrowblue:#31C0E6,
+  cf-background: #1b6893
 );
 
 
@@ -69,7 +83,7 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
-@import "ionicons";
+@import "ionic.ionicons";
 
 
 // Fonts
@@ -77,3 +91,10 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+// MoneyLeash
+// --------------------------------------------------
+// Custom styles for app
+// http://
+
+@import "cajafuerte.custom.scss";

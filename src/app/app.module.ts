@@ -1,9 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { Storage } from '@ionic/storage';
 
-import { MyApp } from './app.component';
+import { CajaFuerteApp } from './app.component';
 
 import { ContentPage } from '../pages/content/content';
 import { LoginPage } from '../pages/login/login';
@@ -17,6 +18,9 @@ import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { SettingsPage } from '../pages/settings/settings';
 import { SearchPage } from '../pages/search/search';
+
+import { PasswordsPage } from '../pages/passwords/passwords';
+import { PasswordPage } from '../pages/password/password';
 
 import { User } from '../providers/user';
 import { Settings } from '../providers/settings';
@@ -51,7 +55,7 @@ export function provideSettings(storage: Storage) {
  * can find them. As you add and remove pages, make sure to keep this list up to date.
  */
 let pages = [
-  MyApp,
+  CajaFuerteApp,
   ContentPage,
   LoginPage,
   SignupPage,
@@ -63,7 +67,9 @@ let pages = [
   ItemDetailPage,
   ItemCreatePage,
   SettingsPage,
-  SearchPage
+  SearchPage,
+  PasswordsPage,
+  PasswordPage
 ];
 
 export function declarations() {
@@ -84,10 +90,17 @@ export function providers() {
   ];
 }
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '7a8e133b'
+  }
+};
+
 @NgModule({
   declarations: declarations(),
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(CajaFuerteApp),
+    CloudModule.forRoot(cloudSettings),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),

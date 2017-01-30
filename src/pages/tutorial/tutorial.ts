@@ -12,6 +12,9 @@ export interface Slide {
   title: string;
   description: string;
   image: string;
+  icon: string;
+  color: string;
+  class: string;
 }
 
 @Component({
@@ -32,19 +35,20 @@ export class TutorialPage {
     .subscribe((values) => {
       this.slides = [
         {
-          title: values.TUTORIAL_SLIDE1_TITLE,
-          description: values.TUTORIAL_SLIDE1_DESCRIPTION,
-          image: 'assets/img/ica-slidebox-img-1.png',
-        },
-        {
           title: values.TUTORIAL_SLIDE2_TITLE,
           description: values.TUTORIAL_SLIDE2_DESCRIPTION,
           image: 'assets/img/ica-slidebox-img-2.png',
+          icon: 'fa fa-shield',
+          color: 'introDarkBlue',
+          class: 'slide-title',
         },
         {
           title: values.TUTORIAL_SLIDE3_TITLE,
           description: values.TUTORIAL_SLIDE3_DESCRIPTION,
           image: 'assets/img/ica-slidebox-img-3.png',
+          icon: 'fa fa-question',
+          color: 'introYellow',
+          class: 'slide-title',
         }
       ];
     });
@@ -59,16 +63,6 @@ export class TutorialPage {
 
   onSlideChangeStart(slider) {
     this.showSkip = !slider.isEnd;
-  }
-
-  ionViewDidEnter() {
-    // the root left menu should be disabled on the tutorial page
-    this.menu.enable(false);
-  }
-
-  ionViewWillLeave() {
-    // enable the root left menu when leaving the tutorial page
-    this.menu.enable(true);
   }
 
 }

@@ -12,14 +12,14 @@
 
   "MAP_TITLE": "Mapa",
 
-  "TUTORIAL_SLIDE1_TITLE": "Bienvenido/a al Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "El <b>Ionic Super Starter</b> es un starter de Ionic completo con muchas páginas preconstruidas y mejores prácticas.",
+  "TUTORIAL_SLIDE1_TITLE": "CajaFuerte",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "Administración de Informatión Personal en Linea",
 
-  "TUTORIAL_SLIDE2_TITLE": "Cómo usar el Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Monta los varios tipos de página que quieras y quita los que no. Hemos incluido muchas estructuras de página comunes en apps móviles, como páginas de inicio de sesión y registro, pestañas, y esta página de tutorial.",
+  "TUTORIAL_SLIDE2_TITLE": "Super Segura",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Esta es un app privada para ser instalada on tu mobil con tu propio proyecto en Firebase.<br />Hackers no van a saber que existe!",
 
-  "TUTORIAL_SLIDE3_TITLE": "Empezando",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
+  "TUTORIAL_SLIDE3_TITLE": "Preguntas?",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Si tienes preguntas no dudes en comunicarte conmigo!",
 
   "SETTINGS_TITLE": "Ajustes",
   "SETTINGS_OPTION1": "Opción 1",
@@ -29,7 +29,9 @@
 
   "SETTINGS_PAGE_PROFILE": "Editar Perfil",
 
-  "WELCOME_TITLE": "Bienvenido",
+  "WELCOME_TITLE": "Bienvenido a CajaFuerte",
+  "WELCOME_SUBTITLE": "Su Administrador de Información en Línea!",
+
   "FAVORITES_TITLE": "Favoritos",
 
   "LOGIN_TITLE": "Iniciar sesión",
@@ -46,5 +48,7 @@
 
   "CARDS_TITLE": "Social",
 
-  "SEARCH_TITLE": "Buscar"
+  "SEARCH_TITLE": "Buscar",
+
+  "LIST_PASSWORDS": "Contraseñas"
 }
