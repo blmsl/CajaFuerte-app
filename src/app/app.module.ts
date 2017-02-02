@@ -27,6 +27,10 @@ import { Settings } from '../providers/settings';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
+import { AngularFireModule } from 'angularfire2';
+import { AuthService } from '../providers/auth-service';
+
+
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: Http) {
@@ -84,6 +88,7 @@ export function providers() {
   return [
     Storage,
     User,
+    AuthService,
     { provide: Settings, useFactory: provideSettings, deps: [ Storage ] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
@@ -96,10 +101,20 @@ const cloudSettings: CloudSettings = {
   }
 };
 
+// YOUR FIREBASE SETTINGS GO HERE!
+export const firebaseConfig = {
+  apiKey: "AIzaSyAWLtjIAOfBRD0tHWU899mE9vwVJEv5mRQ",
+  authDomain: "cajafuerte-2fbfb.firebaseapp.com",
+  databaseURL: "https://cajafuerte-2fbfb.firebaseio.com",
+  storageBucket: "cajafuerte-2fbfb.appspot.com",
+  messagingSenderId: "105460697119"
+};
+
 @NgModule({
   declarations: declarations(),
   imports: [
     IonicModule.forRoot(CajaFuerteApp),
+    AngularFireModule.initializeApp(firebaseConfig),
     CloudModule.forRoot(cloudSettings),
     TranslateModule.forRoot({
       provide: TranslateLoader,
