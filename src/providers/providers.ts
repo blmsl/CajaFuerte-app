@@ -1,7 +1,7 @@
 import { User } from './user';
-import { Settings } from './settings';
+import { AuthService } from './auth-service';
 
 export {
   User,
-  Settings
+  AuthService
 };

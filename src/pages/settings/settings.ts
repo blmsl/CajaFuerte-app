@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
-import { Settings } from '../../providers/settings';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 /**
@@ -33,7 +32,6 @@ export class SettingsPage {
   subSettings: any = SettingsPage;
 
   constructor(public navCtrl: NavController,
-              public settings: Settings,
               public formBuilder: FormBuilder,
               public navParams: NavParams,
               public translate: TranslateService) {
@@ -57,10 +55,6 @@ export class SettingsPage {
     }
     this.form = this.formBuilder.group(group);
 
-    // Watch the form for changes, and
-    this.form.valueChanges.subscribe((v) => {
-      this.settings.merge(this.form.value);
-    });
   }
 
   ionViewDidLoad() {
@@ -79,12 +73,6 @@ export class SettingsPage {
       this.pageTitle = res;
     })
 
-    this.settings.load().then(() => {
-      this.settingsReady = true;
-      this.options = this.settings.allSettings;
-
-      this._buildForm();
-    });
   }
 
   ngOnChanges() {

@@ -22,13 +22,11 @@ import { SearchPage } from '../pages/search/search';
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { PasswordPage } from '../pages/password/password';
 
-import { User } from '../providers/user';
-import { Settings } from '../providers/settings';
+import { AuthService } from '../providers/auth-service';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
 import { AngularFireModule } from 'angularfire2';
-import { AuthService } from '../providers/auth-service';
 
 
 // The translate loader needs to know where to load i18n files
@@ -36,22 +34,6 @@ import { AuthService } from '../providers/auth-service';
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
-
-export function provideSettings(storage: Storage) {
-  /**
-   * The Settings provider takes a set of default settings for your app.
-   *
-   * You can add new settings options at any time. Once the settings are saved,
-   * these values will not overwrite the saved values (this can be done manually if desired).
-   */
-  return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
-    option3: '3',
-    option4: 'Hello'
-  });
-}
-
 
 /**
  * The Pages array lists all of the pages we want to use in our app.
@@ -87,9 +69,8 @@ export function entryComponents() {
 export function providers() {
   return [
     Storage,
-    User,
     AuthService,
-    { provide: Settings, useFactory: provideSettings, deps: [ Storage ] },
+    { deps: [ Storage ] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
@@ -124,6 +105,6 @@ export const firebaseConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: entryComponents(),
-  providers: providers()
+  providers: [Storage, AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

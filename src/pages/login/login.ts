@@ -4,7 +4,6 @@ import { NavController, ToastController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { MainPage } from '../../pages/pages';
-import { User } from '../../providers/user';
 
 @Component({
   selector: 'page-login',
@@ -24,7 +23,6 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-              public user: User,
               public toastCtrl: ToastController,
               public translateService: TranslateService) {
 

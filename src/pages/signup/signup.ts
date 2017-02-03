@@ -4,7 +4,8 @@ import { NavController, ToastController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { MainPage } from '../../pages/pages';
-import { User } from '../../providers/user';
+
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-signup',
@@ -24,8 +25,8 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-              public user: User,
               public toastCtrl: ToastController,
+              public auth: AuthService,
               public translateService: TranslateService) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
@@ -33,7 +34,12 @@ export class SignupPage {
     })
   }
 
-  doSignup() {
-    this.navCtrl.push(MainPage);
+  doSignup() {    
+    this.auth.signUpWithEmail(this.account).then(() => {
+      this.navCtrl.push(MainPage);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
+
 }

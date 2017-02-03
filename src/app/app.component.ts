@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Settings } from '../providers/providers';
-
 import { FirstRunPage } from '../pages/pages';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -16,7 +14,7 @@ export class CajaFuerteApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  constructor(translate: TranslateService, platform: Platform, settings: Settings) {
+  constructor(translate: TranslateService, platform: Platform) {
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('en');
     translate.use('en')
