@@ -6,14 +6,14 @@
   "SIGNUP": "Sign up",
 
   "TAB1_TITLE": "Forms",
-  "TAB2_TITLE": "Favorites",
+  "TAB2_TITLE": "Recent",
   "TAB3_TITLE": "Search",
   "TAB4_TITLE": "Settings",
 
   "MAP_TITLE": "Map",
 
   "TUTORIAL_SLIDE1_TITLE": "CajaFuerte",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "Online Information Manager App",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "Personal Information Manager App",
 
   "TUTORIAL_SLIDE2_TITLE": "Super Secured",
   "TUTORIAL_SLIDE2_DESCRIPTION": "This is a private app to be installed on your phone with your own Firebase project.<br />Hackers won't know it exists!",

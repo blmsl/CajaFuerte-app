@@ -31,6 +31,34 @@
        url('../assets/fonts/PT-Sans-Narrow-700/PT-Sans-Narrow-700.svg#PTSansNarrow') format('svg');
 }
 
+// Menu custom text color
+// --------------------------------------------------
+.faGreen {
+   color: #28a54c;
+}
+.faOrange {
+   color: #ff6600;
+}
+.faLightBlue {
+   color: #31C0E6;
+}
+.faYellow{
+   color: #f2c100;
+}
+.faRed{
+   color: red;
+}
+
+// Menu custom styles
+// --------------------------------------------------
+.item .mlmenuicon {
+  font-size: 32px;
+}
+.mlmenuitem {
+  font-family: 'PT Sans Narrow';
+  font-size: 20px;
+}
+
 // Alert custom text color
 // --------------------------------------------------
 .alertDanger .button-inner{
@@ -70,6 +98,7 @@
 .ml-input.item-block:first-child {
   border-top: 0;
 }
+/* using ionicons on form items */
 .ml-input ion-icon[item-left] {
   background-color: #f0f0f0;
   width: 61px;
@@ -83,52 +112,50 @@
   top: 16px;
   transform: perspective(1px) translateY(-50%);
 }
-.ml-input input {
-  padding-left: 10px;
-}
 .ml-input ion-input {
-  margin-top: -1px;
+  margin-top: -10px;
+  height: 33px;
 }
 .ml-input ion-datetime {
   padding: 0px 8px 8px 10px;
   margin-left: 20px;
 }
-.ml-input ion-label {
-  margin: 13px 8px 13px 0;
+.ml-input .label-ios {
+  margin-top: 6px;
 }
 .ml-input ion-label[floating] {
-  -webkit-transform: translate3d(10px, 8px, 0);
-  transform: translate3d(10px, 8px, 0);
+  -webkit-transform: translate3d(0, 11px, 0);
+  transform: translate3d(0, 11px, 0);
   color: #7f7f7f;
 }
 .ml-input.input-has-focus ion-label[floating] {
-  -webkit-transform: translate3d(10px, 6px, 0);
-  transform: translate3d(10px, -2px, 0) scale(0.65);
+  -webkit-transform: translate3d(0, 4px, 0);
+  transform: translate3d(0, 4px, 0) scale(0.65);
   color: #006699;
 }
 .ml-input.input-has-value ion-label[floating] {
-  -webkit-transform: translate3d(10px, 6px, 0);
-  transform: translate3d(10px, -2px, 0) scale(0.65);
+  -webkit-transform: translate3d(0, 4px, 0);
+  transform: translate3d(0, 4px, 0) scale(0.65);
   color: #006699;
-}
-.ml-input .ml-label-has-input {
-  color: #006699;
-  margin-left: 10px;
-  font-size: 11px;
-}
-.ml-input .ml-has-input {
-  margin-left: 10px;
-}
-.ml-input .ml-has-no-input {
-  margin-left: 10px;
-  color: #7f7f7f;
 }
 .ml-input .dt-has-no-input {
   color: #7f7f7f;
 }
-.ml-fa {
-  padding-bottom: 7px;
+/* using fontawesome on form items */
+.ml-input .fa {
+  background-color: #f0f0f0;
+  width: 61px;
+  height: 60px;
+  margin: 0;
+  text-align: center;
 }
+.ml-input .fa:before {
+  color: #999999;
+  font-size: 23px;
+  position: relative;
+  top: 16px;
+}
+/* end fontawesome */
 
 // Slide Animation
 // --------------------------------------------------

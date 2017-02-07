@@ -6,18 +6,12 @@ import { Storage } from '@ionic/storage';
 
 import { CajaFuerteApp } from './app.component';
 
-import { ContentPage } from '../pages/content/content';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ListMasterPage } from '../pages/list-master/list-master';
-import { FavoritesPage } from '../pages/favorites/favorites';
-import { ItemCreatePage } from '../pages/item-create/item-create';
-import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { SettingsPage } from '../pages/settings/settings';
-import { SearchPage } from '../pages/search/search';
 
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { PasswordPage } from '../pages/password/password';
@@ -26,7 +20,7 @@ import { AuthService } from '../providers/auth-service';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 
 // The translate loader needs to know where to load i18n files
@@ -42,18 +36,12 @@ export function createTranslateLoader(http: Http) {
  */
 let pages = [
   CajaFuerteApp,
-  ContentPage,
   LoginPage,
   SignupPage,
-  TabsPage,
   TutorialPage,
   WelcomePage,
   ListMasterPage,
-  FavoritesPage,
-  ItemDetailPage,
-  ItemCreatePage,
   SettingsPage,
-  SearchPage,
   PasswordsPage,
   PasswordPage
 ];
@@ -91,11 +79,16 @@ export const firebaseConfig = {
   messagingSenderId: "105460697119"
 };
 
+const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
+
 @NgModule({
   declarations: declarations(),
   imports: [
     IonicModule.forRoot(CajaFuerteApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     CloudModule.forRoot(cloudSettings),
     TranslateModule.forRoot({
       provide: TranslateLoader,

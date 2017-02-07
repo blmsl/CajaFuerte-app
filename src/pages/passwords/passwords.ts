@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+
+import { NavController, ModalController, AlertController } from 'ionic-angular';
+
+import { FirebaseListObservable } from 'angularfire2';
+
+import { AuthService } from '../../providers/auth-service';
 
 import { PasswordPage } from '../password/password';
-
-import { Item } from '../../models/item';
 
 @Component({
   selector: 'page-passwords',
@@ -12,35 +15,49 @@ import { Item } from '../../models/item';
 
 export class PasswordsPage {
 
-  currentItems: Item[];
-  accounts: Array<{title: string, component: any, icon: string, color: string, showloader: boolean}>;
+  accounts: FirebaseListObservable<any[]>;
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController) {}
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    public auth: AuthService) {}
 
   ionViewDidLoad() {
-    // used for an example of ngFor and navigation
-    this.accounts = [
-      { title: 'Ionic', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: false },
-      { title: 'Google Analytics', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: false },
-      { title: 'Bank of America', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: true },
-      { title: 'GitHub', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: true },
-      { title: 'Twitter', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: false },
-      { title: 'Facebook', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: false },
-      { title: 'LinkedIn', component: PasswordPage, icon: 'finger-print', color: '#f4f4f4', showloader: false },
-    ];
+    this.accounts = this.auth.getAccounts();
   }
 
   addItem() {
-    
+    this.navCtrl.push(PasswordPage);
   }
 
-  deleteItem(item) {
-    
+  openItem(account) {
+    this.navCtrl.push(PasswordPage, { account: account });
   }
 
-  openPage(item) {
-    this.navCtrl.push(item.component, { item: item });
+  deleteItem(slidingItem, account) {
+    let alert = this.alertCtrl.create({
+      title: 'Delete Account',
+      message: 'Are you sure you want to delete ' + account.name + '?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            //console.log('Cancel RemoveUser clicked');
+            slidingItem.close();
+          }
+        },
+        {
+          text: 'Delete',
+          cssClass: 'alertDanger',
+          handler: () => {
+            slidingItem.close();
+            this.auth.deleteAccount(account);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
+
 }

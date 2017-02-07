@@ -1,31 +1,30 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
-import { MainPage } from '../../pages/pages';
-
 import { AuthService } from '../../providers/auth-service';
+
+import { MainPage } from '../../pages/pages';
 
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
+  
   account: {name: string, email: string, password: string} = {
     name: 'Luis Cabrera',
     email: 'luis@example.com',
-    password: 'test'
+    password: 'test123'
   };
+  alertMessage: string;
 
   // Our translated text strings
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-              public toastCtrl: ToastController,
+              public alertController: AlertController,
               public auth: AuthService,
               public translateService: TranslateService) {
 
@@ -36,10 +35,34 @@ export class SignupPage {
 
   doSignup() {    
     this.auth.signUpWithEmail(this.account).then(() => {
-      this.navCtrl.push(MainPage);
+      this.navCtrl.setRoot(MainPage, {}, {animate: true, direction: 'forward'});
     }).catch((error) => {
       console.log(error);
+      this.SignUpError(error);
     });
+  }
+
+  SignUpError(error): void {
+    switch (error.code) {
+      case "auth/email-already-in-use":
+          this.alertMessage = "The specified email is already in use!"
+          break;
+      case "auth/invalid-email":
+          this.alertMessage = "The specified email is not valid!"
+          break;
+      case "auth/operation-not-allowed":
+          this.alertMessage = "Your account has been disabled. Please contact support!"
+          break;
+      case "auth/weak-password":
+          this.alertMessage = "Password should be at least 6 characters!"
+          break;
+    }
+    let alert = this.alertController.create({
+      title: 'Sign Up Failed',
+      subTitle: this.alertMessage,
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
 }

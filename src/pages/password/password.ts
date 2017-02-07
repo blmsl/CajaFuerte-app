@@ -2,53 +2,44 @@ import { Component } from '@angular/core';
 
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 
+import { AuthService } from '../../providers/auth-service';
+
 @Component({
   templateUrl: 'password.html'
 })
 
 export class PasswordPage {
 
-  validationMessage: string;
-  showValidationMessage: boolean = false;
+  mode: string;
+  account: {name: string, site: string, number: string, username: string, password: string, description: string} = {
+    name: '', 
+    site: '', 
+    number: '', 
+    username: '', 
+    password: '', 
+    description: ''
+  };
   title: string;
 
-  constructor(
-      public nav: NavController,
-      public modalController: ModalController,
-      public navParams: NavParams) { }
-  
-
-  ionViewWillEnter() {
-    
+  constructor(public nav: NavController, public modalController: ModalController,public navParams: NavParams,public auth: AuthService) {   
+    if (navParams.get('account') === undefined) {
+      this.title = "Create Account";
+      this.mode = "New";
+    } else {
+      this.account = navParams.get('account');
+      this.title = "Edit " + this.account.name;
+      this.mode = "Edit";
+    }    
   }
 
   save() {
 
-    /*// Format date
-    let dt = moment(this.displaydate, moment.ISO_8601).valueOf();
-    this.account.dateopen = dt
-    
-    if (this.account.mode === 'New') {
-      this.userData.addAccount(this.account);
+    if (this.mode === 'New') {
+      this.auth.addAccount(this.account);
     } else {
-      this.userData.updateAccount(this.account);
+      this.auth.updateAccount(this.account);
     }
-    this.nav.pop();*/
-  }
-
-  pickAccountName() {
-    /*this.showValidationMessage = false;
-    this.nav.push(PickAccountNamePage);*/
-  }
-
-  pickAccountType() {
-    /*if (!this.hasDataAccountName) {
-      // Make sure the account name has been entered
-      this.showValidationMessage = true;
-      this.validationMessage = "Please enter account name";
-      return;
-    }
-    this.nav.push(PickAccountTypePage);*/
+    this.nav.pop();
   }
   
 }

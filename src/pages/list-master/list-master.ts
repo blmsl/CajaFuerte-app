@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
-import { ItemDetailPage } from '../item-detail/item-detail';
 import { PasswordsPage } from '../passwords/passwords';
 
 import { Item } from '../../models/item';
@@ -23,13 +22,10 @@ export class ListMasterPage {
   ionViewDidLoad() {
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Passwords', component: PasswordsPage, icon: 'fa-unlock', color: '', showloader: true },
-      { title: 'Bank Accounts', component: ItemDetailPage, icon: 'fa-bank', color: '', showloader: false  },
-      { title: 'Drivers License', component: ItemDetailPage, icon: 'fa-id-card-o', color: '', showloader: false  },
-      { title: 'Meds', component: ItemDetailPage, icon: 'fa-heart-o', color: '', showloader: true  },
-      { title: 'Alarm Codes', component: ItemDetailPage, icon: 'fa-bell-o', color: '', showloader: true  },
-      { title: 'Vehicle Registrations', component: ItemDetailPage, icon: 'fa-car', color: '', showloader: false  },
-      { title: 'Gifts', component: ItemDetailPage, icon: 'fa-gift', color: '', showloader: false  },
+      { title: 'Passwords', component: PasswordsPage, icon: 'fa-unlock', color: '', showloader: true }
+      /*{ title: 'Drivers License', component: PasswordsPage, icon: 'fa-id-card-o', color: '', showloader: false  },
+      { title: 'Alarm Codes', component: PasswordsPage, icon: 'fa-bell-o', color: '', showloader: true  },
+      { title: 'Vehicle Registrations', component: PasswordsPage, icon: 'fa-car', color: '', showloader: false  },*/
     ];
   }
 

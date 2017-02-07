@@ -1,21 +1,15 @@
 <ion-header>
-
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addItem()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content>
   <ion-list>
       <ion-list-header color="light">
-        Navigate
+        Categories
       </ion-list-header>
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
         <i class="fa {{p.icon}} {{p.color}} cf-icon"></i>
