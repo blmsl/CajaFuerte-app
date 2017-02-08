@@ -6,6 +6,9 @@
 <ion-content>
   <form (submit)="doLogin()">
     <ion-list>
+      <ion-list-header>
+        Enter your credentials
+      </ion-list-header>
       <ion-item>
         <ion-label fixed>Email</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
