@@ -39,14 +39,14 @@ export class TutorialPage {
           description: values.TUTORIAL_SLIDE2_DESCRIPTION,
           image: 'assets/img/ica-slidebox-img-2.png',
           icon: 'fa fa-shield',
-          color: 'introDarkBlue',
+          color: 'introLightBlue',
           class: 'slide-title',
         },
         {
           title: values.TUTORIAL_SLIDE3_TITLE,
           description: values.TUTORIAL_SLIDE3_DESCRIPTION,
           image: 'assets/img/ica-slidebox-img-3.png',
-          icon: 'fa fa-question',
+          icon: 'fa fa-tasks',
           color: 'introYellow',
           class: 'slide-title',
         }

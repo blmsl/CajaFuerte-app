@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, Nav, AlertController } from 'ionic-angular';
 
+import {Deploy} from '@ionic/cloud-angular';
+
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -59,7 +61,8 @@ export class CajaFuerteApp {
 
   constructor(
     translate: TranslateService, 
-    platform: Platform, 
+    platform: Platform,
+    public deploy: Deploy,
     public alertCtrl: AlertController,
     public auth: AuthService) {
 

@@ -7,10 +7,9 @@
 </ion-header>
 <ion-content no-bounce>
   <ion-slides [options]="{pager: true}" (ionWillChange)="onSlideChangeStart($event)">
-    
     <ion-slide>
       <div class="divImage">
-        <i class="introLightBlue"><img src="assets/img/CajaFuerte-logo.png" class="slide-image"/></i>
+        <i class="introDarkBlue"><img src="assets/img/CajaFuerte-logo.png" class="slide-image"/></i>
       </div>
       <div class="divText">
         <h2 class="slide-title app-title" innerHTML="{{ 'TUTORIAL_SLIDE1_TITLE' | translate }}"></h2>
@@ -28,7 +27,9 @@
       </div>
     </ion-slide>
     <ion-slide>
-      <img src="assets/img/ica-slidebox-img-2.png" class="slide-image"/>
+      <div class="divImage">
+        <i class="fa fa-thumbs-o-up introLightBlue"></i>
+      </div>
       <h2 class="slide-title">Ready to Play?</h2>
       <button ion-button icon-right large clear (click)="startApp()">
         Continue

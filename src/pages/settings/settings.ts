@@ -8,70 +8,29 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
   selector: 'page-settings',
   templateUrl: 'settings.html'
 })
+
 export class SettingsPage {
-  // Our local settings object
-  options: any;
 
-  settingsReady = false;
-
-  form: FormGroup;
-
-  profileSettings = {
-    page: 'profile',
-    pageTitleKey: 'SETTINGS_PAGE_PROFILE'
+  language = 'en';
+  mode: string;
+  profile: {fullname: string, email: string, vaultnumber: string, paymentplan: string, touchid: boolean} = {
+    fullname: '', 
+    email: '', 
+    vaultnumber: '', 
+    paymentplan: 'Free',
+    touchid: false
   };
 
-  page: string = 'main';
-  pageTitleKey: string = 'SETTINGS_TITLE';
-  pageTitle: string;
-
-  subSettings: any = SettingsPage;
-
   constructor(public navCtrl: NavController,
-              public formBuilder: FormBuilder,
-              public navParams: NavParams,
               public translate: TranslateService) {
   }
 
-  _buildForm() {
-    let group: any = {
-      option1: [this.options.option1],
-      option2: [this.options.option2],
-      option3: [this.options.option3]
-    };
-
-    switch(this.page) {
-      case 'main':
-        break;
-      case 'profile':
-        group = {
-          option4: [this.options.option4]
-        };
-        break;
-    }
-    this.form = this.formBuilder.group(group);
-
+  toggleTouchID(e) {
+    console.log(e);
   }
 
-  ionViewDidLoad() {
-    // Build an empty form for the template to render
-    this.form = this.formBuilder.group({});
+  toggleSelect(e) {
+    this.translate.use(e);
   }
-
-  ionViewWillEnter() {
-    // Build an empty form for the template to render
-    this.form = this.formBuilder.group({});
-
-    this.page = this.navParams.get('page') || this.page;
-    this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
-
-    this.translate.get(this.pageTitleKey).subscribe((res) => {
-      this.pageTitle = res;
-    })
-
-  }
-
-  ngOnChanges() {
-    console.log('Ng All Changes');
-  }
+  
 }

@@ -15,7 +15,7 @@ Ionic View ID: 7a8e133b
 
 ## Read About It
 
- - [CajaFuerte: Online Information Manager App](https://luiscabrera.site/tech/2017/01/23/CajaFuerte-password-manager.html)
+ - [CajaFuerte: Personal Information Manager App](https://luiscabrera.site/tech/2017/01/23/CajaFuerte-password-manager.html)
 
 
 ## Contribute

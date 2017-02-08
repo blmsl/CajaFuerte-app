@@ -14,9 +14,9 @@ import { MainPage } from '../../pages/pages';
 export class SignupPage {
   
   account: {name: string, email: string, password: string} = {
-    name: 'Luis Cabrera',
-    email: 'luis@example.com',
-    password: 'test123'
+    name: '',
+    email: '',
+    password: ''
   };
   alertMessage: string;
 

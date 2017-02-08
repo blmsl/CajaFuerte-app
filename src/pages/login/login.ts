@@ -13,12 +13,9 @@ import { MainPage } from '../../pages/pages';
 })
 export class LoginPage {
   
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
   account: {email: string, password: string} = {
-    email: 'luis@example.com',
-    password: 'test123'
+    email: '',
+    password: ''
   };
 
   // Our translated text strings
