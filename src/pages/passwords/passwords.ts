@@ -21,10 +21,8 @@ export class PasswordsPage {
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-    public auth: AuthService) {}
-
-  ionViewDidLoad() {
-    this.accounts = this.auth.getAccounts();
+    public auth: AuthService) {
+      this.accounts = this.auth.getAccounts();
   }
 
   addItem() {

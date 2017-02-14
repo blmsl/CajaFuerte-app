@@ -30,6 +30,11 @@ This is a work inprogress and **your feedback/help would be greatly appreciated!
 - Contact me on my [website](http://luiscabrera.site)
 
 
+# Icons
+
+http://www.flaticon.com/packs/digital-marketing-10/3
+Icon made by Vectors Market in from www.flaticon.com 
+
 # License
 
     The MIT License (MIT)

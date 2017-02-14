@@ -12,8 +12,8 @@
         Categories
       </ion-list-header>
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        <i class="fa {{p.icon}} {{p.color}} cf-icon"></i>
-        <span class="mlmenuitem">{{p.title}}</span>
+        <img src="assets/img/{{p.icon}}"/>
+        <span class="cflistitems">{{p.title}}</span>
       </button>
     </ion-list>
 </ion-content>
