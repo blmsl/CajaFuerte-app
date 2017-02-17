@@ -41,5 +41,15 @@ export class PasswordPage {
     }
     this.nav.pop();
   }
+
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ?  'text' : 'password';
+  }
+
+  openSite(): any {
+    if (this.account.site != '') {
+      window.open(this.account.site, '_blank');
+    }
+  }
   
 }
