@@ -4,21 +4,27 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <form (submit)="doLogin()">
+  <form #loginForm="ngForm" (submit)="doLogin()">
     <ion-list>
       <ion-list-header>
         Enter your credentials
       </ion-list-header>
       <ion-item>
         <ion-label fixed>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="account.email" name="email" #email="ngModel" required></ion-input>
+        <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
+          Email is required
+        </p>
       </ion-item>
       <ion-item>
         <ion-label fixed>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="account.password" name="password" #password="ngModel" required></ion-input>
+        <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+          Password is required
+        </p>
       </ion-item>
       <div padding>
-        <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
+        <button ion-button color="primary" [disabled]="!loginForm.valid" block>{{ 'LOGIN_BUTTON' | translate }}</button>
       </div>
     </ion-list>
   </form>
