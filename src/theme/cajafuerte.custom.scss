@@ -75,9 +75,6 @@
   font-family: 'PT Sans Narrow';
   font-size: 22px;
 }
-.cflistitems {
-  font-size: 20px;
-}
 
 // Input Forms custom styles
 // --------------------------------------------------
@@ -136,9 +133,15 @@
 .ml-input .dt-has-no-input {
   color: #7f7f7f;
 }
+.cf-eye {
+  font-size: 2em;
+}
+.cf-open {
+  font-size: 1.4em;
+}
 /* using fontawesome on form items */
 .ml-input .fa {
-  background-color: #f0f0f0;
+  background-color: #f4f4f4;
   width: 61px;
   height: 60px;
   margin: 0;

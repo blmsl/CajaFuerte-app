@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 
+import {InAppBrowser} from 'ionic-native';
+
 import { AuthService } from '../../providers/auth-service';
 
 @Component({
@@ -20,6 +22,7 @@ export class PasswordPage {
     description: ''
   };
   title: string;
+  lockicon: string;
 
   constructor(public nav: NavController, public modalController: ModalController,public navParams: NavParams,public auth: AuthService) {   
     if (navParams.get('account') === undefined) {
@@ -29,7 +32,8 @@ export class PasswordPage {
       this.account = navParams.get('account');
       this.title = "Edit " + this.account.name;
       this.mode = "Edit";
-    }    
+    }
+    this.lockicon = 'lock';
   }
 
   save() {
@@ -44,11 +48,16 @@ export class PasswordPage {
 
   showPassword(input: any): any {
     input.type = input.type === 'password' ?  'text' : 'password';
+    this.lockicon = input.type === 'password' ?  'lock' : 'unlock-alt';
   }
 
   openSite(): any {
     if (this.account.site != '') {
-      window.open(this.account.site, '_blank');
+      let options = 'location=yes,toolbar=yes,hidden=no';
+      let browser = new InAppBrowser(this.account.site, '_blank', options);
+      browser.show();
+
+      //window.open(this.account.site, '_blank');
     }
   }
   
