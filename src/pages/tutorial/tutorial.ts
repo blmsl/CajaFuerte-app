@@ -65,4 +65,9 @@ export class TutorialPage {
     this.showSkip = !slider.isEnd;
   }
 
+  ionViewDidEnter() {
+    this.menu.enable(false);
+    this.menu.swipeEnable(false);
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+
+import { NavController, MenuController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
@@ -16,7 +17,7 @@ import { SignupPage } from '../signup/signup';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public menu: MenuController) {}
 
   login() {
     this.navCtrl.push(LoginPage);
@@ -25,4 +26,15 @@ export class WelcomePage {
   signup() {
     this.navCtrl.push(SignupPage);
   }
+
+   ionViewDidEnter() {
+    this.menu.enable(false);
+    this.menu.swipeEnable(false);
+  }
+
+  ionViewWillLeave() {
+    this.menu.enable(true);
+    this.menu.swipeEnable(true);
+  }
+
 }
