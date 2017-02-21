@@ -74,12 +74,7 @@ export class PasswordPage {
   }
 
   pickNotes() {
-    /*if (!this.hasDataTransactionType) {
-      // Make sure a transaction type has been selected
-      this.showValidationMessage = true;
-      this.validationMessage = "Please select Transaction Type";
-      return;
-    }*/
+    this.auth.pwdNotes = this.account.notes;
     this.nav.push(PickNotesPage);
   }
   

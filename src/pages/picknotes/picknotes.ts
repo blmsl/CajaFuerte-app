@@ -14,7 +14,9 @@ export class PickNotesPage {
   transaction;
   msg;
    
-  constructor(public nav: NavController, public auth: AuthService) {}
+  constructor(public nav: NavController, public auth: AuthService) {
+    
+  }
 
   ionViewDidLoad() {
     this.msg = this.auth.pwdNotes;
