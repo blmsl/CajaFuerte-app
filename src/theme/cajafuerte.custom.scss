@@ -86,6 +86,7 @@
 }
 .ml-input.item.item-block .item-inner {
   border-bottom: 0;
+  padding-right: 0;
 }
 .ml-input.item-block:first-child {
   border-top: 0;
@@ -133,12 +134,6 @@
 .ml-input .dt-has-no-input {
   color: #7f7f7f;
 }
-.cf-eye {
-  font-size: 2em;
-}
-.cf-open {
-  font-size: 1.4em;
-}
 /* using fontawesome on form items */
 .ml-input .fa {
   background-color: #f4f4f4;
@@ -152,6 +147,51 @@
   font-size: 23px;
   position: relative;
   top: 16px;
+}
+.cf-eye {
+  font-size: 2em;
+}
+.cf-open {
+  font-size: 1.4em;
+}
+.item.ml-input .cf-icon-right[item-right] {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.item.ml-input .cf-icon-right.item-button {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 50px;
+  font-size: 1.3rem;
+}
+.cf-fa-circle:before {
+  font-size: 22px;
+}
+.cf-fa-circle {
+  color: #fff;
+  background: #fecd57;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  vertical-align: middle;
+  padding: 5px;
+}
+.cf-fa-circle-gray {
+  color: #999999;
+  background: #f4f4f4;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  vertical-align: middle;
+  padding: 6px;
+}
+.cf-fa-circle-gray:before {
+  font-size: 20px;
 }
 /* end fontawesome */
 

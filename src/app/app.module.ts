@@ -15,6 +15,7 @@ import { SettingsPage } from '../pages/settings/settings';
 
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { PasswordPage } from '../pages/password/password';
+import { PickNotesPage } from '../pages/picknotes/picknotes';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -43,7 +44,8 @@ let pages = [
   ListMasterPage,
   SettingsPage,
   PasswordsPage,
-  PasswordPage
+  PasswordPage,
+  PickNotesPage
 ];
 
 export function declarations() {

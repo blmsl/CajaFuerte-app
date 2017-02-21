@@ -9,11 +9,11 @@
 <ion-content>
   <ion-list>
       <ion-list-header color="light">
-        Categories
+        Personal
       </ion-list-header>
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        <img src="assets/img/{{p.icon}}"/>
-        <span class="cflistitems">{{p.title}}</span>
+        <i item-left class="fa fa-lock cf-fa-circle"></i>
+        <span>{{p.title}}</span>
       </button>
     </ion-list>
 </ion-content>

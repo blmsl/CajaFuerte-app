@@ -15,6 +15,9 @@ export class AuthService {
   private userdata;
   private vaultdata;
 
+  public referrer: string;
+  public pwdNotes: string;
+
   constructor(public af: AngularFire, public auth$: AngularFireAuth) {
     
     af.auth.subscribe(auth => {
@@ -172,7 +175,8 @@ export class AuthService {
       number: account.number, 
       username: account.username, 
       password: account.password, 
-      description: account.description
+      description: account.description,
+      notes: account.notes
     });
   }
 

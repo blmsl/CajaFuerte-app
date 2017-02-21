@@ -22,7 +22,7 @@ export class ListMasterPage {
   ionViewDidLoad() {
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Passwords', component: PasswordsPage, icon: 'lock.png', color: 'faLightBlue', showloader: true }
+      { title: 'Accounts / Passwords', component: PasswordsPage, icon: 'lock.png', color: 'faLightBlue', showloader: true }
       /*{ title: 'Drivers License', component: PasswordsPage, icon: 'fa-id-card-o', color: '', showloader: false  },
       { title: 'Alarm Codes', component: PasswordsPage, icon: 'fa-bell-o', color: '', showloader: true  },
       { title: 'Vehicle Registrations', component: PasswordsPage, icon: 'fa-car', color: '', showloader: false  },*/

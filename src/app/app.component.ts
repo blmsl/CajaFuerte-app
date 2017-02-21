@@ -29,7 +29,7 @@ import { SettingsPage } from '../pages/settings/settings';
         </ion-list-header>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon item-left [name]="p.icon" [ngStyle]="{'color':p.color}" class="mlmenuicon"></ion-icon>
-          <span class="mlmenuitem">{{p.title}}</span>
+          <span>{{p.title}}</span>
         </button>
       </ion-list>
 
@@ -39,7 +39,7 @@ import { SettingsPage } from '../pages/settings/settings';
         </ion-list-header>
         <button menuClose ion-item (click)="logout()">
           <ion-icon item-left name="md-log-out" color="danger"></ion-icon>
-          <span class="mlmenuitem">Sign Out</span>
+          <span>Sign Out</span>
         </button>
       </ion-list>
       
