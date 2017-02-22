@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { LoadingController } from 'ionic-angular';
+
 import { AngularFire, AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import firebase from 'firebase';
@@ -14,11 +16,12 @@ export class AuthService {
   private userauth;
   private userdata;
   private vaultdata;
+  private loading: any;
 
   public referrer: string;
   public pwdNotes: string;
 
-  constructor(public af: AngularFire, public auth$: AngularFireAuth) {
+  constructor(public af: AngularFire, public auth$: AngularFireAuth, public loadingCtrl: LoadingController) {
     
     af.auth.subscribe(auth => {
       if(auth) {
@@ -95,6 +98,26 @@ export class AuthService {
     } else {
       return '';
     }
+  }
+
+  getUserEmail(): string {
+    let ref = this.af.auth.getAuth();
+    return ref.auth.email;    
+  }
+
+  LoadingControllerShow() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Please wait...',
+    });
+    this.loading.present();
+  }
+
+  LoadingControllerDismiss() {
+    // LUIS: Remove .catch once fix has been implemented
+    // https://github.com/driftyco/ionic/issues/10046#issuecomment-274074432
+    //this.loading.dismiss().catch(() => console.log('error on dismiss'));
+    this.loading.dismiss();
   }
 
   //

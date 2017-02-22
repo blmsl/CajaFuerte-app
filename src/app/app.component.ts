@@ -87,11 +87,17 @@ export class CajaFuerteApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
       Splashscreen.hide();
+
+      if (this.isTouchId) {
+        this.signInWithTouchID();
+      } else {
+        console.log('touchid not enabled');
+      }
     });
 
   }
 
-  signInWithTouchID(isenabled) {
+  signInWithTouchID() {
     //
     // Check if TouchID is supported
     TouchID.isAvailable()

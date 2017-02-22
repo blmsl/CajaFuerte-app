@@ -4,7 +4,7 @@ import { AlertController, NavController, ViewController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
-/*import { Settings } from '../../providers/settings';*/
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   templateUrl: 'touchid.html'
@@ -12,7 +12,8 @@ import { Storage } from '@ionic/storage';
 
 export class TouchIDPage { 
   
-  confirmpwd: string = '';
+  email: string = '';
+  pwd: string = '';
   touchidenabled: boolean = false;
   lockicon: string;
         
@@ -20,7 +21,8 @@ export class TouchIDPage {
     public alertCtrl: AlertController, 
     public nav: NavController, 
     public viewCtrl: ViewController, 
-    public storage: Storage) {
+    public storage: Storage,
+    public auth: AuthService) {
 
     this.lockicon = 'lock';
     
@@ -29,11 +31,19 @@ export class TouchIDPage {
       // Get touchid settings
       this.storage.get('option1').then( touchid => {
         this.touchidenabled = touchid;
+        //console.log(touchid);
       })
 
       // Get pwd settings
       this.storage.get('option2').then( pwd => {
-        this.confirmpwd = pwd;
+        this.pwd = pwd;
+        //console.log(pwd);
+      })
+
+      // Get pwd settings
+      this.storage.get('option3').then( email => {
+        this.email = email;
+        //console.log(email);
       })
 
     });
@@ -43,18 +53,21 @@ export class TouchIDPage {
   save() {
     if (this.touchidenabled) {
       // make sure pwd has been entered
-      if (this.confirmpwd != '') {
+      if (this.pwd != '') {
         this.storage.set('option1', this.touchidenabled);
-        this.storage.set('option2', this.confirmpwd);
+        this.storage.set('option2', this.pwd);
+        this.storage.set('option3', this.email);
+        //console.log('yomama', this.touchidenabled, this.pwd, this.email);
         this.goBack();
       } else {
         this.showAlert();
       }
     } else {
       // remove password and clear storage
-      this.confirmpwd = '';
+      this.pwd = '';
       this.storage.set('option1', false);
-        this.storage.set('option2', '');
+      this.storage.set('option2', '');
+      this.storage.set('option3', '');
       this.goBack();
     }
   }
@@ -62,7 +75,8 @@ export class TouchIDPage {
   toggleTouchID(e) {
     this.touchidenabled = e.checked;
     if (!e.checked) {
-      this.confirmpwd = '';
+      this.pwd = '';
+      this.email = '';
     }
   }
 
