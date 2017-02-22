@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+
+import { Platform, NavController } from 'ionic-angular';
+import { AppVersion } from 'ionic-native';
+
 import { TranslateService } from 'ng2-translate/ng2-translate';
+
+import { AboutPage } from '../../pages/about/about';
+import { TouchIDPage } from '../../pages/touchid/touchid';
 
 
 @Component({
@@ -10,6 +16,8 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 
 export class SettingsPage {
 
+  showFeature: boolean = false;
+  appversion = '';
   language = 'en';
   mode: string;
   profile: {fullname: string, email: string, vaultnumber: string, paymentplan: string, touchid: boolean} = {
@@ -20,16 +28,30 @@ export class SettingsPage {
     touchid: false
   };
 
-  constructor(public navCtrl: NavController,
-              public translate: TranslateService) {
+  constructor(public platform: Platform,
+    public nav: NavController,
+    public translate: TranslateService) {
+      
+      platform.ready().then(() => {
+      AppVersion.getVersionNumber().then(ver => {
+        this.appversion = ver;
+      }).catch(function(error) {
+        console.log(error);
+      });
+    });
+
   }
 
-  toggleTouchID(e) {
-    console.log(e);
+  openTouchID() {
+    this.nav.push(TouchIDPage);
   }
 
   toggleSelect(e) {
     this.translate.use(e);
+  }
+
+  openAboutPage() {
+    this.nav.push(AboutPage);
   }
   
 }

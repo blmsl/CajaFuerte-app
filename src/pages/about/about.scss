@@ -1,0 +1,62 @@
+page-about {
+
+  .divText {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .slide-title {
+    margin-top: 10%;
+  }
+
+  .app-title {
+    font: 60px 'PT Sans Narrow';
+    font-weight: bolder;
+  }
+
+  .divImage i {
+    width: 175px;
+    height: 175px;
+    border: 5px solid #fff;
+    border-radius: 100%;
+    font-size: 120px;
+    line-height: 38px;
+    color: #fff;
+    margin: 7% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    background: url('../assets/img/splashbg.png') no-repeat #f4f4f4;
+    background-size: cover;
+  }
+
+  ion-page.page-about > ion-content{
+    background-color: transparent;
+  }
+
+
+  .slide-image {
+    max-height: 50%;
+    max-width: 60%;
+    margin: 36px 0;
+  }
+
+  .introDarkBlue {
+    background-color: #134b6a;
+  }
+
+  p {
+    padding: 0 40px;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+    b {
+      color: #31c0e6;
+    }
+  }
+
+}

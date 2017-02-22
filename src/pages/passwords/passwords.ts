@@ -30,6 +30,7 @@ export class PasswordsPage {
   }
 
   openItem(account) {
+    this.auth.referrer = 'PasswordsPage';
     this.navCtrl.push(PasswordPage, { account: account });
   }
 

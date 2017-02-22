@@ -13,7 +13,7 @@
       </ion-list-header>
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
         <i item-left class="fa fa-lock cf-fa-circle"></i>
-        <span>{{p.title}}</span>
+        {{p.title}}
       </button>
     </ion-list>
 </ion-content>

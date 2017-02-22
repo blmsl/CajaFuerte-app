@@ -13,6 +13,9 @@ import { PickNotesPage } from '../../pages/picknotes/picknotes';
 
 export class PasswordPage {
 
+  title: string;
+  lockicon: string;
+  showSkip = false;
   mode: string;
   account: {name: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
     name: '', 
@@ -23,8 +26,6 @@ export class PasswordPage {
     description: '',
     notes: ''
   };
-  title: string;
-  lockicon: string;
 
   constructor(public nav: NavController, public modalController: ModalController, public navParams: NavParams, public auth: AuthService) {
     if (navParams.get('account') === undefined) {
@@ -41,8 +42,11 @@ export class PasswordPage {
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
+      case 'PasswordsPage': {
+        this.auth.pwdNotes = '';
+        break;
+      }
       case 'PickNotesPage': {
-        // Payee
         this.account.notes = this.auth.pwdNotes;
         break;
       }
@@ -66,7 +70,12 @@ export class PasswordPage {
   openSite(): any {
     if (this.account.site != '') {
       let urlLower = this.account.site.toLowerCase();
-      let url = urlLower.startsWith('http://') ?  urlLower : 'http://' + urlLower;
+      let url: string;
+      if (urlLower.startsWith('http://') || urlLower.startsWith('https://')) {
+        url = urlLower;
+      } else {
+        url = 'http://' + urlLower;
+      }
       let options = 'location=yes,toolbar=yes,hidden=no';
       let browser = new InAppBrowser(url, '_blank', options);
       browser.show();

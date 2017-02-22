@@ -2,9 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, Nav, AlertController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+
 import {Deploy} from '@ionic/cloud-angular';
 
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen, TouchID } from 'ionic-native';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -50,7 +52,9 @@ import { SettingsPage } from '../pages/settings/settings';
 })
 
 export class CajaFuerteApp {
+  
   rootPage = FirstRunPage;
+  isTouchId: boolean = false;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -64,11 +68,19 @@ export class CajaFuerteApp {
     platform: Platform,
     public deploy: Deploy,
     public alertCtrl: AlertController,
+    public storage: Storage,
     public auth: AuthService) {
 
-    // Set the default language for translation strings, and the current language.
+    // Set the default language for translation strings, and the current language
     translate.setDefaultLang('en');
     translate.use('en')
+
+    // Get local storage saved settings
+    storage.ready().then(() => {
+      this.storage.get('option1').then( touchid => {
+        this.isTouchId = touchid;
+      })      
+    });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -76,6 +88,27 @@ export class CajaFuerteApp {
       StatusBar.styleLightContent();
       Splashscreen.hide();
     });
+
+  }
+
+  signInWithTouchID(isenabled) {
+    //
+    // Check if TouchID is supported
+    TouchID.isAvailable()
+    .then(
+      res => {
+        TouchID.verifyFingerprint('Scan your fingerprint please')
+        .then(
+          res => {
+            //this.nav.setRoot(LoginAutoPage);
+          },
+          err => {console.error('Error', err)}
+        );
+      },
+      err => {
+        console.error('TouchID is not available', err)
+      }
+    );
   }
 
   openPage(page) {

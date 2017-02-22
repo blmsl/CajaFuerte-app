@@ -15,7 +15,7 @@ export class PickNotesPage {
   msg;
    
   constructor(public nav: NavController, public auth: AuthService) {
-    
+
   }
 
   ionViewDidLoad() {

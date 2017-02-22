@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      TouchID
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()">Save</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <ion-list-header>
+    TouchID Settings
+  </ion-list-header>
+  <ion-list>
+    <ion-item class="ml-input">
+      <ion-icon item-left name="finger-print" color="danger"></ion-icon>
+      <ion-label>Enable TouchID</ion-label>
+      <ion-toggle (ionChange)="toggleTouchID($event)" checked="{{ touchidenabled }}" color="mllightblue"></ion-toggle>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-{{lockicon}}" item-left></i>
+      <ion-label floating>Password</ion-label>
+      <ion-input #input type="password" [(ngModel)]="confirmpwd"></ion-input>
+      <button ion-button clear item-right (click)="showPassword(input)" class="cf-icon-right">
+        <ion-icon name="eye" color="primary" class="cf-eye" *ngIf="confirmpwd != ''"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

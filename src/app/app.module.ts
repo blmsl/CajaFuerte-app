@@ -12,11 +12,13 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ListMasterPage } from '../pages/list-master/list-master';
 import { SettingsPage } from '../pages/settings/settings';
-
+import { AboutPage } from '../pages/about/about';
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { PasswordPage } from '../pages/password/password';
 import { PickNotesPage } from '../pages/picknotes/picknotes';
+import { TouchIDPage } from '../pages/touchid/touchid';
 
+/*import { Settings } from '../providers/settings';*/
 import { AuthService } from '../providers/auth-service';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -43,9 +45,11 @@ let pages = [
   WelcomePage,
   ListMasterPage,
   SettingsPage,
+  AboutPage,
   PasswordsPage,
   PasswordPage,
-  PickNotesPage
+  PickNotesPage,
+  TouchIDPage
 ];
 
 export function declarations() {
@@ -60,7 +64,6 @@ export function providers() {
   return [
     Storage,
     AuthService,
-    { deps: [ Storage ] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
@@ -100,6 +103,6 @@ const firebaseAuthConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: entryComponents(),
-  providers: [Storage, AuthService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: providers()
 })
 export class AppModule {}
