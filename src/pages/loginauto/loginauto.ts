@@ -36,20 +36,19 @@ export class LoginAutoPage {
         // Get pwd settings
         this.storage.get('option3').then( email => {
           this.email = email;
-        })
 
-        // Get pwd settings
-        this.storage.get('option2').then( pwd => {
-          this.pwd = pwd;
+          // Get pwd settings
+          this.storage.get('option2').then( pwd => {
+            this.pwd = pwd;
+            if (this.email != '' && this.pwd != '') {
+              // Auto Login
+              this.account = {email: this.email, password: this.pwd};
+              this.autoLogin(this.account);
+            } else {
+              this.LoginFailure();
+            }
+          })
         })
-
-        if (this.email != '' && this.pwd != '') {
-          // Auto Login
-          this.account = {email: this.email, password: this.pwd};
-          this.autoLogin(this.account);
-        } else {
-          this.LoginFailure();
-        }
       })
       .catch(
         (error) => {

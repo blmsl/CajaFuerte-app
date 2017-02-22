@@ -15,6 +15,7 @@ import { AuthService } from '../providers/auth-service';
 import { FirstRunPage } from '../pages/pages';
 import { ListMasterPage } from '../pages/list-master/list-master';
 import { SettingsPage } from '../pages/settings/settings';
+import { LoginAutoPage } from '../pages/loginauto/loginauto';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -75,24 +76,24 @@ export class CajaFuerteApp {
     translate.setDefaultLang('en');
     translate.use('en')
 
-    // Get local storage saved settings
-    storage.ready().then(() => {
-      this.storage.get('option1').then( touchid => {
-        this.isTouchId = touchid;
-      })      
-    });
-
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
       Splashscreen.hide();
 
-      if (this.isTouchId) {
-        this.signInWithTouchID();
-      } else {
-        console.log('touchid not enabled');
-      }
+      // Get local storage saved settings
+      storage.ready().then(() => {
+        this.storage.get('option1').then( touchid => {
+          this.isTouchId = touchid;
+          if (this.isTouchId) {
+            console.log('try touchid');
+            this.signInWithTouchID();
+          } else {
+            console.log('touchid not enabled');
+          }
+        })      
+      });
     });
 
   }
@@ -100,13 +101,14 @@ export class CajaFuerteApp {
   signInWithTouchID() {
     //
     // Check if TouchID is supported
+    console.log('signin touchid');
     TouchID.isAvailable()
     .then(
       res => {
         TouchID.verifyFingerprint('Scan your fingerprint please')
         .then(
           res => {
-            //this.nav.setRoot(LoginAutoPage);
+            this.nav.setRoot(LoginAutoPage);
           },
           err => {console.error('Error', err)}
         );

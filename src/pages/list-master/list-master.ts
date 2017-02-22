@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+
+import { MenuController, NavController, ModalController } from 'ionic-angular';
 
 import { PasswordsPage } from '../passwords/passwords';
 
-import { Item } from '../../models/item';
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-list-master',
@@ -12,12 +13,13 @@ import { Item } from '../../models/item';
 
 export class ListMasterPage {
 
-  currentItems: Item[];
   pages: Array<{title: string, component: any, icon: string, color: string, showloader: boolean}>;
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController) {}
+    public modalCtrl: ModalController,
+    public menu: MenuController,
+    public auth: AuthService) {}
 
   ionViewDidLoad() {
     // used for an example of ngFor and navigation
@@ -27,6 +29,9 @@ export class ListMasterPage {
       { title: 'Alarm Codes', component: PasswordsPage, icon: 'fa-bell-o', color: '', showloader: true  },
       { title: 'Vehicle Registrations', component: PasswordsPage, icon: 'fa-car', color: '', showloader: false  },*/
     ];
+
+    this.auth.LoadingControllerDismiss();
+
   }
 
   addItem() {
@@ -40,4 +45,10 @@ export class ListMasterPage {
   openPage(item) {
     this.navCtrl.push(item.component, { item: item });
   }
+
+  ionViewDidEnter() {
+    this.menu.enable(true);
+    this.menu.swipeEnable(true);
+  }
+  
 }

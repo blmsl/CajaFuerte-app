@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { CajaFuerteApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
+import { LoginAutoPage } from '../pages/loginauto/loginauto';
 import { SignupPage } from '../pages/signup/signup';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: Http) {
 let pages = [
   CajaFuerteApp,
   LoginPage,
+  LoginAutoPage,
   SignupPage,
   TutorialPage,
   WelcomePage,
