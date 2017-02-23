@@ -191,8 +191,8 @@ export class AuthService {
     this.vaultdata.child(this.user.vaultid + '/accounts/' + account.$key).remove();
   }
 
-  updateAccount(account) {
-    this.vaultdata.child(this.user.vaultid + '/accounts/' + account.$key).update({
+  updateAccount(account, key) {
+    this.vaultdata.child(this.user.vaultid + '/accounts/' + key).update({
       name: account.name, 
       site: account.site, 
       number: account.number, 
