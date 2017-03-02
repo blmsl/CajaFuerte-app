@@ -137,7 +137,7 @@ export class CajaFuerteApp {
           }
         },
         {
-          text: 'Sing Out',
+          text: 'Sign Out',
           cssClass: 'alertDanger',
           handler: () => {
             try {
