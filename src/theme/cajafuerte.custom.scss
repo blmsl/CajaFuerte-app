@@ -167,32 +167,32 @@
   font-size: 1.3rem;
 }
 .cf-fa-circle:before {
-  font-size: 22px;
+  font-size: 21px;
 }
 .cf-fa-circle {
-  color: #fff;
-  background: #fecd57;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 32px;
-  vertical-align: middle;
-  padding: 5px;
-}
-.cf-fa-circle-gray {
-  color: #999999;
-  background: #f4f4f4;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 32px;
-  vertical-align: middle;
   padding: 6px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 0px solid #fff;
+  color:#fff;
+	/*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);*/
+  text-align: center;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  -o-transition:.5s;
+  transition:.5s;
 }
-.cf-fa-circle-gray:before {
-  font-size: 20px;
+.iconpicker {
+  width: 50px;
+}
+.iconpicker::before {
+  font-size: 25px;
 }
 /* end fontawesome */
 

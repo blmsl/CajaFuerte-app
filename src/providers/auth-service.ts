@@ -143,6 +143,7 @@ export class AuthService {
   createInitialSetup() {
     this.createUserProfile();
     this.createVault();
+    //this.createForms();
   }
 
   createUserProfile() {
@@ -186,6 +187,17 @@ export class AuthService {
 
   }
 
+  /*createForms() {
+
+    var ref = this.vaultdata.child(this.user.vaultid + "/forms/");
+    ref.push({ title: 'Accounts / Passwords', icon: 'fa fa-lock', color: '#fecd57' });
+    ref.push({ title: 'Savings', icon: 'ios-cash-outline' });
+    ref.push({ title: 'Credit Card', icon: 'ios-cash-outline' });
+    ref.push({ title: 'Debit Card', icon: 'ios-cash-outline' });
+    ref.push({ title: 'Investment', icon: 'ios-cash-outline' });
+    ref.push({ title: 'Brokerage', icon: 'ios-cash-outline' });
+  }*/
+
   getUserData() { 
     const thisuser$ : FirebaseObjectObservable<any> = this.af.database.object('/users/' + this.userauth.uid); 
     thisuser$.subscribe((val) => {
@@ -202,6 +214,14 @@ export class AuthService {
         orderByChild: 'namelower'
       }
     });
+  }
+  
+  getAllAccounts() {
+    return this.vaultdata.child(this.user.vaultid + '/accounts').orderByChild('namelower');
+  }
+  
+  getAccount(key) {
+    return this.vaultdata.child(this.user.vaultid + '/accounts/' + key);
   }
 
   addAccount(account) {

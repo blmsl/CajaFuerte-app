@@ -7,24 +7,24 @@
   <form #signupForm="ngForm" (submit)="doSignup()">
     <ion-list>
       <ion-list-header color="light">
-        Enter your credentials
+        Enter your info to create your private vault
       </ion-list-header>
       <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
+        <ion-label stacked>{{ 'NAME' | translate }}</ion-label>
         <ion-input type="text" [(ngModel)]="account.name" name="name" #name="ngModel" required></ion-input>
         <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
           Full name is required
         </p>
       </ion-item>
       <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
+        <ion-label stacked>{{ 'EMAIL' | translate }}</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email" #email="ngModel" required></ion-input>
         <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
           Email is required
         </p>
       </ion-item>
       <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-label stacked>{{ 'PASSWORD' | translate }}</ion-label>
         <ion-input type="password" [(ngModel)]="account.password" name="password" #password="ngModel" required></ion-input>
         <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
           Password is required

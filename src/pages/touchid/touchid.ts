@@ -57,7 +57,6 @@ export class TouchIDPage {
         this.storage.set('option1', this.touchidenabled);
         this.storage.set('option2', this.pwd);
         this.storage.set('option3', this.email);
-        //console.log('yomama', this.touchidenabled, this.pwd, this.email);
         this.goBack();
       } else {
         this.showAlert();

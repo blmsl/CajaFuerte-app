@@ -15,6 +15,7 @@ import { PasswordPage } from '../password/password';
 
 export class PasswordsPage {
 
+  groupedAccounts = [];
   accounts: FirebaseListObservable<any[]>;
 
   constructor(
@@ -22,7 +23,51 @@ export class PasswordsPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public auth: AuthService) {
-      this.accounts = this.auth.getAccounts();
+      //this.accounts = this.auth.getAccounts();
+  }
+
+  ionViewDidLoad() {
+
+    this.auth.getAllAccounts().on('value', (accounts) => { 
+
+      var that = this;
+      this.groupedAccounts = [];
+      let currentAccounts = [];
+      let currentLetter = false;
+
+      accounts.forEach( spanshot => {
+
+        let account = spanshot.val();
+        let tempAccount = ({
+          $key: spanshot.key,
+          description: account.description,
+          name: account.name,
+          namelower: account.namelower,
+          notes: account.notes,
+          number: account.number,
+          password: account.password,
+          site: account.site,
+          username: account.username
+        });
+
+        if(tempAccount.name.charAt(0) != currentLetter){
+          currentLetter = tempAccount.name.charAt(0).toUpperCase();
+          let newGroup = {
+            letter: currentLetter,
+            accounts: []
+          };
+          currentAccounts = newGroup.accounts;
+          that.groupedAccounts.push(newGroup);
+        }
+        currentAccounts.push(tempAccount);
+
+      })
+
+      // Disable loading controller when the promise is complete
+      this.auth.LoadingControllerDismiss();
+
+    });
+  
   }
 
   addItem() {

@@ -1,0 +1,71 @@
+
+page-modaltouchid{
+
+  ion-slides {
+    background-color: #1b6893;
+  }  
+  .toolbar-background {
+    background: #1b6893;
+  }
+  .swiper-pagination-bullet {
+    background: #fff;
+  }
+  .button-clear {
+    color: #31C0E6;
+  } 
+  .slide-zoom {
+    height: 100%;
+  }
+  .divImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .divText {
+    display: inline-block;
+  }
+  .divImage .icon {
+    width: 175px;
+    height: 175px;
+    border: 0px solid #fff;
+    border-radius: 100%;
+    font-size: 120px;
+    line-height: 38px;
+    color: #31C0E6;
+    margin: 7% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btnactivate {
+    background-color: #134b6a;
+  }  
+  .slide-title {
+    margin-top: 10%;
+  }
+  h2.slide-title {
+    color: #fff;
+    font: 30px 'PT Sans Narrow';
+    font-weight: bolder;
+  }
+  h2.app-title {
+    font: 60px 'PT Sans Narrow';
+    font-weight: bolder;
+  }
+  .slide-image {
+    max-height: 50%;
+    max-width: 60%;
+    margin: 36px 0;
+  }
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+    font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+    b {
+      color: #31c0e6;
+    }
+  }
+
+}

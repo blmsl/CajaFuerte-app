@@ -16,10 +16,11 @@ import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { PasswordPage } from '../pages/password/password';
+import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
 import { PickNotesPage } from '../pages/picknotes/picknotes';
 import { TouchIDPage } from '../pages/touchid/touchid';
+import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
 
-/*import { Settings } from '../providers/settings';*/
 import { AuthService } from '../providers/auth-service';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -50,8 +51,10 @@ let pages = [
   AboutPage,
   PasswordsPage,
   PasswordPage,
+  PasswordEditPage,
   PickNotesPage,
-  TouchIDPage
+  TouchIDPage,
+  ModalTouchIDPage
 ];
 
 export function declarations() {

@@ -43,6 +43,7 @@ export class ListMasterPage {
   }
 
   openPage(item) {
+    this.auth.LoadingControllerShow();
     this.navCtrl.push(item.component, { item: item });
   }
 

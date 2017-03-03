@@ -1,7 +1,29 @@
 page-list-master {
-
   img {
    margin-right: 10px; 
   }
-
+  .cf-card-title {
+    font-size: 18px;
+    font-weight: normal;
+  }
+  .card {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    .item {
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+    .fa-color {
+      background: color($colors, passwords-color)
+    }
+    .cf-fa-circle {
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+    }
+    .cf-fa-circle:before {
+      font-size: 27px;
+    }
+  }
 }

@@ -6,14 +6,14 @@
     <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content class="outer-content">
   <ion-list>
-      <ion-list-header color="light">
-        Personal
-      </ion-list-header>
-      <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        <i item-left class="fa fa-lock cf-fa-circle"></i>
-        {{p.title}}
-      </button>
+      <ion-card *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-item text-wrap>
+          <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
+          <h2>{{p.title}}</h2>
+          <p>Store and organize all your online accounts and passwords in a secure vault!</p>
+        </ion-item>
+      </ion-card>
     </ion-list>
 </ion-content>

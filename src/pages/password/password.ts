@@ -18,8 +18,9 @@ export class PasswordPage {
   showSkip = false;
   mode: string;
   acc;
-  account: {name: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
+  account: {name: string, namelower: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
     name: '', 
+    namelower: '', 
     site: '', 
     number: '', 
     username: '', 
@@ -29,7 +30,6 @@ export class PasswordPage {
   };
 
   constructor(public nav: NavController, public modalController: ModalController, public navParams: NavParams, public auth: AuthService) {
-    
     this.acc = navParams.get('account');
     if (this.acc === undefined) {
       this.title = "Create Account";
@@ -58,6 +58,7 @@ export class PasswordPage {
 
   save() {
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
+    this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
       this.auth.addAccount(this.account);
     } else {

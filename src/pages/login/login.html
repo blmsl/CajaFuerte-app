@@ -10,14 +10,14 @@
         Enter your credentials
       </ion-list-header>
       <ion-item>
-        <ion-label fixed>Email</ion-label>
+        <ion-label stacked>Email</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email" #email="ngModel" required></ion-input>
         <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
           Email is required
         </p>
       </ion-item>
       <ion-item>
-        <ion-label fixed>Password</ion-label>
+        <ion-label stacked>Password</ion-label>
         <ion-input type="password" [(ngModel)]="account.password" name="password" #password="ngModel" required></ion-input>
         <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
           Password is required
