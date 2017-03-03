@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { LoadingController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+
 import { AngularFire, AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import firebase from 'firebase';
@@ -21,7 +23,11 @@ export class AuthService {
   public referrer: string;
   public pwdNotes: string;
 
-  constructor(public af: AngularFire, public auth$: AngularFireAuth, public loadingCtrl: LoadingController) {
+  constructor(
+    public storage: Storage,
+    public af: AngularFire, 
+    public auth$: AngularFireAuth, 
+    public loadingCtrl: LoadingController) {
     
     af.auth.subscribe(auth => {
       if(auth) {
@@ -120,6 +126,17 @@ export class AuthService {
     this.loading.dismiss();
   }
 
+  storageSet(isenabled, pwd, email) {
+    this.storage.set('option1', isenabled);
+    this.storage.set('option2', pwd);
+    this.storage.set('option3', email);
+  }
+  storageClean() {
+    this.storage.set('option1', false);
+    this.storage.set('option2', '');
+    this.storage.set('option3', '');
+  }
+
   //
   // SING IN - CREATE USER
   //-----------------------------------------------------------------------
@@ -180,7 +197,11 @@ export class AuthService {
   // ACCOUNTS - PASSWORDS
   //-----------------------------------------------------------------------
   getAccounts(): FirebaseListObservable<any[]> {
-    return this.af.database.list('/vaults/' + this.user.vaultid + '/accounts');
+    return this.af.database.list('/vaults/' + this.user.vaultid + '/accounts', {
+      query: {
+        orderByChild: 'namelower'
+      }
+    });
   }
 
   addAccount(account) {
@@ -194,6 +215,7 @@ export class AuthService {
   updateAccount(account, key) {
     this.vaultdata.child(this.user.vaultid + '/accounts/' + key).update({
       name: account.name, 
+      namelower: account.namelower, 
       site: account.site, 
       number: account.number, 
       username: account.username, 

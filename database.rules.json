@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "vaults": {
+      "$vault_id": {
+        // Grants read/write access to the users whose vaultid exactly match the key ($vault_id)
+        ".read": "root.child('users').child(auth.uid).child('vaultid').val() === $vault_id",
+        ".write": "root.child('users').child(auth.uid).child('vaultid').val() === $vault_id",
+        "accounts": {
+          "$account_id": {
+            ".indexOn": ["namelower"]
+          }
+        }
+      }
+    },
+  	"users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    }
+	}
+}
