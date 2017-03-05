@@ -8,6 +8,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { AboutPage } from '../../pages/about/about';
 import { TouchIDPage } from '../../pages/touchid/touchid';
 
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-settings',
@@ -30,7 +31,8 @@ export class SettingsPage {
 
   constructor(public platform: Platform,
     public nav: NavController,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    public auth: AuthService) {
       
       platform.ready().then(() => {
       AppVersion.getVersionNumber().then(ver => {
@@ -47,6 +49,7 @@ export class SettingsPage {
   }
 
   toggleSelect(e) {
+    this.auth.storageSetLanguage(e);
     this.translate.use(e);
   }
 

@@ -39,7 +39,6 @@ export class SignupPage {
     this.auth.signUpWithEmail(this.account).then(() => {
       this.presentModal();
     }).catch((error) => {
-      console.log(error);
       this.SignUpError(error);
     });
   }

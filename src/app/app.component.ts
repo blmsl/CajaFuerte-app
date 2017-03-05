@@ -13,43 +13,10 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { AuthService } from '../providers/auth-service';
 
 import { FirstRunPage } from '../pages/pages';
-import { ListMasterPage } from '../pages/list-master/list-master';
-import { SettingsPage } from '../pages/settings/settings';
 import { LoginAutoPage } from '../pages/loginauto/loginauto';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar color="cfblack">
-        <ion-title>CajaFuerte</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content class="outer-content">
-      <ion-list>
-        <ion-list-header>
-          Navigate
-        </ion-list-header>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <ion-icon item-left [name]="p.icon" [ngStyle]="{'color':p.color}" class="mlmenuicon"></ion-icon>
-          <span>{{p.title}}</span>
-        </button>
-      </ion-list>
-
-      <ion-list>
-        <ion-list-header>
-          Account
-        </ion-list-header>
-        <button menuClose ion-item (click)="logout()">
-          <ion-icon item-left name="md-log-out" color="danger"></ion-icon>
-          <span>Sign Out</span>
-        </button>
-      </ion-list>
-      
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 
 export class CajaFuerteApp {
@@ -58,11 +25,6 @@ export class CajaFuerteApp {
   isTouchId: boolean = false;
 
   @ViewChild(Nav) nav: Nav;
-
-  pages: any[] = [
-    { title: 'Forms', component: ListMasterPage, icon: 'ios-browsers-outline', color: '' },
-    { title: 'Settings', component: SettingsPage, icon: 'ios-settings-outline', color: '' }
-  ]
 
   constructor(
     translate: TranslateService, 
@@ -117,6 +79,8 @@ export class CajaFuerteApp {
         console.error('TouchID is not available', err)
       }
     );
+    // testing
+    // this.nav.setRoot(LoginAutoPage);
   }
 
   openPage(page) {

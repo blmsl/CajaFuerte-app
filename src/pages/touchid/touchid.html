@@ -16,7 +16,7 @@
     <ion-item class="ml-input">
       <ion-icon item-left name="finger-print" color="danger"></ion-icon>
       <ion-label>Enable TouchID</ion-label>
-      <ion-toggle (ionChange)="toggleTouchID($event)" checked="{{ touchidenabled }}" color="mllightblue"></ion-toggle>
+      <ion-toggle [(ngModel)]="touchidenabled" color="mllightblue"></ion-toggle>
     </ion-item>
     <ion-item class="ml-input">
       <i class="fa fa-envelope-o" item-left></i>
@@ -28,7 +28,7 @@
       <ion-label floating>Password</ion-label>
       <ion-input #input type="password" [(ngModel)]="pwd"></ion-input>
       <button ion-button clear item-right (click)="showPassword(input)" class="cf-icon-right">
-        <ion-icon name="eye" color="primary" class="cf-eye" *ngIf="pwd != ''"></ion-icon>
+        <ion-icon name="eye" class="cf-eye" *ngIf="pwd != ''"></ion-icon>
       </button>
     </ion-item>
   </ion-list>

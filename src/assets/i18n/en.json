@@ -1,53 +1,64 @@
 {
-  "NAME": "Name",
-  "PASSWORD": "Password",
-  "EMAIL": "Email",
-  "LOGIN": "Sign in",
-  "SIGNUP": "Sign up",
-
-  "TAB1_TITLE": "Forms",
-  "TAB2_TITLE": "Recent",
-  "TAB3_TITLE": "Search",
-  "TAB4_TITLE": "Settings",
-
-  "MAP_TITLE": "Map",
 
   "TUTORIAL_SLIDE1_TITLE": "CajaFuerte",
   "TUTORIAL_SLIDE1_DESCRIPTION": "Personal Information Manager",
-
-  "TUTORIAL_SLIDE2_TITLE": "Super Secured",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "This is a private app to be installed on your phone with your own Firebase project.<br />Hackers won't know it exists!",
-
-  "TUTORIAL_SLIDE3_TITLE": "Customizable",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "You can modify this app to your specific needs!",
-
-  "SETTINGS_TITLE": "Settings",
-  "SETTINGS_OPTION1": "Option 1",
-  "SETTINGS_OPTION2": "Option 2",
-  "SETTINGS_OPTION3": "Option 3",
-  "SETTINGS_OPTION4": "Option 4",
-
-  "SETTINGS_PAGE_PROFILE": "Edit Profile",
+  "TUTORIAL_SLIDE_NEXT": "Next",
 
   "WELCOME_TITLE": "Welcome to CajaFuerte",
   "WELCOME_SUBTITLE": "Personal Information Manager",
-
+  
+  "LOGIN": "Sign in",
+  "SIGNUP": "Sign up",
+  
   "LOGIN_TITLE": "Sign in",
+  "LOGIN_SUBTITLE": "Enter your credentials",
+  "LOGIN_ERROR_TITLE": "Login Failed",
   "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
   "LOGIN_BUTTON": "Sign in",
+  
+  "NAME_LABEL": "Full Name",
+  "EMAIL_LABEL": "Email",
+  "PASSWORD_LABEL": "Password",
+
   "SIGNUP_TITLE": "Sign up",
+  "SIGNUP_SUBTITLE": "Enter your information",
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
   "SIGNUP_BUTTON": "Sign up",
 
-  "LIST_MASTER_TITLE": "Forms",
+  "TAB1_TITLE": "Forms",
+  "TAB2_TITLE": "Recent",
+  "TAB3_TITLE": "Favorites",
+  "TAB4_TITLE": "Settings",
+
+  "RECENT_TITLE": "Recent",
+
   "FAVORITES_TITLE": "Favorites",
 
-  "ITEM_CREATE_TITLE": "New Item",
-  "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
+  "SETTINGS_TITLE": "Settings",
+  "SETTINGS_SUBTITLE": "App Settings",
+  "LANGUAGE_LABEL": "Language",
+  "ABOUT_LABEL": "About",
+  "VERSION_LABEL": "Version",
 
-  "CARDS_TITLE": "Social",
+  "LIST_MASTER_TITLE": "Forms",
 
   "SEARCH_TITLE": "Search",
 
-  "LIST_PASSWORDS": "Accounts"
+  "LIST_PASSWORDS": "Accounts",
+
+  "ACCOUNTS_PASSWORDS_TITLE": "Accounts/Passwords",
+  "ACCOUNTS_PASSWORDS_SUBTITLE": "Store and organize all your online accounts and passwords in a secure vault!",
+
+  "SAVE_PASSWORD_TITLE": "Save",
+  "CREATE_PASSWORD_TITLE": "Create",
+  "EDIT_PASSWORD_TITLE": "Edit",
+  "EDIT_PASSWORD_SUBTITLE": "Edit account details",
+  "ACCOUNT_NAME": "Account Name",
+  "ACCOUNT_DESCRIPTION": "Description",
+  "ACCOUNT_URL": "Account Site / URL",
+  "ACCOUNT_NUMBER": "Account Number",
+  "ACCOUNT_USERNAME": "Username",
+  "ACCOUNT_PASSWORD": "Account Password",
+  "ACCOUNT_NOTES": "Notes"
+
 }

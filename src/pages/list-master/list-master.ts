@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
-import { MenuController, NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { PasswordsPage } from '../passwords/passwords';
 
 import { AuthService } from '../../providers/auth-service';
+
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
   selector: 'page-list-master',
@@ -13,25 +15,29 @@ import { AuthService } from '../../providers/auth-service';
 
 export class ListMasterPage {
 
-  pages: Array<{title: string, component: any, icon: string, color: string, showloader: boolean}>;
+  pages: Array<{title: string, subtitle: string, component: any, icon: string, color: string}>;
 
   constructor(
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
-    public menu: MenuController,
-    public auth: AuthService) {}
-
-  ionViewDidLoad() {
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Accounts / Passwords', component: PasswordsPage, icon: 'lock.png', color: 'faLightBlue', showloader: true }
-      /*{ title: 'Drivers License', component: PasswordsPage, icon: 'fa-id-card-o', color: '', showloader: false  },
-      { title: 'Alarm Codes', component: PasswordsPage, icon: 'fa-bell-o', color: '', showloader: true  },
-      { title: 'Vehicle Registrations', component: PasswordsPage, icon: 'fa-car', color: '', showloader: false  },*/
-    ];
-
+    public translate: TranslateService,
+    public auth: AuthService) {
+    
+    translate.get(["ACCOUNTS_PASSWORDS_TITLE",
+                  "ACCOUNTS_PASSWORDS_SUBTITLE"])
+    .subscribe((values) => {
+      
+      this.pages = [
+        { 
+          title: values.ACCOUNTS_PASSWORDS_TITLE, 
+          subtitle: values.ACCOUNTS_PASSWORDS_SUBTITLE, 
+          component: PasswordsPage, 
+          icon: 'lock.png', 
+          color: 'faLightBlue'
+        }
+      ];
+    });
     this.auth.LoadingControllerDismiss();
-
   }
 
   addItem() {
@@ -45,11 +51,6 @@ export class ListMasterPage {
   openPage(item) {
     this.auth.LoadingControllerShow();
     this.navCtrl.push(item.component, { item: item });
-  }
-
-  ionViewDidEnter() {
-    this.menu.enable(true);
-    this.menu.swipeEnable(true);
   }
   
 }

@@ -4,6 +4,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
+import { TranslateService } from 'ng2-translate/ng2-translate';
+
 import { AngularFire, AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import firebase from 'firebase';
@@ -19,12 +21,17 @@ export class AuthService {
   private userdata;
   private vaultdata;
   private loading: any;
+  public storageLang: string;
+  public storageTouchid: boolean = false;
+  public storageEmail: string;
+  public storagePwd: string;
 
   public referrer: string;
   public pwdNotes: string;
 
   constructor(
     public storage: Storage,
+    public translate: TranslateService, 
     public af: AngularFire, 
     public auth$: AngularFireAuth, 
     public loadingCtrl: LoadingController) {
@@ -39,6 +46,7 @@ export class AuthService {
 
     this.userdata = firebase.database().ref('/users/');
     this.vaultdata = firebase.database().ref('/vaults/');
+
   }
 
   ngOnDestroy(){
@@ -126,12 +134,22 @@ export class AuthService {
     this.loading.dismiss();
   }
 
+  storageSetLanguage(lang) {
+    this.storageLang = lang;
+    this.storage.set('option0', lang);
+  }
   storageSet(isenabled, pwd, email) {
+    this.storageTouchid = isenabled;
+    this.storagePwd = pwd;
+    this.storageEmail = email;
     this.storage.set('option1', isenabled);
     this.storage.set('option2', pwd);
     this.storage.set('option3', email);
   }
   storageClean() {
+    this.storageTouchid = false;
+    this.storagePwd = '';
+    this.storageEmail = '';
     this.storage.set('option1', false);
     this.storage.set('option2', '');
     this.storage.set('option3', '');

@@ -27,14 +27,4 @@ export class WelcomePage {
     this.navCtrl.push(SignupPage);
   }
 
-   ionViewDidEnter() {
-    this.menu.enable(false);
-    this.menu.swipeEnable(false);
-  }
-
-  ionViewWillLeave() {
-    this.menu.enable(true);
-    this.menu.swipeEnable(true);
-  }
-
 }

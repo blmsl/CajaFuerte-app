@@ -1,17 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>
-      Settings
+      {{ 'SETTINGS_TITLE' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
   <ion-list>
     <ion-list-header>
-      App Settings
+      {{ 'SETTINGS_SUBTITLE' | translate }}
     </ion-list-header>
     <button ion-item (click)="openTouchID()">
       <ion-icon item-left name="finger-print" color="danger"></ion-icon>
@@ -19,7 +16,7 @@
     </button>
     <ion-item>
       <ion-icon item-left name="ios-flag-outline"></ion-icon>
-      <ion-label>Language</ion-label>
+      <ion-label>{{ 'LANGUAGE_LABEL' | translate }}</ion-label>
       <ion-select (ionChange)="toggleSelect($event)" [(ngModel)]="language">
         <ion-option value="en">English</ion-option>
         <ion-option value="es">Español</ion-option>
@@ -29,11 +26,11 @@
   <ion-list>
     <button ion-item (click)="openAboutPage()">
       <ion-icon item-left name="ios-pin-outline"></ion-icon>
-      About
+      {{ 'ABOUT_LABEL' | translate }}
     </button>
     <button ion-item>
       <ion-icon item-left name="code"></ion-icon>
-      Version
+      {{ 'VERSION_LABEL' | translate }}
       <ion-note item-right>
         {{appversion}}
       </ion-note>

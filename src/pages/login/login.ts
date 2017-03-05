@@ -20,6 +20,7 @@ export class LoginPage {
 
   // Our translated text strings
   private loginErrorString: string;
+  private loginErrorTitle: string;
 
   constructor(public navCtrl: NavController,
               public alertController: AlertController,
@@ -29,23 +30,32 @@ export class LoginPage {
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+    this.translateService.get('LOGIN_ERROR_TITLE').subscribe((value) => {
+      this.loginErrorTitle = value;
+    })
   }
 
   // Attempt to login in through our User service
   doLogin() {
+
+    // Show loading control
+    this.auth.LoadingControllerShow();
+
+    // Authenticate user
     this.auth.signInWithEmail(this.account).then(() => {
       this.navCtrl.setRoot(MainPage, {}, {animate: true, direction: 'forward'});
     }).catch((error) => {
-      console.log(error);
-      this.LoginError(error);
+      // If there's an error, dismiss loading control and display error message
+      this.auth.LoadingControllerDismiss();
+      this.LoginError(this.loginErrorTitle, this.loginErrorString);
     });
 
   }
 
-  LoginError(error) {
+  LoginError(title, error) {
     let alert = this.alertController.create({
-      title: 'Login Failed',
-      subTitle: 'Please check your email and/or password and try again',
+      title: title,
+      subTitle: error,
       buttons: [
         {
           text: 'Ok',

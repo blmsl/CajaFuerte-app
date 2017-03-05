@@ -1,54 +1,64 @@
 {
-  "NAME": "Nombre",
-  "PASSWORD": "Contraseña",
-  "EMAIL": "Email",
-  "LOGIN": "Iniciar sesión",
-  "SIGNUP": "Registrarse",
-
-  "TAB1_TITLE": "Cuentas",
-  "TAB2_TITLE": "Recientes",
-  "TAB3_TITLE": "Buscar",
-  "TAB4_TITLE": "Ajustes",
-
-  "MAP_TITLE": "Mapa",
 
   "TUTORIAL_SLIDE1_TITLE": "CajaFuerte",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "Administración de Informatión Personal",
-
-  "TUTORIAL_SLIDE2_TITLE": "Super Segura",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Esta es un app privada para ser instalada on tu mobil con tu propio proyecto en Firebase.<br />Hackers no van a saber que existe!",
-
-  "TUTORIAL_SLIDE3_TITLE": "Personalizable",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Este app puede ser modificado para sus necesidades especificas!",
-
-  "SETTINGS_TITLE": "Ajustes",
-  "SETTINGS_OPTION1": "Opción 1",
-  "SETTINGS_OPTION2": "Opción 2",
-  "SETTINGS_OPTION3": "Opción 3",
-  "SETTINGS_OPTION4": "Opción 4",
-
-  "SETTINGS_PAGE_PROFILE": "Editar Perfil",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "Administrador de Información Personal",
+  "TUTORIAL_SLIDE_NEXT": "Seguir",
 
   "WELCOME_TITLE": "Bienvenido a CajaFuerte",
-  "WELCOME_SUBTITLE": "Su Administrador de Información en Línea!",
-
-  "FAVORITES_TITLE": "Favoritos",
-
+  "WELCOME_SUBTITLE": "Su Administrador de Información Personal!",
+  
+  "LOGIN": "Iniciar sesión",
+  "SIGNUP": "Registrarse",
+  
   "LOGIN_TITLE": "Iniciar sesión",
+  "LOGIN_SUBTITLE": "Ingrese su información",
+  "LOGIN_ERROR_TITLE": "Error",
   "LOGIN_ERROR": "No se ha podido iniciar sesión. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
   "LOGIN_BUTTON": "Iniciar sesión",
+  
+  "NAME_LABEL": "Nombre Completo",
+  "EMAIL_LABEL": "Email",
+  "PASSWORD_LABEL": "Contraseña",
+
   "SIGNUP_TITLE": "Registro",
+  "SIGNUP_SUBTITLE": "Ingrese su información",
   "SIGNUP_ERROR": "No se ha podido crear la cuenta. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
   "SIGNUP_BUTTON": "Registrarse",
 
-  "LIST_MASTER_TITLE": "Cuentas",
+  "TAB1_TITLE": "Formas",
+  "TAB2_TITLE": "Recientes",
+  "TAB3_TITLE": "Favoritos",
+  "TAB4_TITLE": "Ajustes",
 
-  "ITEM_CREATE_TITLE": "Nuevo Item",
-  "ITEM_CREATE_CHOOSE_IMAGE": "Añadir Imagen",
+  "RECENT_TITLE": "Recientes",
 
-  "CARDS_TITLE": "Social",
+  "FAVORITES_TITLE": "Favoritos",
+
+  "SETTINGS_TITLE": "Ajustes",
+  "SETTINGS_SUBTITLE": "Ajustes del App",
+  "LANGUAGE_LABEL": "Lenguaje",
+  "ABOUT_LABEL": "Acerca",
+  "VERSION_LABEL": "Versión",
+
+  "LIST_MASTER_TITLE": "Formas",
 
   "SEARCH_TITLE": "Buscar",
 
-  "LIST_PASSWORDS": "Contraseñas"
+  "LIST_PASSWORDS": "Contraseñas",
+
+  "ACCOUNTS_PASSWORDS_TITLE": "Cuentas/Contraseñas",
+  "ACCOUNTS_PASSWORDS_SUBTITLE": "Guarde y organize todas sus cuentas y contraseñas en su propia caja fuerte",
+
+  "SAVE_PASSWORD_TITLE": "Guardar",
+  "CREATE_PASSWORD_TITLE": "Crear",
+  "EDIT_PASSWORD_TITLE": "Editar",
+  "EDIT_PASSWORD_SUBTITLE": "Edite los detalles de la cuenta/contraseña",
+  "ACCOUNT_NAME": "Nombre de la cuenta",
+  "ACCOUNT_DESCRIPTION": "Descripción",
+  "ACCOUNT_URL": "Sitio de la Cuenta / URL",
+  "ACCOUNT_NUMBER": "Número de la Cuenta",
+  "ACCOUNT_USERNAME": "Nombre del Usuario",
+  "ACCOUNT_PASSWORD": "Contraseña de la Cuenta",
+  "ACCOUNT_NOTES": "Notas"
+
 }

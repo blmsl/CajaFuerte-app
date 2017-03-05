@@ -25,57 +25,52 @@ export class TouchIDPage {
     public auth: AuthService) {
 
     this.lockicon = 'lock';
-    
-     storage.ready().then(() => {
-      
-      // Get touchid settings
-      this.storage.get('option1').then( touchid => {
-        this.touchidenabled = touchid;
-        //console.log(touchid);
-      })
 
-      // Get pwd settings
-      this.storage.get('option2').then( pwd => {
-        this.pwd = pwd;
-        //console.log(pwd);
-      })
+    // Get touchid settings
+    this.storage.get('option1').then( touchid => {
+      this.touchidenabled = touchid;
+    })
 
-      // Get pwd settings
-      this.storage.get('option3').then( email => {
-        this.email = email;
-        //console.log(email);
-      })
+    // Get pwd settings
+    this.storage.get('option2').then( pwd => {
+      this.pwd = pwd;
+    })
 
-    });
+    // Get pwd settings
+    this.storage.get('option3').then( email => {
+      this.email = email;
+    })
 
   }
  
   save() {
     if (this.touchidenabled) {
-      // make sure pwd has been entered
-      if (this.pwd != '') {
-        this.storage.set('option1', this.touchidenabled);
-        this.storage.set('option2', this.pwd);
-        this.storage.set('option3', this.email);
-        this.goBack();
-      } else {
+      
+      // make sure credentials have been entered
+      if (this.email === '') {
         this.showAlert();
+        return;
       }
+      if (this.pwd === '') {
+        this.showAlert();
+        return;
+      }
+
+      // Save info to storage
+      this.storage.set('option1', this.touchidenabled);
+      this.storage.set('option2', this.pwd);
+      this.storage.set('option3', this.email);
+      this.goBack();
+      
     } else {
-      // remove password and clear storage
-      this.pwd = '';
+
+      // TouchID not enabled, then clear storage
       this.storage.set('option1', false);
       this.storage.set('option2', '');
       this.storage.set('option3', '');
+      this.auth.storageClean();
       this.goBack();
-    }
-  }
 
-  toggleTouchID(e) {
-    this.touchidenabled = e.checked;
-    if (!e.checked) {
-      this.pwd = '';
-      this.email = '';
     }
   }
 
@@ -86,8 +81,8 @@ export class TouchIDPage {
 
   showAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Missing Password',
-      message: 'Please enter your password',
+      title: 'Missing Email and/or Password',
+      message: 'Please enter your credentials',
       buttons: [
         /*{
           text: 'Cancel',

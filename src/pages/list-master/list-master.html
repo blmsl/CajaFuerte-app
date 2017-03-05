@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -12,7 +9,7 @@
         <ion-item text-wrap>
           <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
           <h2>{{p.title}}</h2>
-          <p>Store and organize all your online accounts and passwords in a secure vault!</p>
+          <p>{{p.subtitle}}</p>
         </ion-item>
       </ion-card>
     </ion-list>

@@ -7,6 +7,8 @@ import {InAppBrowser} from 'ionic-native';
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
 
+import { TranslateService } from 'ng2-translate/ng2-translate';
+
 @Component({
   templateUrl: 'password.html'
 })
@@ -29,17 +31,30 @@ export class PasswordPage {
     notes: ''
   };
 
-  constructor(public nav: NavController, public modalController: ModalController, public navParams: NavParams, public auth: AuthService) {
+  constructor(
+    public nav: NavController, 
+    public modalController: ModalController, 
+    public navParams: NavParams, 
+    public translate: TranslateService,
+    public auth: AuthService) {
+
     this.acc = navParams.get('account');
-    if (this.acc === undefined) {
-      this.title = "Create Account";
-      this.mode = "New";
-    } else {
-      this.account = Object.assign({}, this.acc);
-      this.title = "Edit " + this.account.name;
-      this.mode = "Edit";
-    }
+
+    translate.get(["EDIT_PASSWORD_TITLE","CREATE_PASSWORD_TITLE"])
+    .subscribe((values) => {
+      
+      if (this.acc === undefined) {
+        this.title = values.CREATE_PASSWORD_TITLE;
+        this.mode = "New";
+      } else {
+        this.account = Object.assign({}, this.acc);
+        this.title = values.EDIT_PASSWORD_TITLE + this.account.name;
+        this.mode = "Edit";
+      }
+
+    });
     this.lockicon = 'lock';
+
   }
 
   ionViewWillEnter() {
@@ -69,7 +84,7 @@ export class PasswordPage {
 
   showPassword(input: any): any {
     input.type = input.type === 'password' ?  'text' : 'password';
-    this.lockicon = input.type === 'password' ?  'lock' : 'unlock-alt';
+    this.lockicon = input.type === 'password' ?  'lock' : 'unlock-alt faRed';
   }
 
   openSite(): any {

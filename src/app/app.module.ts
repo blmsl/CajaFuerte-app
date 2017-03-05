@@ -2,24 +2,28 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { CajaFuerteApp } from './app.component';
 
+import { AboutPage } from '../pages/about/about';
+import { FavoritesPage } from '../pages/favorites/favorites';
+import { ListMasterPage } from '../pages/list-master/list-master';
 import { LoginPage } from '../pages/login/login';
 import { LoginAutoPage } from '../pages/loginauto/loginauto';
-import { SignupPage } from '../pages/signup/signup';
-import { TutorialPage } from '../pages/tutorial/tutorial';
-import { WelcomePage } from '../pages/welcome/welcome';
-import { ListMasterPage } from '../pages/list-master/list-master';
-import { SettingsPage } from '../pages/settings/settings';
-import { AboutPage } from '../pages/about/about';
-import { PasswordsPage } from '../pages/passwords/passwords';
+import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
 import { PasswordPage } from '../pages/password/password';
 import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
+import { PasswordsPage } from '../pages/passwords/passwords';
 import { PickNotesPage } from '../pages/picknotes/picknotes';
+import { RecentPage } from '../pages/recent/recent';
+import { SearchPage } from '../pages/search/search';
+import { SettingsPage } from '../pages/settings/settings';
+import { SignupPage } from '../pages/signup/signup';
+import { TabsPage } from '../pages/tabs/tabs';
 import { TouchIDPage } from '../pages/touchid/touchid';
-import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
+import { TutorialPage } from '../pages/tutorial/tutorial';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -27,11 +31,19 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
-
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+
+export function provideSettings(storage: Storage) {
+  /**
+   * The Settings provider takes a set of default settings for your app.
+   *
+   * You can add new settings options at any time. Once the settings are saved,
+   * these values will not overwrite the saved values (this can be done manually if desired).
+   */
 }
 
 /**
@@ -44,10 +56,14 @@ let pages = [
   LoginPage,
   LoginAutoPage,
   SignupPage,
+  TabsPage,
   TutorialPage,
   WelcomePage,
   ListMasterPage,
   SettingsPage,
+  SearchPage,
+  RecentPage,
+  FavoritesPage,
   AboutPage,
   PasswordsPage,
   PasswordPage,
@@ -69,7 +85,6 @@ export function providers() {
   return [
     Storage,
     AuthService,
-    // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
 }
@@ -97,6 +112,7 @@ const firebaseAuthConfig = {
 @NgModule({
   declarations: declarations(),
   imports: [
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(CajaFuerteApp),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     CloudModule.forRoot(cloudSettings),
