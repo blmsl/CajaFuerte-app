@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ title }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()">{{ 'SAVE_PASSWORD_TITLE' | translate }}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header color="light">
+      {{ 'EDIT_PASSWORD_SUBTITLE' | translate }}
+    </ion-list-header>
+    <ion-item class="ml-input">
+      <i class="fa fa-user" item-left></i>
+      <ion-label floating>{{ 'DL_OWNER' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.name"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-{{lockicon}}" item-left></i>
+      <ion-label floating>{{ 'DL_NUMBER' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.number"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-calendar" item-left></i>
+      <ion-label floating>{{ 'DL_ISSUE_DATE' | translate }}</ion-label>
+      <ion-datetime displayFormat="MMMM D, YYYY" pickerFormat="MMMM D, YYYY" [(ngModel)]="account.issuedate"></ion-datetime>
+      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-calendar-times-o" item-left></i>
+      <ion-label floating>{{ 'DL_EXP_DATE' | translate }}</ion-label>
+      <ion-datetime displayFormat="MMMM D, YYYY" pickerFormat="MMMM D, YYYY" max="2025" [(ngModel)]="account.expirationdate"></ion-datetime>
+      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-map-marker" item-left></i>
+      <ion-label floating>{{ 'DL_STATE' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.state"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input" (click)="pickNotes()">
+      <i class="fa fa-file-text-o" item-left></i>
+      <ion-label floating>{{ 'DL_NOTES' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.notes" disabled></ion-input>
+      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-camera" item-left></i>
+      <ion-label floating>{{ 'DL_PHOTO' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.photo"></ion-input>
+      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

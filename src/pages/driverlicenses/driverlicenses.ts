@@ -4,14 +4,14 @@ import { NavController, ModalController, AlertController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
-import { PasswordPage } from '../password/password';
+import { DriverLicensePage } from '../driverlicense/driverlicense';
 
 @Component({
-  selector: 'page-passwords',
-  templateUrl: 'passwords.html'
+  selector: 'page-driverlicenses',
+  templateUrl: 'driverlicenses.html'
 })
 
-export class PasswordsPage {
+export class DriverLicensesPage {
 
   groupedAccounts = [];
 
@@ -25,7 +25,7 @@ export class PasswordsPage {
 
   ionViewDidLoad() {
 
-    this.auth.getAllAccounts().on('value', (accounts) => { 
+    this.auth.getAllDriverLicenses().on('value', (accounts) => { 
 
       var that = this;
       this.groupedAccounts = [];
@@ -37,7 +37,6 @@ export class PasswordsPage {
         let account = spanshot.val();
         let tempAccount = ({
           $key: spanshot.key,
-          description: account.description,
           name: account.name
         });
 
@@ -62,12 +61,12 @@ export class PasswordsPage {
   }
 
   addItem() {
-    this.navCtrl.push(PasswordPage, { key: '0' });
+    this.navCtrl.push(DriverLicensePage, { key: '0' });
   }
 
   openItem(account) {
-    this.auth.referrer = 'PasswordsPage';
-    this.navCtrl.push(PasswordPage, { key: account.$key });
+    this.auth.referrer = 'DriverLicensesPage';
+    this.navCtrl.push(DriverLicensePage, { key: account.$key });
   }
 
   deleteItem(slidingItem, account) {
@@ -87,7 +86,7 @@ export class PasswordsPage {
           cssClass: 'alertDanger',
           handler: () => {
             slidingItem.close();
-            this.auth.deleteAccount(account);
+            this.auth.deleteDriverLicense(account);
           }
         }
       ]

@@ -32,8 +32,9 @@ This is a work inprogress and **your feedback/help would be greatly appreciated!
 
 # Icons
 
-http://www.flaticon.com/packs/digital-marketing-10/3
-Icon made by Vectors Market in from www.flaticon.com 
+http://www.flaticon.com/authors/freepik
+http://www.freepik.com/about
+
 
 # License
 

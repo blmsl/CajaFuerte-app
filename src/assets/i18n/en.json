@@ -28,37 +28,56 @@
   "TAB1_TITLE": "Forms",
   "TAB2_TITLE": "Recent",
   "TAB3_TITLE": "Favorites",
-  "TAB4_TITLE": "Settings",
+  "TAB4_TITLE": "Tools",
 
   "RECENT_TITLE": "Recent",
 
   "FAVORITES_TITLE": "Favorites",
 
-  "SETTINGS_TITLE": "Settings",
-  "SETTINGS_SUBTITLE": "App Settings",
+  "SETTINGS_TITLE": "Tools",
+  "SETTINGS_SUBTITLE": "App Tools",
   "LANGUAGE_LABEL": "Language",
   "ABOUT_LABEL": "About",
   "VERSION_LABEL": "Version",
 
   "LIST_MASTER_TITLE": "Forms",
+  "LIST_PASSWORDS": "Accounts",
+  "LIST_DRIVER_LICENSE": "Driver License",
+
+  "EDIT_PASSWORD_TITLE": "Edit",
+  "EDIT_PASSWORD_SUBTITLE": "Edit account details",
+  "EDIT_DRIVER_LICENSE_TITLE": "Edit",
 
   "SEARCH_TITLE": "Search",
 
-  "LIST_PASSWORDS": "Accounts",
-
   "ACCOUNTS_PASSWORDS_TITLE": "Accounts/Passwords",
-  "ACCOUNTS_PASSWORDS_SUBTITLE": "Store and organize all your online accounts and passwords in a secure vault!",
+  "DRIVERLICENSE_TITLE": "Driver License",
+  "CARDS_TITLE": "Credit/Debit Cards",
+  "BANK_ACCOUNTS_TITLE": "Bank Accounts",
+  "INSURANCE_TITLE": "Insurance Information",
+  "DOCUMENTS_TITLE": "Documents",
 
   "SAVE_PASSWORD_TITLE": "Save",
-  "CREATE_PASSWORD_TITLE": "Create",
-  "EDIT_PASSWORD_TITLE": "Edit",
-  "EDIT_PASSWORD_SUBTITLE": "Edit account details",
+  "CREATE_PASSWORD_TITLE": "New Account/Password",
+  "CREATE_DRIVER_LICENSE_TITLE": "New Driver License",
+  
   "ACCOUNT_NAME": "Account Name",
   "ACCOUNT_DESCRIPTION": "Description",
   "ACCOUNT_URL": "Account Site / URL",
   "ACCOUNT_NUMBER": "Account Number",
   "ACCOUNT_USERNAME": "Username",
   "ACCOUNT_PASSWORD": "Account Password",
-  "ACCOUNT_NOTES": "Notes"
+  "ACCOUNT_NOTES": "Notes",
+
+  "DL_OWNER": "Owner",
+  "DL_NUMBER": "Driver License Number",
+  "DL_ISSUE_DATE": "Issue Date",
+  "DL_EXP_DATE": "Expiration Date",
+  "DL_STATE": "State",
+  "DL_NOTES": "Notes",
+  "DL_PHOTO": "Photo",
+
+  "NO_ITEMS_FOUND_TITLE": "No Items Found",
+  "NO_ITEMS_FOUND_DESCRIPTION": "No items found..."
 
 }

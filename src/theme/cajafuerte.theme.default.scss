@@ -16,7 +16,7 @@ $font-size-base:             1.4rem !default; // 1.4rem == 14px
 $content-padding:            16px !default;
 $content-margin:             16px !default;
 
-$toolbar-background:         color($colors, cf-background) !default;
+$toolbar-background:         color($colors, primary) !default;
 $toolbar-border-color:       #316479 !default;
 $toolbar-active-color:       $link-color !default;
 $toolbar-inactive-color:     #8c8c8c !default;
@@ -29,7 +29,7 @@ $list-text-color:            $text-color !default;
 $list-background-color:      $background-color !default;
 $list-border-color:          #c8c7cc !default;
 
-$item-ios-detail-push-svg:  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#1b6893'/></svg>";
+$item-ios-detail-push-svg:  "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#00A2E8'/></svg>";
 
 $radio-ios-color-on:        #31C0E6;
 $radio-md-color-on:         #31C0E6;
@@ -38,3 +38,7 @@ $radio-wp-color-on:         #31C0E6;
 $tabs-ios-tab-color-active: color($colors, mldarkblue) !default;
 $tabs-md-tab-color-active:  color($colors, mldarkblue) !default;
 $tabs-wp-tab-color-active:  color($colors, mldarkblue) !default;
+
+$background-ios-color: #efeff4;
+$background-md-color: #efeff4;
+$background-wp-color: #efeff4;

@@ -2,10 +2,10 @@
 page-tutorial{
 
   ion-slides {
-    background-color: #1b6893;
+    background-color: color($colors, primary);
   }  
   .toolbar-background {
-    background: #1b6893;
+    background: color($colors, primary);
   }
   .swiper-pagination-bullet {
     background: #fff;

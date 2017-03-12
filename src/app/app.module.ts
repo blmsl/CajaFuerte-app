@@ -15,6 +15,8 @@ import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
 import { PasswordPage } from '../pages/password/password';
 import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
 import { PasswordsPage } from '../pages/passwords/passwords';
+import { DriverLicensesPage } from '../pages/driverlicenses/driverlicenses';
+import { DriverLicensePage } from '../pages/driverlicense/driverlicense';
 import { PickNotesPage } from '../pages/picknotes/picknotes';
 import { RecentPage } from '../pages/recent/recent';
 import { SearchPage } from '../pages/search/search';
@@ -30,6 +32,8 @@ import { AuthService } from '../providers/auth-service';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+
+import 'gsap';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -67,6 +71,8 @@ let pages = [
   AboutPage,
   PasswordsPage,
   PasswordPage,
+  DriverLicensesPage,
+  DriverLicensePage,
   PasswordEditPage,
   PickNotesPage,
   TouchIDPage,

@@ -1,16 +1,20 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refreshPage()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
   <ion-list>
-      <ion-card *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-item text-wrap>
-          <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
-          <h2>{{p.title}}</h2>
-          <p>{{p.subtitle}}</p>
-        </ion-item>
-      </ion-card>
-    </ion-list>
+    <ion-card id="{{p.id}}" *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-item text-wrap>
+        <img item-left src="assets/img/{{p.icon}}" class="form-image"/>
+        <h2>{{p.title}}</h2>
+      </ion-item>
+    </ion-card>
+  </ion-list>
 </ion-content>

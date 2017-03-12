@@ -28,37 +28,56 @@
   "TAB1_TITLE": "Formas",
   "TAB2_TITLE": "Recientes",
   "TAB3_TITLE": "Favoritos",
-  "TAB4_TITLE": "Ajustes",
+  "TAB4_TITLE": "Herramientas",
 
   "RECENT_TITLE": "Recientes",
 
   "FAVORITES_TITLE": "Favoritos",
 
-  "SETTINGS_TITLE": "Ajustes",
-  "SETTINGS_SUBTITLE": "Ajustes del App",
+  "SETTINGS_TITLE": "Herramientas",
+  "SETTINGS_SUBTITLE": "Herramientas del App",
   "LANGUAGE_LABEL": "Lenguaje",
   "ABOUT_LABEL": "Acerca",
   "VERSION_LABEL": "Versión",
 
   "LIST_MASTER_TITLE": "Formas",
+  "LIST_PASSWORDS": "Contraseñas",
+  "LIST_DRIVER_LICENSE": "Licencia de Conducier",
+
+  "EDIT_PASSWORD_TITLE": "Editar",
+  "EDIT_PASSWORD_SUBTITLE": "Edite los detalles de la cuenta/contraseña",
+  "EDIT_DRIVER_LICENSE_TITLE": "Editar licencia de conducier",
 
   "SEARCH_TITLE": "Buscar",
 
-  "LIST_PASSWORDS": "Contraseñas",
-
   "ACCOUNTS_PASSWORDS_TITLE": "Cuentas/Contraseñas",
-  "ACCOUNTS_PASSWORDS_SUBTITLE": "Guarde y organize todas sus cuentas y contraseñas en su propia caja fuerte",
+  "DRIVERLICENSE_TITLE": "Driver License",
+  "CARDS_TITLE": "Tarjetas de Crédito/Débito",
+  "BANK_ACCOUNTS_TITLE": "Cuentas de Banco",
+  "INSURANCE_TITLE": "Información de Seguro",
+  "DOCUMENTS_TITLE": "Documentos",
 
   "SAVE_PASSWORD_TITLE": "Guardar",
-  "CREATE_PASSWORD_TITLE": "Crear",
-  "EDIT_PASSWORD_TITLE": "Editar",
-  "EDIT_PASSWORD_SUBTITLE": "Edite los detalles de la cuenta/contraseña",
+  "CREATE_PASSWORD_TITLE": "Nueva Cuenta/Contraseña",
+  "CREATE_DRIVER_LICENSE_TITLE": "Nueva Licencia de Conducir",
+
   "ACCOUNT_NAME": "Nombre de la cuenta",
   "ACCOUNT_DESCRIPTION": "Descripción",
   "ACCOUNT_URL": "Sitio de la Cuenta / URL",
   "ACCOUNT_NUMBER": "Número de la Cuenta",
   "ACCOUNT_USERNAME": "Nombre del Usuario",
   "ACCOUNT_PASSWORD": "Contraseña de la Cuenta",
-  "ACCOUNT_NOTES": "Notas"
+  "ACCOUNT_NOTES": "Notas",
+
+  "DL_OWNER": "Pertenece a",
+  "DL_NUMBER": "Número de Licencia",
+  "DL_ISSUE_DATE": "Fecha de Emisión",
+  "DL_EXP_DATE": "Fecha de Expiración",
+  "DL_STATE": "Estado",
+  "DL_NOTES": "Notas",
+  "DL_PHOTO": "Foto",
+
+  "NO_ITEMS_FOUND_TITLE": "No se encontraron datos",
+  "NO_ITEMS_FOUND_DESCRIPTION": "No se encontraron datos"
 
 }

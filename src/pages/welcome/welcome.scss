@@ -50,4 +50,7 @@ page-welcome {
       background-color: rgb(220, 220, 220);
     }
   }
+  button.login {
+    background-color: color($colors, primary);
+  }
 }

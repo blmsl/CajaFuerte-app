@@ -1,21 +1,23 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{ 'RECENT_TITLE' | translate }}</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content>
+<ion-content class="outer-content">
   <ion-list>
-    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-      <ion-avatar item-left>
-        <img [src]="item.profilePic" />
-      </ion-avatar>
-      <h2>{{item.name}}</h2>
-      <p>{{item.about}}</p>
-      <ion-note item-right *ngIf="item.note">{{item.note}}</ion-note>
+    <button ion-item *ngFor="let recent of recentArray" (click)="openItem(recent)">
+      <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
+      {{ recent.name }}
     </button>
   </ion-list>
+  <div class="noitems" *ngIf="noitemsfound">
+    <div class="divImageNoItemsFound">
+      <ion-icon name="md-alarm"></ion-icon>
+    </div>
+    <div padding>
+      <div class="divNoItemsFound">
+        <p innerHTML="{{ 'NO_ITEMS_FOUND_DESCRIPTION' | translate }}"></p>
+      </div>
+    </div>
+  </div>
 </ion-content>

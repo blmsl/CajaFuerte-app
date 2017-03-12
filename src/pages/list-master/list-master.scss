@@ -10,20 +10,19 @@ page-list-master {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     .item {
-      padding-top: 13px;
-      padding-bottom: 13px;
-    }
-    .fa-color {
-      background: color($colors, passwords-color)
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
     .cf-fa-circle {
       padding: 0;
-      width: 50px;
-      height: 50px;
-      line-height: 50px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      margin-top: 0;
+      margin-bottom: 0;
     }
     .cf-fa-circle:before {
-      font-size: 27px;
+      font-size: 23px;
     }
   }
 }
