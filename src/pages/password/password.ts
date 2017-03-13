@@ -41,7 +41,7 @@ export class PasswordPage {
 
     this.key = navParams.get('key');
 
-    translate.get(["EDIT_PASSWORD_TITLE","CREATE_PASSWORD_TITLE"])
+    translate.get(["EDIT_TITLE","CREATE_PASSWORD_TITLE"])
     .subscribe((values) => {
       if (this.key === '0') {
         this.title = values.CREATE_PASSWORD_TITLE;
@@ -50,7 +50,7 @@ export class PasswordPage {
         this.auth.getAccount(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
-          this.title = values.EDIT_PASSWORD_TITLE + ' ' + this.account.name;
+          this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
           this.auth.handleRecent(snapshot.key, this.account, 'PasswordPage');

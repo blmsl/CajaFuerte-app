@@ -16,17 +16,18 @@ import * as moment from 'moment';
 export class AuthService {
   
   private authState: FirebaseAuthState;
-  private user;
   private userauth;
   private userdata;
   private formsdata;
   private vaultdata;
+  private profilepicdata;
   private loading: any;
+  
+  public user;
   public storageLang: string;
   public storageTouchid: boolean = false;
   public storageEmail: string;
   public storagePwd: string;
-
   public referrer: string;
   public pwdNotes: string;
 
@@ -48,6 +49,7 @@ export class AuthService {
     this.formsdata = firebase.database().ref('/forms/');
     this.userdata = firebase.database().ref('/users/');
     this.vaultdata = firebase.database().ref('/vaults/');
+    this.profilepicdata = firebase.storage().ref('/profilepics/');
 
   }
 
@@ -150,6 +152,10 @@ export class AuthService {
     this.storage.set('option2', pwd);
     this.storage.set('option3', email);
   }
+  storageSetEmail(email) {
+    this.storageEmail = email;
+    this.storage.set('option3', email);
+  }
   storageClean() {
     this.storageTouchid = false;
     this.storagePwd = '';
@@ -218,11 +224,75 @@ export class AuthService {
 
   }*/
 
+  //
+  // PERSONAL PROFILE
+  //-----------------------------------------------------------------------
+
   getUserData() { 
     const thisuser$ : FirebaseObjectObservable<any> = this.af.database.object('/users/' + this.userauth.uid); 
     thisuser$.subscribe((val) => {
       this.user = val;
     });
+  }
+
+  updateName(newname: string) {
+    this.userdata.child(this.userauth.uid).update({'fullname' : newname});
+  }
+
+  updateEmail(newEmail: string) {
+    return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
+      let user = firebase.auth().currentUser;
+      user.updateEmail(newEmail)
+      .then(function() {
+        this.user.email = newEmail;
+        this.updateEmailNode(newEmail);
+        resolve();
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+  updatePassword(newPassword: string) {    
+    return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
+      let user = firebase.auth().currentUser;
+      user.updatePassword(newPassword)
+      .then(function() {
+        resolve();
+      }).catch(function(error) {
+        reject(error);
+      });
+    });
+  }
+
+  deleteData() {
+    //
+    // Delete ALL user data
+    this.vaultdata.child(this.user.vaultid).remove();
+    this.userdata.child(firebase.auth().currentUser.uid).remove();
+  }
+
+  deleteUser() {
+    return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
+      let user = firebase.auth().currentUser;
+      user.delete()
+      .then(function() {
+        resolve();
+      }).catch(function(error) {
+        reject(error);
+      });
+    });
+  }
+
+  savePicture(pic) {
+    this.profilepicdata.child(firebase.auth().currentUser.uid).child('profilepicture.png')
+    .putString(pic, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
+      this.userdata.child(firebase.auth().currentUser.uid).update({'profilepic' : savedpicture.downloadURL});
+    });
+  }
+
+  updateEmailNode(newemail) {
+    this.userdata.child(this.userauth.uid).update({'email' : newemail});
   }
 
   //
@@ -261,6 +331,12 @@ export class AuthService {
         break;
       case 'DriverLicensePage': 
         this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + sourcekey).update({ recentid : recentKey });
+        break;
+      case 'BankAccountPage':
+        this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + sourcekey).update({ recentid : recentKey });
+        break;
+      case 'CreditCardPage':
+        this.vaultdata.child(this.user.vaultid + '/creditcards/' + sourcekey).update({ recentid : recentKey });
         break;
 		}
 
@@ -325,24 +401,24 @@ export class AuthService {
     return this.vaultdata.child(this.user.vaultid + '/accounts/' + key);
   }
 
-  addAccount(account) {
-    this.vaultdata.child(this.user.vaultid + "/accounts/").push(account);
+  addAccount(item) {
+    this.vaultdata.child(this.user.vaultid + "/accounts/").push(item);
   }
 
-  deleteAccount(account) {
-    this.vaultdata.child(this.user.vaultid + '/accounts/' + account.$key).remove();
+  deleteAccount(item) {
+    this.vaultdata.child(this.user.vaultid + '/accounts/' + item.$key).remove();
   }
 
-  updateAccount(account, key) {
+  updateAccount(item, key) {
     this.vaultdata.child(this.user.vaultid + '/accounts/' + key).update({
-      name: account.name, 
-      namelower: account.namelower, 
-      site: account.site, 
-      number: account.number, 
-      username: account.username, 
-      password: account.password, 
-      description: account.description,
-      notes: account.notes
+      name: item.name, 
+      namelower: item.namelower, 
+      site: item.site, 
+      number: item.number, 
+      username: item.username, 
+      password: item.password, 
+      description: item.description,
+      notes: item.notes
     });
   }
 
@@ -357,25 +433,91 @@ export class AuthService {
     return this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + key);
   }
 
-  AddDriverLicense(dl) {
-    this.vaultdata.child(this.user.vaultid + "/driverlicenses/").push(dl);
+  AddDriverLicense(item) {
+    this.vaultdata.child(this.user.vaultid + "/driverlicenses/").push(item);
   }
 
-  deleteDriverLicense(dl) {
-    this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + dl.$key).remove();
+  deleteDriverLicense(item) {
+    this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + item.$key).remove();
   }
 
-  updateDriverLicense(dl, key) {
+  updateDriverLicense(item, key) {
     this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + key).update({
-      name: dl.name, 
-      namelower: dl.namelower, 
-      number: dl.number, 
-      issuedate: dl.issuedate, 
-      expirationdate: dl.expirationdate, 
-      state: dl.state, 
-      notes: dl.notes, 
-      photo: dl.photo,
-      recentid: dl.recentid
+      name: item.name, 
+      namelower: item.namelower, 
+      number: item.number, 
+      issuedate: item.issuedate, 
+      expirationdate: item.expirationdate, 
+      state: item.state, 
+      notes: item.notes, 
+      photo: item.photo,
+      recentid: item.recentid
+    });
+  }
+
+  //
+  // BANK ACCOUNTS
+  //-----------------------------------------------------------------------  
+  getAllBankAccounts() {
+    return this.vaultdata.child(this.user.vaultid + '/bankaccounts').orderByChild('namelower');
+  }
+  
+  getBankAccount(key) {
+    return this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + key);
+  }
+
+  AddBankAccount(item) {
+    this.vaultdata.child(this.user.vaultid + "/bankaccounts/").push(item);
+  }
+
+  deleteBankAccount(item) {
+    this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + item.$key).remove();
+  }
+
+  updateBankAccount(item, key) {
+    this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + key).update({
+      name: item.name, 
+      namelower: item.namelower, 
+      number: item.number, 
+      issuedate: item.issuedate, 
+      expirationdate: item.expirationdate, 
+      state: item.state, 
+      notes: item.notes, 
+      photo: item.photo,
+      recentid: item.recentid
+    });
+  }
+
+  //
+  // CREDIT CARDS
+  //-----------------------------------------------------------------------  
+  getAllCreditCards() {
+    return this.vaultdata.child(this.user.vaultid + '/creditcards').orderByChild('namelower');
+  }
+  
+  getCreditCard(key) {
+    return this.vaultdata.child(this.user.vaultid + '/creditcards/' + key);
+  }
+
+  AddCreditCard(item) {
+    this.vaultdata.child(this.user.vaultid + "/creditcards/").push(item);
+  }
+
+  deleteCreditCard(item) {
+    this.vaultdata.child(this.user.vaultid + '/creditcards/' + item.$key).remove();
+  }
+
+  updateCreditCard(item, key) {
+    this.vaultdata.child(this.user.vaultid + '/creditcards/' + key).update({
+      name: item.name, 
+      namelower: item.namelower, 
+      number: item.number, 
+      issuedate: item.issuedate, 
+      expirationdate: item.expirationdate, 
+      state: item.state, 
+      notes: item.notes, 
+      photo: item.photo,
+      recentid: item.recentid
     });
   }
 

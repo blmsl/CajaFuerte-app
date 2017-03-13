@@ -4,6 +4,8 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import { PasswordsPage } from '../passwords/passwords';
 import { DriverLicensesPage } from '../driverlicenses/driverlicenses';
+import { BankAccountsPage } from '../bankaccounts/bankaccounts';
+import { CreditCardsPage } from '../creditcards/creditcards';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -59,14 +61,14 @@ export class ListMasterPage {
         {
           id: 'card3', 
           title: values.CARDS_TITLE, 
-          component: DriverLicensesPage,
+          component: CreditCardsPage,
           icon: 'cajafuerte_form_icon_cards.svg', 
           color: ''
         },
         { 
           id: 'card4',
           title: values.BANK_ACCOUNTS_TITLE, 
-          component: DriverLicensesPage,
+          component: BankAccountsPage,
           icon: 'cajafuerte_form_icon_bank_accounts.svg', 
           color: ''
         },

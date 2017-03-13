@@ -43,12 +43,17 @@
   "LIST_MASTER_TITLE": "Forms",
   "LIST_PASSWORDS": "Accounts",
   "LIST_DRIVER_LICENSE": "Driver License",
+  "LIST_BANK_ACCOUNTS": "Bank Accounts",
+  "LIST_CREDIT_CARDS": "Credit Cards",
 
-  "EDIT_PASSWORD_TITLE": "Edit",
   "EDIT_PASSWORD_SUBTITLE": "Edit account details",
-  "EDIT_DRIVER_LICENSE_TITLE": "Edit",
+  "EDIT_BANK_ACCOUNT_SUBTITLE": "Edit bank account details",
+  "EDIT_DL_SUBTITLE": "Edit driver license details",
+  "EDIT_CREDIT_CARD_SUBTITLE": "Edit credit card details",
 
   "SEARCH_TITLE": "Search",
+  "SAVE_TITLE": "Save",
+  "EDIT_TITLE": "Edit",
 
   "ACCOUNTS_PASSWORDS_TITLE": "Accounts/Passwords",
   "DRIVERLICENSE_TITLE": "Driver License",
@@ -57,9 +62,10 @@
   "INSURANCE_TITLE": "Insurance Information",
   "DOCUMENTS_TITLE": "Documents",
 
-  "SAVE_PASSWORD_TITLE": "Save",
   "CREATE_PASSWORD_TITLE": "New Account/Password",
   "CREATE_DRIVER_LICENSE_TITLE": "New Driver License",
+  "CREATE_BANK_ACCOUNT_TITLE": "New Bank Account",
+  "CREATE_CREDIT_CARD_TITLE": "New Credit Card",
   
   "ACCOUNT_NAME": "Account Name",
   "ACCOUNT_DESCRIPTION": "Description",
@@ -76,6 +82,13 @@
   "DL_STATE": "State",
   "DL_NOTES": "Notes",
   "DL_PHOTO": "Photo",
+
+  "BANK_ACCOUNT_OWNER": "Account Owner",
+  "BANK_ACCOUNT_NAME": "Account Name",
+  "BANK_ACCOUNT_TYPE": "Account Type",
+  "BANK_ACCOUNT_NUMBER": "Account Number",
+  "BANK_ROUTING_NUMBER": "Routing Number",
+  "BANK_ACCOUNT_NOTES": "Account Notes",
 
   "NO_ITEMS_FOUND_TITLE": "No Items Found",
   "NO_ITEMS_FOUND_DESCRIPTION": "No items found..."

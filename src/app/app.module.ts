@@ -17,15 +17,25 @@ import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
 import { PasswordsPage } from '../pages/passwords/passwords';
 import { DriverLicensesPage } from '../pages/driverlicenses/driverlicenses';
 import { DriverLicensePage } from '../pages/driverlicense/driverlicense';
+import { BankAccountsPage } from '../pages/bankaccounts/bankaccounts';
+import { BankAccountPage } from '../pages/bankaccount/bankaccount';
+import { CreditCardsPage, } from '../pages/creditcards/creditcards';
+import { CreditCardPage, } from '../pages/creditcard/creditcard';
 import { PickNotesPage } from '../pages/picknotes/picknotes';
 import { RecentPage } from '../pages/recent/recent';
 import { SearchPage } from '../pages/search/search';
 import { SettingsPage } from '../pages/settings/settings';
+import { PersonalProfilePage } from '../pages/personalprofile/personalprofile';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TouchIDPage } from '../pages/touchid/touchid';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
+
+import { ChangeNamePage } from '../pages/myinfo/changename/changename';
+import { ChangeEmailPage } from '../pages/myinfo/changeemail/changeemail';
+import { ChangePasswordPage } from '../pages/myinfo/changepassword/changepassword';
+import { PersonalProfilePhotoPage } from '../pages/myinfo/personalprofilephoto/personalprofilephoto';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -65,6 +75,7 @@ let pages = [
   WelcomePage,
   ListMasterPage,
   SettingsPage,
+  PersonalProfilePage,
   SearchPage,
   RecentPage,
   FavoritesPage,
@@ -73,10 +84,18 @@ let pages = [
   PasswordPage,
   DriverLicensesPage,
   DriverLicensePage,
+  BankAccountsPage,
+  BankAccountPage,
+  CreditCardsPage,
+  CreditCardPage,
   PasswordEditPage,
   PickNotesPage,
   TouchIDPage,
-  ModalTouchIDPage
+  ModalTouchIDPage,
+  ChangeNamePage,
+  ChangeEmailPage,
+  ChangePasswordPage,
+  PersonalProfilePhotoPage
 ];
 
 export function declarations() {

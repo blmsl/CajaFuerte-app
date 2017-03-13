@@ -7,6 +7,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { AboutPage } from '../../pages/about/about';
 import { TouchIDPage } from '../../pages/touchid/touchid';
+import { PersonalProfilePage } from '../../pages/personalprofile/personalprofile';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -55,6 +56,10 @@ export class SettingsPage {
 
   openAboutPage() {
     this.nav.push(AboutPage);
+  }
+
+  openPersonalProfile() {
+    this.nav.push(PersonalProfilePage, {paramSettings: this.auth.user});
   }
   
 }

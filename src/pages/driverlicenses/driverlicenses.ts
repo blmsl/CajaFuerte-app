@@ -19,9 +19,7 @@ export class DriverLicensesPage {
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-    public auth: AuthService) {
-      
-  }
+    public auth: AuthService) {}
 
   ionViewDidLoad() {
 
@@ -50,14 +48,10 @@ export class DriverLicensesPage {
           that.groupedAccounts.push(newGroup);
         }
         currentAccounts.push(tempAccount);
-
       })
-
       // Disable loading controller when the promise is complete
       this.auth.LoadingControllerDismiss();
-
-    });
-  
+    });  
   }
 
   addItem() {
@@ -93,5 +87,4 @@ export class DriverLicensesPage {
     });
     alert.present();
   }
-
 }

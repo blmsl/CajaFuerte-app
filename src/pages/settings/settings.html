@@ -8,6 +8,18 @@
 <ion-content class="outer-content">
   <ion-list>
     <ion-list-header>
+      Personal Profile
+    </ion-list-header>
+    <button ion-item (click)="openPersonalProfile()">
+      <ion-avatar item-left class="mlavatar">
+          <img src="{{ auth.user?.profilepic }}"/>
+      </ion-avatar>
+      <h2>{{ auth.user?.fullname }}</h2>
+      <p>{{ auth.user?.email }}</p>
+    </button>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
       {{ 'SETTINGS_SUBTITLE' | translate }}
     </ion-list-header>
     <button ion-item (click)="openTouchID()">

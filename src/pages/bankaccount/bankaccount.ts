@@ -8,24 +8,24 @@ import { PickNotesPage } from '../../pages/picknotes/picknotes';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
-  templateUrl: 'driverlicense.html'
+  templateUrl: 'bankaccount.html'
 })
 
-export class DriverLicensePage {
+export class BankAccountPage {
 
   title: string;
   showSkip = false;
   mode: string;
   key: string;
-  account: {name: string, namelower: string, number: string, issuedate: string, expirationdate: string, state: string, notes: string, photo: string, recentid: string} = {
+  account: {owner: string, name: string, namelower: string, nickname: string, type: string, number: string, routing: string, notes: string, recentid: string} = {
+    owner: '', 
     name: '', 
     namelower: '', 
+    nickname: '',
+    type: '', 
     number: '', 
-    issuedate: '', 
-    expirationdate: '', 
-    state: '', 
+    routing: '', 
     notes: '', 
-    photo: '',
     recentid: ''
   };
 
@@ -38,19 +38,19 @@ export class DriverLicensePage {
 
     this.key = navParams.get('key');
 
-    translate.get(["EDIT_TITLE","CREATE_DRIVER_LICENSE_TITLE"])
+    translate.get(["EDIT_TITLE","CREATE_BANK_ACCOUNT_TITLE"])
     .subscribe((values) => {
       if (this.key === '0') {
-        this.title = values.CREATE_DRIVER_LICENSE_TITLE;
+        this.title = values.CREATE_BANK_ACCOUNT_TITLE;
         this.mode = "New";
       } else {
-        this.auth.getDriverLicense(this.key).once('value').then(snapshot => {
+        this.auth.getBankAccount(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
-          this.title = values.EDIT_DRIVER_LICENSE_TITLE + ' ' + this.account.name;
+          this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
-          this.auth.handleRecent(snapshot.key, this.account, 'DriverLicensePage');
+          this.auth.handleRecent(snapshot.key, this.account, 'BankAccountPage');
         });
       }
     });
@@ -59,7 +59,7 @@ export class DriverLicensePage {
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
-      case 'DriverLicensesPage': {
+      case 'BankAccountsPage': {
         this.auth.pwdNotes = '';
         break;
       }
@@ -74,9 +74,9 @@ export class DriverLicensePage {
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
-      this.auth.AddDriverLicense(this.account);
+      this.auth.AddBankAccount(this.account);
     } else {
-      this.auth.updateDriverLicense(this.account, this.key);
+      this.auth.updateBankAccount(this.account, this.key);
     }
     this.nav.pop();
   }

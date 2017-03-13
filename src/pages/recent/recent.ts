@@ -6,6 +6,8 @@ import { AuthService } from '../../providers/auth-service';
 
 import { PasswordPage } from '../password/password';
 import { DriverLicensePage } from '../driverlicense/driverlicense';
+import { BankAccountPage } from '../bankaccount/bankaccount';
+import { CreditCardPage } from '../creditcard/creditcard';
 
 @Component({
   selector: 'page-recent',
@@ -43,11 +45,8 @@ export class RecentPage {
         });
       });
       this.recentArray = rawList.reverse();
-
       this.auth.LoadingControllerDismiss();
-
     });
-
   }
 
   openItem(recent) {
@@ -57,6 +56,12 @@ export class RecentPage {
         break;
       case 'DriverLicensePage': 
         this.navCtrl.push(DriverLicensePage, { key: recent.sourcekey });
+        break;
+      case 'BankAccountPage': 
+        this.navCtrl.push(BankAccountPage, { key: recent.sourcekey });
+        break;
+      case 'CreditCardPage': 
+        this.navCtrl.push(CreditCardPage, { key: recent.sourcekey });
         break;
 		}
   }

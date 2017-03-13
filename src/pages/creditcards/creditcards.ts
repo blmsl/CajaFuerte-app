@@ -4,14 +4,14 @@ import { NavController, ModalController, AlertController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
-import { PasswordPage } from '../password/password';
+import { CreditCardPage } from '../creditcard/creditcard';
 
 @Component({
-  selector: 'page-passwords',
-  templateUrl: 'passwords.html'
+  selector: 'page-creditcards',
+  templateUrl: 'creditcards.html'
 })
 
-export class PasswordsPage {
+export class CreditCardsPage {
 
   groupedAccounts = [];
 
@@ -23,7 +23,7 @@ export class PasswordsPage {
 
   ionViewDidLoad() {
 
-    this.auth.getAllAccounts().on('value', (accounts) => { 
+    this.auth.getAllCreditCards().on('value', (accounts) => { 
 
       var that = this;
       this.groupedAccounts = [];
@@ -35,7 +35,6 @@ export class PasswordsPage {
         let account = spanshot.val();
         let tempAccount = ({
           $key: spanshot.key,
-          description: account.description,
           name: account.name
         });
 
@@ -56,12 +55,12 @@ export class PasswordsPage {
   }
 
   addItem() {
-    this.navCtrl.push(PasswordPage, { key: '0' });
+    this.navCtrl.push(CreditCardPage, { key: '0' });
   }
 
   openItem(account) {
-    this.auth.referrer = 'PasswordsPage';
-    this.navCtrl.push(PasswordPage, { key: account.$key });
+    this.auth.referrer = 'CreditCardsPage';
+    this.navCtrl.push(CreditCardPage, { key: account.$key });
   }
 
   deleteItem(slidingItem, account) {
@@ -81,7 +80,7 @@ export class PasswordsPage {
           cssClass: 'alertDanger',
           handler: () => {
             slidingItem.close();
-            this.auth.deleteAccount(account);
+            this.auth.deleteDriverLicense(account);
           }
         }
       ]

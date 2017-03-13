@@ -43,12 +43,17 @@
   "LIST_MASTER_TITLE": "Formas",
   "LIST_PASSWORDS": "Contraseñas",
   "LIST_DRIVER_LICENSE": "Licencia de Conducier",
+  "LIST_BANK_ACCOUNTS": "Cuentas Bancarias",
+  "LIST_CREDIT_CARDS": "Tarjetas de Crédito",
 
-  "EDIT_PASSWORD_TITLE": "Editar",
   "EDIT_PASSWORD_SUBTITLE": "Edite los detalles de la cuenta/contraseña",
-  "EDIT_DRIVER_LICENSE_TITLE": "Editar licencia de conducier",
+  "EDIT_BANK_ACCOUNT_SUBTITLE": "Edite los detalles de la cuenta",
+  "EDIT_DL_SUBTITLE": "Edite los detalles de la licencia de conducir",
+  "EDIT_CREDIT_CARD_SUBTITLE": "Edit credit card details",
 
   "SEARCH_TITLE": "Buscar",
+  "SAVE_TITLE": "Guardar",
+  "EDIT_TITLE": "Editar",
 
   "ACCOUNTS_PASSWORDS_TITLE": "Cuentas/Contraseñas",
   "DRIVERLICENSE_TITLE": "Driver License",
@@ -57,9 +62,10 @@
   "INSURANCE_TITLE": "Información de Seguro",
   "DOCUMENTS_TITLE": "Documentos",
 
-  "SAVE_PASSWORD_TITLE": "Guardar",
   "CREATE_PASSWORD_TITLE": "Nueva Cuenta/Contraseña",
   "CREATE_DRIVER_LICENSE_TITLE": "Nueva Licencia de Conducir",
+  "CREATE_BANK_ACCOUNT_TITLE": "Nueva Cuenta Bancaria",
+  "CREATE_CREDIT_CARD_TITLE": "Nueva Tarjeta de Crédito",
 
   "ACCOUNT_NAME": "Nombre de la cuenta",
   "ACCOUNT_DESCRIPTION": "Descripción",
@@ -76,6 +82,13 @@
   "DL_STATE": "Estado",
   "DL_NOTES": "Notas",
   "DL_PHOTO": "Foto",
+
+  "BANK_ACCOUNT_OWNER": "Pertenece a",
+  "BANK_ACCOUNT_NAME": "Nombre de la Cuenta",
+  "BANK_ACCOUNT_TYPE": "Type de Cuenta",
+  "BANK_ACCOUNT_NUMBER": "Número de la Cuenta",
+  "BANK_ROUTING_NUMBER": "Número de Ruta",
+  "BANK_ACCOUNT_NOTES": "Notas",
 
   "NO_ITEMS_FOUND_TITLE": "No se encontraron datos",
   "NO_ITEMS_FOUND_DESCRIPTION": "No se encontraron datos"

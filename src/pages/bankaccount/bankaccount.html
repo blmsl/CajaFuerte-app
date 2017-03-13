@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ title }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()">{{ 'SAVE_TITLE' | translate }}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header color="light">
+      {{ 'EDIT_BANK_ACCOUNT_SUBTITLE' | translate }}
+    </ion-list-header>
+    <ion-item class="ml-input">
+      <i class="fa fa-user" item-left></i>
+      <ion-label floating>{{ 'BANK_ACCOUNT_OWNER' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.owner"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-university" item-left></i>
+      <ion-label floating>{{ 'BANK_ACCOUNT_NAME' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.name"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-thumb-tack" item-left></i>
+      <ion-label floating>{{ 'BANK_ACCOUNT_TYPE' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.accounttype"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-barcode" item-left></i>
+      <ion-label floating>{{ 'BANK_ACCOUNT_NUMBER' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.number"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input">
+      <i class="fa fa-list-ol" item-left></i>
+      <ion-label floating>{{ 'BANK_ROUTING_NUMBER' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.routingnumber"></ion-input>
+    </ion-item>
+    <ion-item class="ml-input" (click)="pickNotes()">
+      <i class="fa fa-file-text-o" item-left></i>
+      <ion-label floating>{{ 'BANK_ACCOUNT_NOTES' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="account.notes" disabled></ion-input>
+      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
