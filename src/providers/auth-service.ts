@@ -4,8 +4,6 @@ import { LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
-import { TranslateService } from 'ng2-translate/ng2-translate';
-
 import { AngularFire, AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, FirebaseObjectObservable } from 'angularfire2';
 
 import firebase from 'firebase';
@@ -30,10 +28,10 @@ export class AuthService {
   public storagePwd: string;
   public referrer: string;
   public pwdNotes: string;
+  pages: Array<{id: string, title: string, component: any, icon: string, color: string}>;
 
   constructor(
     public storage: Storage,
-    public translate: TranslateService, 
     public af: AngularFire, 
     public auth$: AngularFireAuth, 
     public loadingCtrl: LoadingController) {
@@ -51,6 +49,16 @@ export class AuthService {
     this.vaultdata = firebase.database().ref('/vaults/');
     this.profilepicdata = firebase.storage().ref('/profilepics/');
 
+    //
+    // Load default forms
+    //
+    this.pages = [
+      {id: '1', title: '', component: '', icon: 'fa-lock', color: 'fa-color1'},
+      {id: '2', title: '', component: '', icon: 'fa-id-card-o', color: 'fa-color2'},
+      {id: '3', title: '', component: '', icon: 'fa-credit-card', color: 'fa-color3'},
+      {id: '4', title: '', component: '',icon: 'fa-university', color: 'fa-color4'},
+      {id: '5', title: '', component: '', icon: 'fa-umbrella', color: 'fa-color5'}
+    ];
   }
 
   ngOnDestroy(){
@@ -109,7 +117,6 @@ export class AuthService {
     this.userdata = null;
     this.formsdata = null;
     this.vaultdata = null;
-    //this.af.auth.logout();
   }
 
   displayName(): string {
@@ -134,10 +141,14 @@ export class AuthService {
   }
 
   LoadingControllerDismiss() {
-    // LUIS: Remove .catch once fix has been implemented
-    // https://github.com/driftyco/ionic/issues/10046#issuecomment-274074432
     //this.loading.dismiss().catch(() => console.log('error on dismiss'));
     this.loading.dismiss();
+    /*setTimeout(() => {
+      this.loading.dismiss();
+    }, 50);*/
+    /*this.loading.dismiss().then(() => {
+      console.log("Loading dismissed");
+    })*/
   }
 
   storageSetLanguage(lang) {
@@ -171,7 +182,6 @@ export class AuthService {
   createInitialSetup() {
     this.createUserProfile();
     this.createVault();
-    //this.createForms();
   }
 
   createUserProfile() {
@@ -215,14 +225,24 @@ export class AuthService {
 
   }
 
-  /*createForms() {
+  //
+  // DEFAULT GLOBAL FORMS
+  //-----------------------------------------------------------------------
+  getDefaultForms() {
+    return this.pages;
+  }
 
-    var ref = this.formsdata.child(this.user.vaultid + "/forms/");
-    ref.push({ component: 'PasswordPage', icon: 'fa fa-lock', color: '#fecd57' });
-    ref.push({ component: 'DriverLicensePage', icon: 'fa fa-lock', color: '#fecd57' });
-    ref.push({ component: 'PasswordPage', icon: 'fa fa-lock', color: '#fecd57' });
-
-  }*/
+  searchForms(nameKey) {
+    this.searchArray(nameKey, this.pages);
+  }
+  
+  searchArray(nameKey, myArray){
+    for (var i=0; i < myArray.length; i++) {
+      if (myArray[i].name === nameKey) {
+        return myArray[i];
+      }
+    }
+  }
 
   //
   // PERSONAL PROFILE
@@ -298,25 +318,23 @@ export class AuthService {
   //
   // RECENT
   //-----------------------------------------------------------------------
-  handleRecent(sourcekey, item, component) {
+  handleRecent(sourcekey, account, component) {
 
-    let recent: {name: string, sourcekey: string, component: string, icon: string, color: string, dateCreated: number} = {
-      name: item.name, 
+    let recent: {name: string, sourcekey: string, component: string, dateCreated: number} = {
+      name: account.name, 
       sourcekey: sourcekey,
-      component: component, 
-      icon: 'fa fa-lock',
-      color: 'fa-color', 
+      component: component,
       dateCreated: moment().valueOf()
     };
 
     // Test for the existence of a Recent item within our data. If not found, add it
-    if (item.recentid === undefined || item.recentid === '') {
+    if (account.recentid === undefined || account.recentid === '') {
       this.addRecentItem(sourcekey, recent, component);
       return;
     }
 
     // We have a recent item in our database, update timestamp
-    this.vaultdata.child(this.user.vaultid + '/recent/' + item.recentid).update(recent);
+    this.vaultdata.child(this.user.vaultid + '/recent/' + account.recentid).update(recent);
   }
 
   addRecentItem(sourcekey, recent, component) {

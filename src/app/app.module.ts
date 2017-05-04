@@ -1,4 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -137,6 +139,7 @@ const firebaseAuthConfig = {
 @NgModule({
   declarations: declarations(),
   imports: [
+    BrowserModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(CajaFuerteApp),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),

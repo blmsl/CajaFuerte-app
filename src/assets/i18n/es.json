@@ -90,6 +90,14 @@
   "BANK_ROUTING_NUMBER": "Número de Ruta",
   "BANK_ACCOUNT_NOTES": "Notas",
 
+  "CC_OWNER": "Pertenece a",
+  "CC_NAME": "Nombre de la Tarjeta",
+  "CC_TYPE": "Type de Tarjeta",
+  "CC_NUMBER": "Número",
+  "CC_EXP_DATE": "Fecha de Expiración",
+  "CC_CVV": "CVV",
+  "CC_NOTES": "Notas",
+
   "NO_ITEMS_FOUND_TITLE": "No se encontraron datos",
   "NO_ITEMS_FOUND_DESCRIPTION": "No se encontraron datos"
 

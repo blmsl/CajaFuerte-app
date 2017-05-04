@@ -42,12 +42,6 @@
 .cf-fa-circle:before {
   font-size: 27px;
 }
-.fa-color {
-  background: color($colors, passwords-color)
-}
-.fa-color2 {
-  background: color($colors, mlgreen)
-}
 .divImageNoItemsFound .icon {
   width: 100px;
   height: 100px;
@@ -73,30 +67,33 @@
 
 // Menu custom text color
 // --------------------------------------------------
-.faGreen {
-   color: #28a54c;
+.fa-color1 {
+  background: #FFC107;
 }
-.faOrange {
-   color: #ff6600;
+.fa-color2 {
+   background: #FF5722;
 }
-.faLightBlue {
-   color: #31C0E6;
+.fa-color3 {
+   background: #2196F3;
 }
-.faYellow{
-   color: #f2c100;
+.fa-color4 {
+   background: #4CAF50;
 }
-.faRed{
-   color: red;
+.fa-color5 {
+   background: #673AB7;
 }
-.faLight{
-  color: #b0b0b0;
+.fa-color6 {
+   background: #B71C1C;
+}
+.fa-color7 {
+  background: #E91E63;
 }
 
 // Alert custom text color
 // --------------------------------------------------
 .alertDanger .button-inner{
   color: red;
-  font-weight: normal;
+  font-weight: bold;
   button{
     color: red;
   }
@@ -152,7 +149,7 @@
 }
 .ml-input ion-datetime {
   padding: 0px 8px 8px 10px;
-  margin-left: 20px;
+  margin-left: 0;
 }
 .ml-input .label-ios {
   margin-top: 6px;

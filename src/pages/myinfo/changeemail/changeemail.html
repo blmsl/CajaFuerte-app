@@ -12,15 +12,14 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <ion-item-divider>
+  <ion-list-header>
     Enter your new email
-  </ion-item-divider>
+  </ion-list-header>
   <ion-list>
     <ion-item class="ml-input">
       <ion-icon name="md-clipboard" item-left></ion-icon>
       <ion-label floating>New Email</ion-label>
       <ion-input [(ngModel)]="newemail" type="text"></ion-input>
-      <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

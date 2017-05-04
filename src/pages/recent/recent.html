@@ -6,7 +6,7 @@
 <ion-content class="outer-content">
   <ion-list>
     <button ion-item *ngFor="let recent of recentArray" (click)="openItem(recent)">
-      <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
+      <i id="circle{{recent.id}}" item-left class="fa {{recent.icon}} cf-fa-circle {{recent.color}}"></i>
       {{ recent.name }}
     </button>
   </ion-list>

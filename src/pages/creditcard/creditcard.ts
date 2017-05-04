@@ -74,9 +74,9 @@ export class CreditCardPage {
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
-      this.auth.AddBankAccount(this.account);
+      this.auth.AddCreditCard(this.account);
     } else {
-      this.auth.updateBankAccount(this.account, this.key);
+      this.auth.updateCreditCard(this.account, this.key);
     }
     this.nav.pop();
   }

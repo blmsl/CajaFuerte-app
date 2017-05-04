@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, ModalController, AlertController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -19,6 +19,7 @@ export class CreditCardsPage {
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public navParams: NavParams, 
     public auth: AuthService) {}
 
   ionViewDidLoad() {
@@ -35,7 +36,9 @@ export class CreditCardsPage {
         let account = spanshot.val();
         let tempAccount = ({
           $key: spanshot.key,
-          name: account.name
+          name: account.name,
+          icon: this.auth.pages[2].icon,
+          color: this.auth.pages[2].color,
         });
 
         if(tempAccount.name.charAt(0) != currentLetter){

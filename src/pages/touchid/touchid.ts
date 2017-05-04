@@ -92,7 +92,6 @@ export class TouchIDPage {
         },*/
         {
           text: 'Ok',
-          cssClass: 'alertDanger',
           handler: () => {
             try {
               

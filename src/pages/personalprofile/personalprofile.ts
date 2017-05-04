@@ -74,7 +74,6 @@ export class PersonalProfilePage {
         },
         {
           text: 'Delete',
-          cssClass: 'alertDanger',
           handler: () => {
             this.doRemoveUserAndDeleteAllData();
           }

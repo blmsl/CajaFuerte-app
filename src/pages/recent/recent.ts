@@ -15,26 +15,55 @@ import { CreditCardPage } from '../creditcard/creditcard';
 })
 export class RecentPage {
   
+  pages: any;
   recentArray: {};
   noitemsfound: boolean = true;
 
   constructor(public navCtrl: NavController, public auth: AuthService) {
     
     this.auth.LoadingControllerShow();
+    this.pages = auth.getDefaultForms();
 
   }
 
   ionViewDidLoad() {
 
     this.auth.getRecent().on('value', (recentList) => {
+      
       let rawList= [];
+
+      // Loop through each item
       recentList.forEach( spanshot => {
-        
+
         // We found recent items, hide noitemsfound section
         this.noitemsfound = false;
 
-        // Loop through each item and 
-        var recent = spanshot.val();
+        let recent = spanshot.val();
+
+        // Get icon and color
+        switch(recent.component) {
+          case 'PasswordPage': 
+            recent.color = this.pages[0].color;
+            recent.icon = this.pages[0].icon;
+            break;
+          case 'DriverLicensePage': 
+            recent.color = this.pages[1].color;
+            recent.icon = this.pages[1].icon;
+            break;
+          case 'BankAccountPage': 
+            recent.color = this.pages[2].color;
+            recent.icon = this.pages[2].icon;
+            break;
+          case 'CreditCardPage': 
+            recent.color = this.pages[3].color;
+            recent.icon = this.pages[3].icon;
+            break;
+          case 'InsurancePage': 
+            recent.color = this.pages[4].color;
+            recent.icon = this.pages[4].icon;
+            break;
+        }
+        
         rawList.push({
           sourcekey: recent.sourcekey,
           color: recent.color,
@@ -61,6 +90,9 @@ export class RecentPage {
         this.navCtrl.push(BankAccountPage, { key: recent.sourcekey });
         break;
       case 'CreditCardPage': 
+        this.navCtrl.push(CreditCardPage, { key: recent.sourcekey });
+        break;
+      case 'InsurancePage': 
         this.navCtrl.push(CreditCardPage, { key: recent.sourcekey });
         break;
 		}

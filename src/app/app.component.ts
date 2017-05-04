@@ -102,7 +102,6 @@ export class CajaFuerteApp {
         },
         {
           text: 'Sign Out',
-          cssClass: 'alertDanger',
           handler: () => {
             try {
               this.auth.signOut();

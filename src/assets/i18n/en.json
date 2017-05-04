@@ -90,6 +90,14 @@
   "BANK_ROUTING_NUMBER": "Routing Number",
   "BANK_ACCOUNT_NOTES": "Account Notes",
 
+  "CC_OWNER": "Owner",
+  "CC_NAME": "Card Name",
+  "CC_TYPE": "Card Type",
+  "CC_NUMBER": "Number",
+  "CC_EXP_DATE": "Expiration Date",
+  "CC_CVV": "CVV",
+  "CC_NOTES": "Notes",
+
   "NO_ITEMS_FOUND_TITLE": "No Items Found",
   "NO_ITEMS_FOUND_DESCRIPTION": "No items found..."
 

@@ -10,9 +10,9 @@
 </ion-header>
 <ion-content class="outer-content">
   <ion-list>
-    <ion-card id="{{p.id}}" *ngFor="let p of pages" (click)="openPage(p)">
+    <ion-card id="card{{p.id}}" *ngFor="let p of pages" (click)="openPage(p)" class="box">
       <ion-item text-wrap>
-        <img item-left src="assets/img/{{p.icon}}" class="form-image"/>
+        <i id="circle{{p.id}}" item-left class="fa {{p.icon}} cf-fa-circle {{p.color}}"></i>
         <h2>{{p.title}}</h2>
       </ion-item>
     </ion-card>

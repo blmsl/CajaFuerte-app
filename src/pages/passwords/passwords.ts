@@ -36,7 +36,9 @@ export class PasswordsPage {
         let tempAccount = ({
           $key: spanshot.key,
           description: account.description,
-          name: account.name
+          name: account.name,
+          icon: this.auth.pages[0].icon,
+          color: this.auth.pages[0].color,
         });
 
         if(tempAccount.name.charAt(0) != currentLetter){
