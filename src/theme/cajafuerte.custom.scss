@@ -67,14 +67,22 @@
 
 // Menu custom text color
 // --------------------------------------------------
+// FONT SIZES
+.cf-fa-icon-big:before {
+  font-size: 23px;
+}
+.cf-fa-icon-small:before {
+  font-size: 13px;
+}
+// FOR ICONS INSIDE A CIRCLE
 .fa-color1 {
-  background: #FFC107;
+  background: #FF5722;
 }
 .fa-color2 {
-   background: #FF5722;
+   background: #2196F3;
 }
 .fa-color3 {
-   background: #2196F3;
+   background: #FFC107;
 }
 .fa-color4 {
    background: #4CAF50;
@@ -87,6 +95,28 @@
 }
 .fa-color7 {
   background: #E91E63;
+}
+// FOR FLAT ICONS
+.cf-fa-color1:before {
+  color: #FF5722;
+}
+.cf-fa-color2:before {
+  color: #2196F3;
+}
+.cf-fa-color3:before {
+  color: #FFC107;
+}
+.cf-fa-color4:before {
+  color: #4CAF50;
+}
+.cf-fa-color5:before {
+  color: #673AB7;
+}
+.cf-fa-color6:before {
+  color: #B71C1C;
+}
+.cf-fa-color7:before {
+  color: #E91E63;
 }
 
 // Alert custom text color

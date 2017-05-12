@@ -1,6 +1,5 @@
 {
   "name": "CajaFuerte",
   "app_id": "28ca2097",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

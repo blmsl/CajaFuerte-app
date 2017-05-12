@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera';
 
 import { CajaFuerteApp } from './app.component';
 
@@ -111,6 +112,7 @@ export function entryComponents() {
 export function providers() {
   return [
     Storage,
+    Camera,
     AuthService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];

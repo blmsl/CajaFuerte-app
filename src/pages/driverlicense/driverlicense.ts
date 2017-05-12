@@ -47,7 +47,7 @@ export class DriverLicensePage {
         this.auth.getDriverLicense(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
-          this.title = values.EDIT_DRIVER_LICENSE_TITLE + ' ' + this.account.name;
+          this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
           this.auth.handleRecent(snapshot.key, this.account, 'DriverLicensePage');

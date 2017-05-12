@@ -53,11 +53,11 @@ export class AuthService {
     // Load default forms
     //
     this.pages = [
-      {id: '1', title: '', component: '', icon: 'fa-lock', color: 'fa-color1'},
-      {id: '2', title: '', component: '', icon: 'fa-id-card-o', color: 'fa-color2'},
-      {id: '3', title: '', component: '', icon: 'fa-credit-card', color: 'fa-color3'},
-      {id: '4', title: '', component: '',icon: 'fa-university', color: 'fa-color4'},
-      {id: '5', title: '', component: '', icon: 'fa-umbrella', color: 'fa-color5'}
+      {id: '1', title: '', component: '', icon: 'fa-lock', color: 'cf-fa-color1'},
+      {id: '2', title: '', component: '', icon: 'fa-id-card-o', color: 'cf-fa-color2'},
+      {id: '3', title: '', component: '', icon: 'fa-credit-card', color: 'cf-fa-color3'},
+      {id: '4', title: '', component: '',icon: 'fa-university', color: 'cf-fa-color4'},
+      {id: '5', title: '', component: '', icon: 'fa-umbrella', color: 'cf-fa-color5'}
     ];
   }
 

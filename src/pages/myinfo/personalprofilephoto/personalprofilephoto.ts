@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { Camera } from 'ionic-native';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { AuthService } from '../../../providers/auth-service';
 
@@ -11,15 +11,19 @@ import { AuthService } from '../../../providers/auth-service';
 
 export class PersonalProfilePhotoPage {
 
-  public userPhoto: any;
-  public userPhotoDisplay: any;
+  /*public userPhoto: any;
+  public userPhotoDisplay: any;*/
+
+  photos: any;
+  public base64Image: string;
 
   constructor(
-      public nav: NavController,
-      public auth: AuthService) {}
+    private camera: Camera,
+    public nav: NavController,
+    public auth: AuthService) { }
 
-  ionViewDidLoad() {
-    this.takePicture();
+  ngOnInit() {
+    this.photos = [];
   }
 
   dismiss() {
@@ -27,19 +31,43 @@ export class PersonalProfilePhotoPage {
   }
 
   savePicture() {
-    this.auth.savePicture(this.userPhoto);
-    this.dismiss();
+    //this.auth.savePicture(this.userPhoto);
+    //this.dismiss();
   }
 
-  takePicture(){
-    Camera.getPicture({
-      quality : 95,
-      destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
-      allowEdit : true,
-      encodingType: Camera.EncodingType.PNG,
-      targetWidth: 800,
-      targetHeight: 800,
+  takePhoto() {
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this
+      .camera
+      .getPicture(options)
+      .then((imageData) => {
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+        this
+          .photos
+          .push(this.base64Image);
+        this
+          .photos
+          .reverse();
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  /*takePicture() {
+    this.camera.getPicture({
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: this.camera.EncodingType.PNG,
+      targetWidth: 900,
+      targetHeight: 900,
       saveToPhotoAlbum: false
     }).then(imageData => {
       this.userPhoto = imageData;
@@ -47,6 +75,6 @@ export class PersonalProfilePhotoPage {
     }, error => {
       console.log("ERROR -> " + JSON.stringify(error));
     });
-  }
-  
+  }*/
+
 }
