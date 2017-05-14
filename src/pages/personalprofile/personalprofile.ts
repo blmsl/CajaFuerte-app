@@ -74,6 +74,7 @@ export class PersonalProfilePage {
         },
         {
           text: 'Delete',
+          cssClass: 'alertDanger',
           handler: () => {
             this.doRemoveUserAndDeleteAllData();
           }
@@ -207,8 +208,8 @@ export class PersonalProfilePage {
   }
 
   doLogout(): void {
-    //this.fireAuth.signOut();
-    //this.nav.setRoot(TutorialPage);
+    this.auth.signOut();
+    this.nav.setRoot(TutorialPage);
   }
   
   DisplayResult(myAlert, loading, logoff): void {

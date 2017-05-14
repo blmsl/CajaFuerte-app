@@ -11,35 +11,28 @@ import { AuthService } from '../../../providers/auth-service';
 
 export class PersonalProfilePhotoPage {
 
-  /*public userPhoto: any;
-  public userPhotoDisplay: any;*/
-
-  photos: any;
-  public base64Image: string;
+  public displayPhoto: string;
+  public savePhoto: any;
 
   constructor(
     private camera: Camera,
     public nav: NavController,
     public auth: AuthService) { }
 
-  ngOnInit() {
-    this.photos = [];
-  }
-
   dismiss() {
     this.nav.pop();
   }
 
   savePicture() {
-    //this.auth.savePicture(this.userPhoto);
-    //this.dismiss();
+    this.auth.savePicture(this.savePhoto);
+    this.dismiss();
   }
 
   takePhoto() {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 75,
       destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
+      encodingType: this.camera.EncodingType.PNG,
       mediaType: this.camera.MediaType.PICTURE
     }
 
@@ -47,34 +40,11 @@ export class PersonalProfilePhotoPage {
       .camera
       .getPicture(options)
       .then((imageData) => {
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-        this
-          .photos
-          .push(this.base64Image);
-        this
-          .photos
-          .reverse();
+        this.savePhoto = imageData;
+        this.displayPhoto = "data:image/jpeg;base64," + imageData;
       }, (err) => {
         console.log(err);
       });
   }
-
-  /*takePicture() {
-    this.camera.getPicture({
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      allowEdit: true,
-      encodingType: this.camera.EncodingType.PNG,
-      targetWidth: 900,
-      targetHeight: 900,
-      saveToPhotoAlbum: false
-    }).then(imageData => {
-      this.userPhoto = imageData;
-      this.userPhotoDisplay = "data:image/jpeg;base64," + imageData;
-    }, error => {
-      console.log("ERROR -> " + JSON.stringify(error));
-    });
-  }*/
-
+  
 }
