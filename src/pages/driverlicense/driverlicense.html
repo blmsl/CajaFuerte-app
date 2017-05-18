@@ -32,7 +32,7 @@
     <ion-item class="ml-input">
       <i class="fa fa-calendar-times-o" item-left></i>
       <ion-label floating>{{ 'DL_EXP_DATE' | translate }}</ion-label>
-      <ion-datetime displayFormat="MMMM D, YYYY" pickerFormat="MMMM D, YYYY" max="2025" [(ngModel)]="account.expirationdate"></ion-datetime>
+      <ion-datetime displayFormat="MMMM D, YYYY" pickerFormat="MMMM D, YYYY" max="2050" [(ngModel)]="account.expirationdate"></ion-datetime>
       <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
     </ion-item>
     <ion-item class="ml-input">
@@ -46,11 +46,17 @@
       <ion-input type="text" [(ngModel)]="account.notes" disabled></ion-input>
       <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
     </ion-item>
-    <ion-item class="ml-input">
+    <ion-item class="ml-input" (click)='takePhoto()'>
       <i class="fa fa-camera" item-left></i>
       <ion-label floating>{{ 'DL_PHOTO' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.photo"></ion-input>
+      <ion-input type="text" [(ngModel)]="account.photo" disabled></ion-input>
       <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-card *ngFor="let photo of photos; let id = index" class="releative">          
+        <ion-icon  ios="ios-add-circle" md="md-add-circle" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+        <img [src]="photo" *ngIf="photo" />
+      </ion-card>
     </ion-item>
   </ion-list>
 </ion-content>

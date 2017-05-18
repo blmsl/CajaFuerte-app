@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, ModalController, NavParams } from 'ionic-angular';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -8,6 +9,7 @@ import { PickNotesPage } from '../../pages/picknotes/picknotes';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
+  selector: 'page-driverlicense',
   templateUrl: 'driverlicense.html'
 })
 
@@ -28,15 +30,23 @@ export class DriverLicensePage {
     photo: '',
     recentid: ''
   };
+  photos = [];
+  base64Image : string;
 
   constructor(
     public nav: NavController, 
     public modalController: ModalController, 
     public navParams: NavParams, 
+    public camera : Camera, 
+    public alertCtrl : AlertController,
     public translate: TranslateService,
     public auth: AuthService) {
 
     this.key = navParams.get('key');
+
+    // Populate photos from database
+    this.base64Image = "data:image/jpeg;base64," + this.auth.user.profilepic;
+    this.photos.push(this.auth.user.profilepic);
 
     translate.get(["EDIT_TITLE","CREATE_DRIVER_LICENSE_TITLE"])
     .subscribe((values) => {
@@ -68,6 +78,47 @@ export class DriverLicensePage {
         break;
       }
     }
+  }
+
+  deletePhoto(index) {
+    let confirm = this.alertCtrl.create({
+      title: 'Please Confirm',
+      message: 'Are you sure you want to delete this photo? There is NO undo!',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        }, {
+          text: 'Delete',
+          cssClass: 'alertDanger',
+          handler: () => {
+            console.log('Agree clicked');
+            this
+              .photos
+              .splice(index, 1);
+            //return true;
+          }
+        }]
+      });
+    confirm.present();
+  }
+
+  takePhoto() {
+    const options : CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.photos.push(this.base64Image);
+      this.photos.reverse();
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   save() {

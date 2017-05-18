@@ -46,10 +46,10 @@
   "LIST_BANK_ACCOUNTS": "Cuentas Bancarias",
   "LIST_CREDIT_CARDS": "Tarjetas de Crédito",
 
-  "EDIT_PASSWORD_SUBTITLE": "Edite los detalles de la cuenta/contraseña",
-  "EDIT_BANK_ACCOUNT_SUBTITLE": "Edite los detalles de la cuenta",
-  "EDIT_DL_SUBTITLE": "Edite los detalles de la licencia de conducir",
-  "EDIT_CREDIT_CARD_SUBTITLE": "Edit credit card details",
+  "EDIT_PASSWORD_SUBTITLE": "Detalles de la cuenta/contraseña",
+  "EDIT_BANK_ACCOUNT_SUBTITLE": "Detalles de la cuenta",
+  "EDIT_DL_SUBTITLE": "Detalles de la licencia de conducir",
+  "EDIT_CREDIT_CARD_SUBTITLE": "Detalles de la tarjeta de crédito",
 
   "SEARCH_TITLE": "Buscar",
   "SAVE_TITLE": "Guardar",

@@ -46,10 +46,10 @@
   "LIST_BANK_ACCOUNTS": "Bank Accounts",
   "LIST_CREDIT_CARDS": "Credit Cards",
 
-  "EDIT_PASSWORD_SUBTITLE": "Edit account details",
-  "EDIT_BANK_ACCOUNT_SUBTITLE": "Edit bank account details",
-  "EDIT_DL_SUBTITLE": "Edit driver license details",
-  "EDIT_CREDIT_CARD_SUBTITLE": "Edit credit card details",
+  "EDIT_PASSWORD_SUBTITLE": "Account details",
+  "EDIT_BANK_ACCOUNT_SUBTITLE": "Bank account details",
+  "EDIT_DL_SUBTITLE": "Driver license details",
+  "EDIT_CREDIT_CARD_SUBTITLE": "Credit card details",
 
   "SEARCH_TITLE": "Search",
   "SAVE_TITLE": "Save",

@@ -26,7 +26,7 @@
     "@ionic-native/splash-screen": "^3.6.1",
     "@ionic-native/status-bar": "^3.6.1",
     "@ionic-native/touch-id": "^3.6.1",
-    "@ionic/cloud-angular": "^0.11.0",
+    "@ionic/cloud-angular": "^0.12.0",
     "@ionic/storage": "2.0.1",
     "angularfire2": "^2.0.0-beta.8",
     "firebase": "3.9.0",
