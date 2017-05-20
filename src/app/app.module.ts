@@ -44,7 +44,10 @@ import { AuthService } from '../providers/auth-service';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+// Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import 'gsap';
 
@@ -133,10 +136,10 @@ export const firebaseConfig = {
   messagingSenderId: "105460697119"
 };
 
-const firebaseAuthConfig = {
+/*const firebaseAuthConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password
-}
+}*/
 
 @NgModule({
   declarations: declarations(),
@@ -144,7 +147,9 @@ const firebaseAuthConfig = {
     BrowserModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(CajaFuerteApp),
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     CloudModule.forRoot(cloudSettings),
     TranslateModule.forRoot({
       provide: TranslateLoader,

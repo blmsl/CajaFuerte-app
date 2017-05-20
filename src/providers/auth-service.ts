@@ -4,21 +4,23 @@ import { LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
-import { AngularFire, AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 import * as moment from 'moment';
 
 @Injectable()
 export class AuthService {
   
-  private authState: FirebaseAuthState;
+  private authState;
   private userauth;
   private userdata;
   private formsdata;
   private vaultdata;
   private profilepicdata;
+  private fbStorageRef;
   private loading: any;
   
   public user;
@@ -32,23 +34,17 @@ export class AuthService {
 
   constructor(
     public storage: Storage,
-    public af: AngularFire, 
-    public auth$: AngularFireAuth, 
+    public afAuth: AngularFireAuth, 
+    public db: AngularFireDatabase,
     public loadingCtrl: LoadingController) {
     
-    af.auth.subscribe(auth => {
-      if(auth) {
-        this.authState = auth;
-      } else {
-        console.log('not logged in');
-      }
-    });
+    this.authState = afAuth.authState;
 
     this.formsdata = firebase.database().ref('/forms/');
     this.userdata = firebase.database().ref('/users/');
     this.vaultdata = firebase.database().ref('/vaults/');
-    this.profilepicdata = firebase.storage().ref('/profilepics/');
-
+    this.profilepicdata = firebase.storage().ref().child('/profilepics/');
+    this.fbStorageRef = firebase.storage().ref();
     //
     // Load default forms
     //
@@ -61,30 +57,13 @@ export class AuthService {
     ];
   }
 
-  ngOnDestroy(){
-    this.af.auth.unsubscribe();
-    this.authState = null;
-    this.user = null;
-    this.userauth = null;
-    this.userdata = null;
-    this.formsdata = null;
-    this.vaultdata = null;
-  }
-
   get authenticated(): boolean {
     return this.authState !== null;
   }
 
-  signInWithFacebook(): firebase.Promise<FirebaseAuthState> {
-    return this.auth$.login({
-      provider: AuthProviders.Facebook,
-      method: AuthMethods.Popup
-    });
-  }
-
-  signInWithEmail(credentials): firebase.Promise<FirebaseAuthState> {
+  signInWithEmail(credentials): firebase.Promise<any> {
     return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
-      this.auth$.login({email: credentials.email,password: credentials.password})
+      this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then((authData) => {
         this.userauth = authData;
         this.getUserData();
@@ -95,9 +74,9 @@ export class AuthService {
     });
   }
 
-  signUpWithEmail(credentials): firebase.Promise<FirebaseAuthState> {
+  signUpWithEmail(credentials): firebase.Promise<any> {
     return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
-      this.auth$.createUser(credentials)
+      this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((authData) => {
         this.userauth = authData;
         this.user = credentials;
@@ -110,7 +89,6 @@ export class AuthService {
   }
 
   signOut(): void {
-    this.af.auth.unsubscribe();
     this.authState = null;
     this.user = null;
     this.userauth = null;
@@ -128,8 +106,8 @@ export class AuthService {
   }
 
   getUserEmail(): string {
-    let ref = this.af.auth.getAuth();
-    return ref.auth.email;    
+    let user = firebase.auth().currentUser;
+    return user.email;
   }
 
   LoadingControllerShow() {
@@ -141,14 +119,7 @@ export class AuthService {
   }
 
   LoadingControllerDismiss() {
-    //this.loading.dismiss().catch(() => console.log('error on dismiss'));
     this.loading.dismiss();
-    /*setTimeout(() => {
-      this.loading.dismiss();
-    }, 50);*/
-    /*this.loading.dismiss().then(() => {
-      console.log("Loading dismissed");
-    })*/
   }
 
   storageSetLanguage(lang) {
@@ -249,7 +220,7 @@ export class AuthService {
   //-----------------------------------------------------------------------
 
   getUserData() { 
-    const thisuser$ : FirebaseObjectObservable<any> = this.af.database.object('/users/' + this.userauth.uid); 
+    const thisuser$ : FirebaseObjectObservable<any> = this.db.object('/users/' + this.userauth.uid); 
     thisuser$.subscribe((val) => {
       this.user = val;
     });
