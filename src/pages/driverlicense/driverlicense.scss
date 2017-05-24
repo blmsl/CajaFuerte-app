@@ -1,14 +1,14 @@
 page-driverlicense {
 
     .deleteIcon{
-      float: right;
-      color: red; 
+      float: right;      
+      color:#ffffff !important; 
       margin-right: 10px;
       margin-top: 10px;
-      transform: rotate(45deg);
     }
     .deleteIcon:before{
-      font-size: 30px !important;
+      font-size: 27px !important;
+      color: #999999;
     }
     .releative{
       position: relative

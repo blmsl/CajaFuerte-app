@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 import { AlertController, NavController, ModalController, NavParams } from 'ionic-angular';
-import {Camera, CameraOptions} from '@ionic-native/camera';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
+import { TakePhotoPage } from '../../pages/takephoto/takephoto';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -19,7 +19,8 @@ export class DriverLicensePage {
   showSkip = false;
   mode: string;
   key: string;
-  account: {name: string, namelower: string, number: string, issuedate: string, expirationdate: string, state: string, notes: string, photo: string, recentid: string} = {
+  account: any;
+  /*account: {name: string, namelower: string, number: string, issuedate: string, expirationdate: string, state: string, notes: string, recentid: string} = {
     name: '', 
     namelower: '', 
     number: '', 
@@ -27,26 +28,19 @@ export class DriverLicensePage {
     expirationdate: '', 
     state: '', 
     notes: '', 
-    photo: '',
     recentid: ''
-  };
+  };*/
   photos = [];
-  base64Image : string;
 
   constructor(
     public nav: NavController, 
     public modalController: ModalController, 
-    public navParams: NavParams, 
-    public camera : Camera, 
+    public navParams: NavParams,
     public alertCtrl : AlertController,
     public translate: TranslateService,
     public auth: AuthService) {
 
     this.key = navParams.get('key');
-
-    // Populate photos from database
-    this.base64Image = "data:image/jpeg;base64," + this.auth.user.profilepic;
-    this.photos.push(this.auth.user.profilepic);
 
     translate.get(["EDIT_TITLE","CREATE_DRIVER_LICENSE_TITLE"])
     .subscribe((values) => {
@@ -54,14 +48,34 @@ export class DriverLicensePage {
         this.title = values.CREATE_DRIVER_LICENSE_TITLE;
         this.mode = "New";
       } else {
-        this.auth.getDriverLicense(this.key).once('value').then(snapshot => {
+        
+        // Get license details
+        this.auth.getDriverLicense(this.key).on('value', snapshot => {
           this.account = snapshot.val();
+
+          var photosRef = this.auth.getDriverLicensePhotosRef(this.key);
+          this.photos = [];
+          photosRef.on('value', element => {
+            element.forEach(snap => {
+              var photo = snap.val();
+              let tempPhoto = ({
+                $key: snap.key,
+                photourl: photo.photourl
+              });
+              this.photos.push(tempPhoto);
+            });            
+          });
+
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
           this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
           this.auth.handleRecent(snapshot.key, this.account, 'DriverLicensePage');
         });
+
+        // Get license photos
+        //this.refreshPhotos();
+
       }
     });
   }
@@ -80,7 +94,7 @@ export class DriverLicensePage {
     }
   }
 
-  deletePhoto(index) {
+  deletePhoto(photo) {
     let confirm = this.alertCtrl.create({
       title: 'Please Confirm',
       message: 'Are you sure you want to delete this photo? There is NO undo!',
@@ -88,37 +102,21 @@ export class DriverLicensePage {
         {
           text: 'Cancel',
           handler: () => {
-            console.log('Disagree clicked');
+            /*console.log('cancel clicked');*/
           }
         }, {
           text: 'Delete',
           cssClass: 'alertDanger',
           handler: () => {
-            console.log('Agree clicked');
-            this
-              .photos
-              .splice(index, 1);
-            //return true;
+            this.auth.deleteDriverLicensePhoto(this.key, photo);
           }
         }]
       });
     confirm.present();
   }
 
-  takePhoto() {
-    const options : CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      this.base64Image = "data:image/jpeg;base64," + imageData;
-      this.photos.push(this.base64Image);
-      this.photos.reverse();
-    }, (err) => {
-      console.log(err);
-    });
+  takePhotopage() {
+    this.nav.push(TakePhotoPage, { source: 'DriverLicensePage' });
   }
 
   save() {

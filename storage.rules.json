@@ -7,7 +7,7 @@ service firebase.storage {
     }
 
     // Only an authenticated user can have access to his/her vault images
-    match /vaultpics/{userId}/{imageId} {
+    match /vaultpics/{userId}/{allPaths=**} {
       allow read, write: if request.auth.uid == userId;
     }
 

@@ -20,7 +20,7 @@ export class AuthService {
   private formsdata;
   private vaultdata;
   private profilepicdata;
-  private fbStorageRef;
+  private vaultpicdata;
   private loading: any;
   
   public user;
@@ -44,7 +44,7 @@ export class AuthService {
     this.userdata = firebase.database().ref('/users/');
     this.vaultdata = firebase.database().ref('/vaults/');
     this.profilepicdata = firebase.storage().ref().child('/profilepics/');
-    this.fbStorageRef = firebase.storage().ref();
+    this.vaultpicdata = firebase.storage().ref().child('/vaultpics/');
     //
     // Load default forms
     //
@@ -421,6 +421,15 @@ export class AuthService {
   getDriverLicense(key) {
     return this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + key);
   }
+  
+  getDriverLicensePhotos(key) {
+    return this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + key + '/photos/');
+  }
+
+  getDriverLicensePhotosRef(key) {
+    var ref = this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + key + '/photos/');
+    return ref;
+  }
 
   AddDriverLicense(item) {
     this.vaultdata.child(this.user.vaultid + "/driverlicenses/").push(item);
@@ -428,6 +437,17 @@ export class AuthService {
 
   deleteDriverLicense(item) {
     this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + item.$key).remove();
+  }
+
+  deleteDriverLicensePhoto(licensekey, photo) {
+    this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + licensekey + '/photos/' + photo.$key).remove();
+    var picRef = firebase.storage().refFromURL(photo.photourl);
+    picRef.delete().then(function() {
+      // File deleted successfully
+    }).catch(function(error) {
+      // Uh-oh, an error occurred!
+      console.log(error);
+    });
   }
 
   updateDriverLicense(item, key) {
@@ -441,6 +461,13 @@ export class AuthService {
       notes: item.notes, 
       photo: item.photo,
       recentid: item.recentid
+    });
+  }
+
+  saveDriverLicensePhoto(photo) {
+    this.vaultpicdata.child(firebase.auth().currentUser.uid + 'driverlicensephotos/')
+    .putString(photo, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
+      this.vaultdata.child(this.user.vaultid + "/driverlicenses/photos").push({'photourl' : savedpicture.downloadURL});
     });
   }
 

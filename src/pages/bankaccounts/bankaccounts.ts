@@ -31,11 +31,11 @@ export class BankAccountsPage {
       let currentAccounts = [];
       let currentLetter = '';
 
-      accounts.forEach( spanshot => {
+      accounts.forEach( snapshot => {
 
-        let account = spanshot.val();
+        let account = snapshot.val();
         let tempAccount = ({
-          $key: spanshot.key,
+          $key: snapshot.key,
           name: account.name,
           icon: this.auth.pages[3].icon,
           color: this.auth.pages[3].color,

@@ -46,17 +46,15 @@
       <ion-input type="text" [(ngModel)]="account.notes" disabled></ion-input>
       <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
     </ion-item>
-    <ion-item class="ml-input" (click)='takePhoto()'>
+    <ion-item class="ml-input" (click)='takePhotopage()'>
       <i class="fa fa-camera" item-left></i>
       <ion-label floating>{{ 'DL_PHOTO' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="account.photo" disabled></ion-input>
       <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
     </ion-item>
-    <ion-item>
-      <ion-card *ngFor="let photo of photos; let id = index" class="releative">          
-        <ion-icon  ios="ios-add-circle" md="md-add-circle" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
-        <img [src]="photo" *ngIf="photo" />
-      </ion-card>
-    </ion-item>
   </ion-list>
+  <ion-card *ngFor="let photo of photos; let id = index" class="releative">
+    <ion-icon  name="md-close-circle" class="deleteIcon" (click)="deletePhoto(photo)"></ion-icon>
+    <img [src]="photo.photourl" *ngIf="photo" />
+  </ion-card>
 </ion-content>

@@ -4,6 +4,7 @@ import { NavController, ModalController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
+import { TakePhotoPage } from '../../pages/takephoto/takephoto';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -84,6 +85,10 @@ export class CreditCardPage {
   pickNotes() {
     this.auth.pwdNotes = this.account.notes;
     this.nav.push(PickNotesPage);
+  }
+
+  takePhotopage() {
+    this.nav.push(TakePhotoPage, { source: 'CreditCardPage' });
   }
   
 }

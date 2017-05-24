@@ -34,6 +34,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TouchIDPage } from '../pages/touchid/touchid';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { TakePhotoPage } from '../pages/takephoto/takephoto';
 
 import { ChangeNamePage } from '../pages/myinfo/changename/changename';
 import { ChangeEmailPage } from '../pages/myinfo/changeemail/changeemail';
@@ -101,7 +102,8 @@ let pages = [
   ChangeNamePage,
   ChangeEmailPage,
   ChangePasswordPage,
-  PersonalProfilePhotoPage
+  PersonalProfilePhotoPage,
+  TakePhotoPage
 ];
 
 export function declarations() {
