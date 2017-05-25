@@ -4,15 +4,15 @@
       Notes
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="save()">Save</button>
+      <button ion-button (click)="done()">Done</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content>
   <ion-list-header color="light">
     Enter a note or comment for this account
   </ion-list-header>
   <ion-item>
-    <ion-textarea [(ngModel)]="msg" rows="12" placeholder="Enter note here..."></ion-textarea>
+    <ion-textarea [(ngModel)]="msg" rows="20" placeholder="Enter note here..."></ion-textarea>
   </ion-item>
 </ion-content>

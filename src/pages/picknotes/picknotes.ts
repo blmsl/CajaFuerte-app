@@ -26,7 +26,7 @@ export class PickNotesPage {
     this.nav.pop();
   }
 
-  save() {
+  done() {
     this.auth.referrer = 'PickNotesPage';
     this.auth.pwdNotes = this.msg;
     this.goBack();

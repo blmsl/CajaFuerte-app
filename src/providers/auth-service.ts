@@ -52,8 +52,8 @@ export class AuthService {
       {id: '1', title: '', component: '', icon: 'fa-lock', color: 'cf-fa-color1'},
       {id: '2', title: '', component: '', icon: 'fa-id-card-o', color: 'cf-fa-color2'},
       {id: '3', title: '', component: '', icon: 'fa-credit-card', color: 'cf-fa-color3'},
-      {id: '4', title: '', component: '',icon: 'fa-university', color: 'cf-fa-color4'},
-      {id: '5', title: '', component: '', icon: 'fa-umbrella', color: 'cf-fa-color5'}
+      {id: '4', title: '', component: '',icon: 'fa-university', color: 'cf-fa-color4'}
+      /*{id: '5', title: '', component: '', icon: 'fa-umbrella', color: 'cf-fa-color5'}*/
     ];
   }
 
@@ -244,7 +244,7 @@ export class AuthService {
     });
   }
 
-  updatePassword(newPassword: string) {    
+  updatePassword(newPassword: string) {
     return new Promise((resolve: () => void, reject: (reason: Error) => void) => {
       let user = firebase.auth().currentUser;
       user.updatePassword(newPassword)
@@ -275,11 +275,32 @@ export class AuthService {
     });
   }
 
-  savePicture(pic) {
+  saveProfilePicture(pic) {
     this.profilepicdata.child(firebase.auth().currentUser.uid).child('profilepicture.png')
     .putString(pic, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
       this.userdata.child(firebase.auth().currentUser.uid).update({'profilepic' : savedpicture.downloadURL});
     });
+  }
+
+  savePhoto(pic, source) {
+
+    switch (source) {
+      case 'DriverLicensePage': {
+        this.vaultpicdata.child(firebase.auth().currentUser.uid + '/driverlicensephotos/').child(moment().valueOf())
+        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {
+          this.vaultdata.child(this.user.vaultid + "/driverlicenses/photos/").push({'photourl' : savedphoto.downloadURL});
+        });        
+        break;
+      }
+      case 'CreditCardPage': {
+        this.vaultpicdata.child(firebase.auth().currentUser.uid + '/creditcardphotos/').child(moment().valueOf())
+        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {
+          this.vaultdata.child(this.user.vaultid + "/creditcards/photos/").push({'photourl' : savedphoto.downloadURL});
+        });
+        break;
+      }
+    }
+
   }
 
   updateEmailNode(newemail) {
@@ -335,6 +356,10 @@ export class AuthService {
 
   getRecent() {
     return this.vaultdata.child(this.user.vaultid + '/recent/').orderByChild('dateCreated');
+  }
+
+  deleteRecent() {
+    this.vaultdata.child(this.user.vaultid + '/recent/').remove();
   }
 
   //
@@ -458,16 +483,8 @@ export class AuthService {
       issuedate: item.issuedate, 
       expirationdate: item.expirationdate, 
       state: item.state, 
-      notes: item.notes, 
-      photo: item.photo,
+      notes: item.notes,
       recentid: item.recentid
-    });
-  }
-
-  saveDriverLicensePhoto(photo) {
-    this.vaultpicdata.child(firebase.auth().currentUser.uid + 'driverlicensephotos/')
-    .putString(photo, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
-      this.vaultdata.child(this.user.vaultid + "/driverlicenses/photos").push({'photourl' : savedpicture.downloadURL});
     });
   }
 
@@ -494,12 +511,11 @@ export class AuthService {
     this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + key).update({
       name: item.name, 
       namelower: item.namelower, 
+      accounttype: item. accounttype,
       number: item.number, 
-      issuedate: item.issuedate, 
-      expirationdate: item.expirationdate, 
-      state: item.state, 
-      notes: item.notes, 
-      photo: item.photo,
+      routingnumber: item. routingnumber,
+      owner: item.owner, 
+      notes: item.notes,
       recentid: item.recentid
     });
   }
@@ -525,16 +541,50 @@ export class AuthService {
 
   updateCreditCard(item, key) {
     this.vaultdata.child(this.user.vaultid + '/creditcards/' + key).update({
+      owner: item.owner, 
       name: item.name, 
       namelower: item.namelower, 
       number: item.number, 
-      issuedate: item.issuedate, 
       expirationdate: item.expirationdate, 
-      state: item.state, 
-      notes: item.notes, 
-      photo: item.photo,
+      routing: item.routing,
+      type: item.type,
+      cvv: item.cvv,
+      notes: item.notes,
       recentid: item.recentid
     });
+  }
+
+  //
+  // INSURANCES
+  //-----------------------------------------------------------------------  
+  getAllInsurances() {
+    return this.vaultdata.child(this.user.vaultid + '/insurances').orderByChild('namelower');
+  }
+  
+  getInsurance(key) {
+    return this.vaultdata.child(this.user.vaultid + '/insurances/' + key);
+  }
+
+  addInsurance(item) {
+    this.vaultdata.child(this.user.vaultid + "/insurances/").push(item);
+  }
+
+  deleteInsurance(item) {
+    this.vaultdata.child(this.user.vaultid + '/insurances/' + item.$key).remove();
+  }
+
+  updateInsurance(item, key) {
+    console.log(item, key);
+    /*this.vaultdata.child(this.user.vaultid + '/insurances/' + key).update({
+      name: item.name, 
+      namelower: item.namelower, 
+      site: item.site, 
+      number: item.number, 
+      username: item.username, 
+      password: item.password, 
+      description: item.description,
+      notes: item.notes
+    });*/
   }
 
 }

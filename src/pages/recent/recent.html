@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{ 'RECENT_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="deleteRecent()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">

@@ -19,8 +19,7 @@ export class DriverLicensePage {
   showSkip = false;
   mode: string;
   key: string;
-  account: any;
-  /*account: {name: string, namelower: string, number: string, issuedate: string, expirationdate: string, state: string, notes: string, recentid: string} = {
+  account: {name: string, namelower: string, number: string, issuedate: string, expirationdate: string, state: string, notes: string, recentid: string} = {
     name: '', 
     namelower: '', 
     number: '', 
@@ -29,7 +28,7 @@ export class DriverLicensePage {
     state: '', 
     notes: '', 
     recentid: ''
-  };*/
+  };
   photos = [];
 
   constructor(
@@ -89,6 +88,7 @@ export class DriverLicensePage {
       }
       case 'PickNotesPage': {
         this.account.notes = this.auth.pwdNotes;
+        this.auth.pwdNotes = '';
         break;
       }
     }

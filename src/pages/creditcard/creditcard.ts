@@ -45,7 +45,7 @@ export class CreditCardPage {
         this.title = values.CREATE_CREDIT_CARD_TITLE;
         this.mode = "New";
       } else {
-        this.auth.getBankAccount(this.key).once('value').then(snapshot => {
+        this.auth.getCreditCard(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
           this.title = values.EDIT_TITLE + ' ' + this.account.name;
@@ -66,6 +66,7 @@ export class CreditCardPage {
       }
       case 'PickNotesPage': {
         this.account.notes = this.auth.pwdNotes;
+        this.auth.pwdNotes = '';
         break;
       }
     }

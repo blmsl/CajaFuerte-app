@@ -2,31 +2,34 @@ import { Component } from '@angular/core';
 
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 
+import {InAppBrowser} from 'ionic-native';
+
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
-  templateUrl: 'bankaccount.html'
+  templateUrl: 'insurance.html'
 })
 
-export class BankAccountPage {
+export class InsurancePage {
 
   title: string;
+  lockicon: string;
   showSkip = false;
   mode: string;
   key: string;
-  account: {owner: string, name: string, namelower: string, nickname: string, type: string, number: string, routing: string, notes: string, recentid: string} = {
-    owner: '', 
+  account: {name: string, namelower: string, recentid: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
     name: '', 
     namelower: '', 
-    nickname: '',
-    type: '', 
+    recentid: '', 
+    site: '', 
     number: '', 
-    routing: '', 
-    notes: '', 
-    recentid: ''
+    username: '', 
+    password: '', 
+    description: '',
+    notes: ''
   };
 
   constructor(
@@ -38,28 +41,29 @@ export class BankAccountPage {
 
     this.key = navParams.get('key');
 
-    translate.get(["EDIT_TITLE","CREATE_BANK_ACCOUNT_TITLE"])
+    translate.get(["EDIT_TITLE","CREATE_INSURANCE_TITLE"])
     .subscribe((values) => {
       if (this.key === '0') {
-        this.title = values.CREATE_BANK_ACCOUNT_TITLE;
+        this.title = values.CREATE_INSURANCE_TITLE;
         this.mode = "New";
       } else {
-        this.auth.getBankAccount(this.key).once('value').then(snapshot => {
+        this.auth.getAccount(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
           this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
-          this.auth.handleRecent(snapshot.key, this.account, 'BankAccountPage');
+          this.auth.handleRecent(snapshot.key, this.account, 'PasswordPage');
         });
       }
     });
+    this.lockicon = 'lock';
   }
 
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
-      case 'BankAccountsPage': {
+      case 'PasswordsPage': {
         this.auth.pwdNotes = '';
         break;
       }
@@ -75,11 +79,31 @@ export class BankAccountPage {
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
-      this.auth.AddBankAccount(this.account);
+      this.auth.addAccount(this.account);
     } else {
-      this.auth.updateBankAccount(this.account, this.key);
+      this.auth.updateAccount(this.account, this.key);
     }
     this.nav.pop();
+  }
+
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ?  'text' : 'password';
+    this.lockicon = input.type === 'password' ?  'lock' : 'unlock-alt faRed';
+  }
+
+  openSite(): any {
+    if (this.account.site != '') {
+      let urlLower = this.account.site.toLowerCase();
+      let url: string;
+      if (urlLower.startsWith('http://') || urlLower.startsWith('https://')) {
+        url = urlLower;
+      } else {
+        url = 'http://' + urlLower;
+      }
+      let options = 'location=yes,toolbar=yes,hidden=no';
+      let browser = new InAppBrowser(url, '_blank', options);
+      browser.show();
+    }
   }
 
   pickNotes() {

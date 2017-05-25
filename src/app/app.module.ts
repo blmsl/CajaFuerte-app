@@ -18,6 +18,8 @@ import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
 import { PasswordPage } from '../pages/password/password';
 import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
 import { PasswordsPage } from '../pages/passwords/passwords';
+import { InsurancePage } from '../pages/insurance/insurance';
+import { InsurancesPage } from '../pages/insurances/insurances';
 import { DriverLicensesPage } from '../pages/driverlicenses/driverlicenses';
 import { DriverLicensePage } from '../pages/driverlicense/driverlicense';
 import { BankAccountsPage } from '../pages/bankaccounts/bankaccounts';
@@ -89,6 +91,8 @@ let pages = [
   AboutPage,
   PasswordsPage,
   PasswordPage,
+  InsurancePage,
+  InsurancesPage,
   DriverLicensesPage,
   DriverLicensePage,
   BankAccountsPage,

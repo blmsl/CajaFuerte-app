@@ -24,7 +24,7 @@ export class PersonalProfilePhotoPage {
   }
 
   savePicture() {
-    this.auth.savePicture(this.savePhoto);
+    this.auth.saveProfilePicture(this.savePhoto);
     this.dismiss();
   }
 

@@ -69,6 +69,7 @@ export class PasswordPage {
       }
       case 'PickNotesPage': {
         this.account.notes = this.auth.pwdNotes;
+        this.auth.pwdNotes = '';
         break;
       }
     }

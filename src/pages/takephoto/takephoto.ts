@@ -36,7 +36,7 @@ export class TakePhotoPage {
   }
 
   save() {
-    this.auth.savePicture(this.savePhoto);
+    this.auth.savePhoto(this.savePhoto, this.source);
     this.dismiss();
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -19,7 +19,10 @@ export class RecentPage {
   recentArray: {};
   noitemsfound: boolean = true;
 
-  constructor(public navCtrl: NavController, public auth: AuthService) {
+  constructor(
+    public navCtrl: NavController, 
+    public alertCtrl : AlertController,
+    public auth: AuthService) {
     
     this.auth.LoadingControllerShow();
     this.pages = auth.getDefaultForms();
@@ -96,6 +99,28 @@ export class RecentPage {
         this.navCtrl.push(CreditCardPage, { key: recent.sourcekey });
         break;
 		}
+  }
+
+  deleteRecent() {
+    let confirm = this.alertCtrl.create({
+      title: 'Please Confirm',
+      message: 'Are you sure you want to delete all recent activity? There is NO undo!',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            /*console.log('cancel clicked');*/
+          }
+        }, {
+          text: 'Delete',
+          cssClass: 'alertDanger',
+          handler: () => {
+            this.auth.deleteRecent();
+            this.noitemsfound = true;
+          }
+        }]
+      });
+    confirm.present();    
   }
 
 }
