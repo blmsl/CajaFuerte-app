@@ -15,6 +15,7 @@ export class TakePhotoPage {
   public displayPhoto: string;
   public savePhoto: any;
   public source: string;
+  public key: string;
 
   constructor(
     public nav: NavController,
@@ -23,7 +24,7 @@ export class TakePhotoPage {
     public auth: AuthService) {
 
       this.source = navParams.get('source');
-      console.log(this.source);
+      this.key = navParams.get('key');
 
     }
   
@@ -36,13 +37,13 @@ export class TakePhotoPage {
   }
 
   save() {
-    this.auth.savePhoto(this.savePhoto, this.source);
+    this.auth.savePhoto(this.savePhoto, this.source, this.key);
     this.dismiss();
   }
 
   takePhoto() {
     const options : CameraOptions = {
-      quality: 95,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType : this.camera.PictureSourceType.CAMERA,
       allowEdit: true,

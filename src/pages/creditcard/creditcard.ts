@@ -89,7 +89,7 @@ export class CreditCardPage {
   }
 
   takePhotopage() {
-    this.nav.push(TakePhotoPage, { source: 'CreditCardPage' });
+    this.nav.push(TakePhotoPage, { source: 'CreditCardPage', key: this.key });
   }
   
 }
