@@ -116,7 +116,7 @@ export class DriverLicensePage {
   }
 
   takePhotopage() {
-    this.nav.push(TakePhotoPage, { source: 'DriverLicensePage' });
+    this.nav.push(TakePhotoPage, { source: 'DriverLicensePage', key: this.key });
   }
 
   save() {

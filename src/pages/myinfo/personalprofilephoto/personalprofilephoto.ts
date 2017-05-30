@@ -18,6 +18,10 @@ export class PersonalProfilePhotoPage {
     private camera: Camera,
     public nav: NavController,
     public auth: AuthService) { }
+  
+  ionViewDidLoad() {
+    this.takePhoto();
+  }
 
   dismiss() {
     this.nav.pop();

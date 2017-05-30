@@ -120,7 +120,6 @@ export function entryComponents() {
 
 export function providers() {
   return [
-    Storage,
     Camera,
     AuthService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
@@ -138,6 +137,7 @@ export const firebaseConfig = {
   apiKey: "AIzaSyAWLtjIAOfBRD0tHWU899mE9vwVJEv5mRQ",
   authDomain: "cajafuerte-2fbfb.firebaseapp.com",
   databaseURL: "https://cajafuerte-2fbfb.firebaseio.com",
+  projectId: "cajafuerte-2fbfb",
   storageBucket: "cajafuerte-2fbfb.appspot.com",
   messagingSenderId: "105460697119"
 };
