@@ -7,7 +7,7 @@
 
 ## Ionic View
 
-Ionic View ID: 7a8e133b
+Ionic View ID: 28ca2097
 
 ## Quick Start
 
@@ -15,27 +15,11 @@ Ionic View ID: 7a8e133b
 - Run `npm install` from the project root.
 - Run `ionic serve` in a terminal from the project root
 
-## Read About It
-
- - [CajaFuerte: Personal Information Manager App](https://luiscabrera.site/tech/2017/01/23/CajaFuerte-password-manager.html)
-
-
-## Contribute
-
-This is a work inprogress and **your feedback/help would be greatly appreciated!**
-
-
 ## Connect
 
 - Follow [@gigocabrera] on Twitter(https://twitter.com/gigocabrera)
 - Follow on [LinkedIn](https://www.linkedin.com/in/luiscabrerame)
 - Contact me on my [website](http://luiscabrera.site)
-
-
-# Icons
-
-http://www.flaticon.com/authors/freepik
-http://www.freepik.com/about
 
 
 # License
