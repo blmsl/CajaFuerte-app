@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AlertController, NavController, ModalController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -33,7 +33,6 @@ export class DriverLicensePage {
 
   constructor(
     public nav: NavController, 
-    public modalController: ModalController, 
     public navParams: NavParams,
     public alertCtrl : AlertController,
     public translate: TranslateService,

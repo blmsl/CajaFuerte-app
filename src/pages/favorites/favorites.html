@@ -5,9 +5,9 @@
 </ion-header>
 <ion-content class="outer-content">
   <ion-list>
-    <button ion-item *ngFor="let recent of recentArray" (click)="openItem(recent)">
-      <i item-left class="fa fa-lock cf-fa-circle fa-color"></i>
-      {{ recent.name }}
+    <button ion-item *ngFor="let favorite of favArray" (click)="openItem(favorite)">
+      <i item-left class="fa {{favorite.icon}} cf-fa-circle {{favorite.color}}"></i>
+      {{ favorite.name }}
     </button>
   </ion-list>
   <div class="noitems" *ngIf="noitemsfound">

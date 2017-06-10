@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -29,7 +29,6 @@ export class ListMasterPage {
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController,
     public translate: TranslateService,
     public auth: AuthService) {
 

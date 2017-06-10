@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import {InAppBrowser} from 'ionic-native';
 
@@ -20,10 +20,12 @@ export class PasswordPage {
   showSkip = false;
   mode: string;
   key: string;
-  account: {name: string, namelower: string, recentid: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
+  isFav: boolean = false;
+  account: {name: string, namelower: string, recentid: string, favoriteid: string, site: string, number: string, username: string, password: string, description: string, notes: string} = {
     name: '', 
     namelower: '', 
     recentid: '', 
+    favoriteid: '',
     site: '', 
     number: '', 
     username: '', 
@@ -34,8 +36,8 @@ export class PasswordPage {
 
   constructor(
     public nav: NavController, 
-    public modalController: ModalController, 
     public navParams: NavParams, 
+    public alertCtrl: AlertController,
     public translate: TranslateService,
     public auth: AuthService) {
 
@@ -50,10 +52,13 @@ export class PasswordPage {
         this.auth.getAccount(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
+          this.account.favoriteid = this.account.favoriteid === undefined ?  '' : this.account.favoriteid;
           this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
           // Add account to recent
           this.auth.handleRecent(snapshot.key, this.account, 'PasswordPage');
+          // Handle Favorites
+          this.isFav = this.account.favoriteid === '' ?  false : true;
         });
       }
     });
@@ -110,5 +115,49 @@ export class PasswordPage {
     this.auth.pwdNotes = this.account.notes;
     this.nav.push(PickNotesPage);
   }
+
+  favorite() {
+    if (this.isFav) {
+      // This is already a favorite item - DELETE IT
+      this.auth.deleteFavorite(this.key, this.account.favoriteid, 'PasswordPage');
+      this.isFav = false;
+      this.alertRemovedFav();
+    } else {
+      this.auth.handleFavorites(this.key, this.account, 'PasswordPage');
+      this.isFav = true;
+      this.alertAddedFav();
+    }
+  }
+
+  alertAddedFav() {
+    // create an alert instance
+    let alert = this.alertCtrl.create({
+      title: 'Favorite Added',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          // close the sliding item
+        }
+      }]
+    });
+    // now present the alert on top of all other content
+    alert.present();
+  }
+
+  alertRemovedFav() {
+    // create an alert instance
+    let alert = this.alertCtrl.create({
+      title: 'Favorite Removed',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          // close the sliding item
+        }
+      }]
+    });
+    // now present the alert on top of all other content
+    alert.present();
+  }
+  
   
 }

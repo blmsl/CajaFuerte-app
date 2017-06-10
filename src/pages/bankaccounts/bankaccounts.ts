@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, AlertController, NavParams } from 'ionic-angular';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -17,7 +17,6 @@ export class BankAccountsPage {
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public navParams: NavParams, 
     public auth: AuthService) {}

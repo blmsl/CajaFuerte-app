@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -17,7 +17,6 @@ export class InsurancesPage {
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public auth: AuthService) {}
 

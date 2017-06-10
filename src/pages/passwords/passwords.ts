@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -17,7 +17,6 @@ export class PasswordsPage {
 
   constructor(
     public navCtrl: NavController, 
-    public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public auth: AuthService) {}
 
@@ -33,16 +32,21 @@ export class PasswordsPage {
       accounts.forEach( spanshot => {
 
         let account = spanshot.val();
+        account.favoriteid = account.favoriteid === undefined ?  '' : account.favoriteid;
         let tempAccount = ({
           $key: spanshot.key,
           description: account.description,
           name: account.name,
+          favoriteid: account.favoriteid,
           icon: this.auth.pages[0].icon,
           color: this.auth.pages[0].color,
         });
 
-        if(tempAccount.name.charAt(0) != currentLetter){
+        let thisLetter = tempAccount.name.charAt(0);
+        thisLetter = thisLetter.toUpperCase();
+        if(thisLetter != currentLetter){
           currentLetter = tempAccount.name.charAt(0).toUpperCase();
+          currentLetter = currentLetter.toUpperCase();
           let newGroup = {
             letter: currentLetter,
             accounts: []

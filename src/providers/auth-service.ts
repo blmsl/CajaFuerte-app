@@ -334,7 +334,7 @@ export class AuthService {
     // Create node under Recent and get the key
     let recentKey = this.vaultdata.child(this.user.vaultid + '/recent/').push().key;
 
-    // Save key into the account node 
+    // Save key into correct node 
     switch(component) {
 			case 'PasswordPage': 
         this.vaultdata.child(this.user.vaultid + '/accounts/' + sourcekey).update({ recentid : recentKey });
@@ -365,41 +365,69 @@ export class AuthService {
   //
   // FAVORITES
   //-----------------------------------------------------------------------
-  handleFavorites(item) {
+  
+  handleFavorites(sourcekey, account, component) {
 
-    /*let fav: {key: string, name: string, component: string, icon: string, color: string, dateCreated: number} = {
-      key: item.$key, 
-      name: item.name, 
-      component: 'PasswordPage', 
-      icon: 'fa fa-lock',
-      color: 'fa-color', 
+    let favorite: {name: string, sourcekey: string, component: string, dateCreated: number} = {
+      name: account.name, 
+      sourcekey: sourcekey,
+      component: component,
       dateCreated: moment().valueOf()
     };
 
-    // Test for the existence of a Recent item within our data. If not found, add it
-    if (item.recentid === undefined || item.recentid === '') {
-      this.addRecentItem(item, fav)
+    // Test for the existence of a Favorite item within our data. If not found, add it
+    if (account.favoriteid === undefined || account.favoriteid === '') {
+      this.addFavoriteItem(sourcekey, favorite, component);
       return;
     }
 
     // We have a recent item in our database, update timestamp
-    this.vaultdata.child(this.user.vaultid + '/recent/' + item.recentid).update({
-      dateCreated: moment().valueOf()
-    });*/
-    
+    this.vaultdata.child(this.user.vaultid + '/favorites/' + account.favoriteid).update(favorite);
   }
 
-  addFavoriteItem(item, recent) {
-    /*// Create node under Recent and get the key
-    let recentKey = this.vaultdata.child(this.user.vaultid + '/recent/').push().key;
+  addFavoriteItem(sourcekey, favorite, component) {
+    // Create node under Favorites and get the key
+    let favoriteKey = this.vaultdata.child(this.user.vaultid + '/favorites/').push().key;
 
-    // Save key into the account node 
-    this.vaultdata.child(this.user.vaultid + '/accounts/' + item.$key).update({ recentid : recentKey });
+    // Save key into correct node 
+    switch(component) {
+			case 'PasswordPage': 
+        this.vaultdata.child(this.user.vaultid + '/accounts/' + sourcekey).update({ favoriteid : favoriteKey });
+        break;
+      case 'DriverLicensePage': 
+        this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + sourcekey).update({ favoriteid : favoriteKey });
+        break;
+      case 'BankAccountPage':
+        this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + sourcekey).update({ favoriteid : favoriteKey });
+        break;
+      case 'CreditCardPage':
+        this.vaultdata.child(this.user.vaultid + '/creditcards/' + sourcekey).update({ favoriteid : favoriteKey });
+        break;
+		}
 
-    // Save recent account
-    this.vaultdata.child(this.user.vaultid + '/recent/' + recentKey + '/').update(recent);*/
+    // Save Favorite item
+    this.vaultdata.child(this.user.vaultid + '/favorites/' + favoriteKey + '/').update(favorite);
   }
-
+  deleteFavorites() {
+    this.vaultdata.child(this.user.vaultid + '/favorites/').remove();
+  }
+  deleteFavorite(sourcekey, favkey, component) {
+    this.vaultdata.child(this.user.vaultid + '/favorites/' + favkey).remove();
+    switch(component) {
+			case 'PasswordPage':
+        this.vaultdata.child(this.user.vaultid + '/accounts/' + sourcekey + '/favoriteid/').remove();
+        break;
+      case 'DriverLicensePage': 
+        this.vaultdata.child(this.user.vaultid + '/driverlicenses/' + sourcekey + '/favoriteid/').remove();
+        break;
+      case 'BankAccountPage':
+        this.vaultdata.child(this.user.vaultid + '/bankaccounts/' + sourcekey + '/favoriteid/').remove();
+        break;
+      case 'CreditCardPage':
+        this.vaultdata.child(this.user.vaultid + '/creditcards/' + sourcekey + '/favoriteid/').remove();
+        break;
+		}
+  }
   getFavorites() {
     return this.vaultdata.child(this.user.vaultid + '/favorites/');
   }

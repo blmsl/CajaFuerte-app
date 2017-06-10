@@ -21,14 +21,14 @@ export class PersonalProfilePage {
 
   constructor(
       public nav: NavController,
-      public modalController: ModalController,
+      public modalCtrl: ModalController,
       public alertController: AlertController,
       public loadingController: LoadingController,
       public navParams: NavParams,
       public auth: AuthService) {}
 
   changeName() {
-    let modal = this.modalController.create(ChangeNamePage, {paramFullName: this.auth.user.fullname});
+    let modal = this.modalCtrl.create(ChangeNamePage, {paramFullName: this.auth.user.fullname});
     modal.present(modal);
     modal.onDidDismiss((data: any[]) => {
       if (data) {
@@ -42,7 +42,7 @@ export class PersonalProfilePage {
   }
 
   changeEmail() {
-    let modal = this.modalController.create(ChangeEmailPage, {paramSettings: this.auth.user.email});
+    let modal = this.modalCtrl.create(ChangeEmailPage, {paramSettings: this.auth.user.email});
     modal.present(modal);
     modal.onDidDismiss((data: any[]) => {
       if (data) {
@@ -52,7 +52,7 @@ export class PersonalProfilePage {
   }
   
   changePassword() {
-    let modal = this.modalController.create(ChangePasswordPage);
+    let modal = this.modalCtrl.create(ChangePasswordPage);
     modal.present(modal);
     modal.onDidDismiss((data: any[]) => {
       if (data) {

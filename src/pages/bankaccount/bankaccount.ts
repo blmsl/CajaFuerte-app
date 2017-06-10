@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -31,7 +31,6 @@ export class BankAccountPage {
 
   constructor(
     public nav: NavController, 
-    public modalController: ModalController, 
     public navParams: NavParams, 
     public translate: TranslateService,
     public auth: AuthService) {

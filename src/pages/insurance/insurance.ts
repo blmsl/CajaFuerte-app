@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import {InAppBrowser} from 'ionic-native';
 
@@ -34,7 +34,6 @@ export class InsurancePage {
 
   constructor(
     public nav: NavController, 
-    public modalController: ModalController, 
     public navParams: NavParams, 
     public translate: TranslateService,
     public auth: AuthService) {

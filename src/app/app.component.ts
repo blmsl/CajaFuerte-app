@@ -4,7 +4,7 @@ import { Platform, Nav, AlertController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
-import {Deploy} from '@ionic/cloud-angular';
+import { Deploy } from '@ionic/cloud-angular';
 
 import { StatusBar, Splashscreen, TouchID } from 'ionic-native';
 
