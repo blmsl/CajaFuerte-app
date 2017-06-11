@@ -13,9 +13,13 @@ import { MainPage } from '../../pages/pages';
 })
 export class LoginPage {
   
-  account: {email: string, password: string} = {
+  /*account: {email: string, password: string} = {
     email: 'luis@example.com',
     password: 'test123'
+  };*/
+  account: {email: string, password: string} = {
+    email: '',
+    password: ''
   };
 
   // Our translated text strings
