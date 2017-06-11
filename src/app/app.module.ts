@@ -14,6 +14,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 import { ListMasterPage } from '../pages/list-master/list-master';
 import { LoginPage } from '../pages/login/login';
 import { LoginAutoPage } from '../pages/loginauto/loginauto';
+import { LoginDemoPage } from '../pages/logindemo/logindemo';
 import { ModalTouchIDPage } from '../pages/modaltouchid/modaltouchid';
 import { PasswordPage } from '../pages/password/password';
 import { PasswordEditPage } from '../pages/passwordedit/passwordedit';
@@ -78,6 +79,7 @@ let pages = [
   CajaFuerteApp,
   LoginPage,
   LoginAutoPage,
+  LoginDemoPage,
   SignupPage,
   TabsPage,
   TutorialPage,

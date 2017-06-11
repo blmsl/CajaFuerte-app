@@ -7,11 +7,8 @@ import { Storage } from '@ionic/storage';
 import { AuthService } from '../../providers/auth-service';
 
 import { MainPage } from '../../pages/pages';
+
 import { LoginPage } from '../../pages/login/login';
-
-
-// firebase
-declare var firebase: any;
 
 @Component({
   selector: 'page-loginauto',
