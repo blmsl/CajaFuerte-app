@@ -67,6 +67,7 @@ export class AuthService {
       .then((authData) => {
         this.userauth = authData;
         this.getUserData();
+        this.updateLastSignIn();
         resolve();
       }).catch((error) => {
         reject(error);
@@ -224,6 +225,10 @@ export class AuthService {
     thisuser$.subscribe((val) => {
       this.user = val;
     });
+  }
+
+  updateLastSignIn() {
+    this.userdata.child(this.userauth.uid).update({'lastsignin' : moment().valueOf()});
   }
 
   updateName(newname: string) {
