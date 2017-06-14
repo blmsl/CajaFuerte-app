@@ -130,7 +130,7 @@ export function providers() {
 
 const cloudSettings: CloudSettings = {
   'core': {
-    'app_id': '7a8e133b'
+    'app_id': '28ca2097'
   }
 };
 

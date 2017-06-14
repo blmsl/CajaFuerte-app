@@ -295,7 +295,7 @@ export class AuthService {
       case 'CreditCardPage': {
         this.vaultpicdata.child(firebase.auth().currentUser.uid + '/creditcardphotos/').child(photoname)
         .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {
-          this.vaultdata.child(this.user.vaultid + '/creditcards/' + key + 'photos/').push({'photourl' : savedphoto.downloadURL});
+          this.vaultdata.child(this.user.vaultid + '/creditcards/' + key + '/photos/').push({'photourl' : savedphoto.downloadURL});
         });
         break;
       }
@@ -557,6 +557,11 @@ export class AuthService {
   
   getCreditCard(key) {
     return this.vaultdata.child(this.user.vaultid + '/creditcards/' + key);
+  }
+
+  getCreditCardPhotosRef(key) {
+    var ref = this.vaultdata.child(this.user.vaultid + '/creditcards/' + key + '/photos/');
+    return ref;
   }
 
   AddCreditCard(item) {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, ModalController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -32,6 +32,7 @@ export class DriverLicensePage {
   photos = [];
 
   constructor(
+    public modalCtrl: ModalController,
     public nav: NavController, 
     public navParams: NavParams,
     public alertCtrl : AlertController,
@@ -70,10 +71,6 @@ export class DriverLicensePage {
           // Add account to recent
           this.auth.handleRecent(snapshot.key, this.account, 'DriverLicensePage');
         });
-
-        // Get license photos
-        //this.refreshPhotos();
-
       }
     });
   }
@@ -114,10 +111,6 @@ export class DriverLicensePage {
     confirm.present();
   }
 
-  takePhotopage() {
-    this.nav.push(TakePhotoPage, { source: 'DriverLicensePage', key: this.key });
-  }
-
   save() {
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
@@ -132,6 +125,16 @@ export class DriverLicensePage {
   pickNotes() {
     this.auth.pwdNotes = this.account.notes;
     this.nav.push(PickNotesPage);
+  }
+
+  takePhotopage() {
+    let modal = this.modalCtrl.create(TakePhotoPage, { source: 'DriverLicensePage', key: this.key });
+    modal.present(modal);
+    modal.onDidDismiss((data: any[]) => {
+      if (data) {
+        //this.savePhoto(data);
+      }
+    });
   }
   
 }

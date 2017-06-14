@@ -38,11 +38,10 @@
       <ion-label floating>{{ 'BANK_ROUTING_NUMBER' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="account.routingnumber"></ion-input>
     </ion-item>
-    <ion-item class="ml-input" (click)="pickNotes()">
+    <button ion-item class="ml-input" (click)="pickNotes()">
       <i class="fa fa-file-text-o" item-left></i>
       <ion-label floating>{{ 'BANK_ACCOUNT_NOTES' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="account.notes" disabled></ion-input>
-      <ion-icon name="arrow-forward" item-right color="mldarkblue"></ion-icon>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>

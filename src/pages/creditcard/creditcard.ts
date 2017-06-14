@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -9,6 +9,7 @@ import { TakePhotoPage } from '../../pages/takephoto/takephoto';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
+  selector: 'page-creditcard',
   templateUrl: 'creditcard.html'
 })
 
@@ -29,8 +30,10 @@ export class CreditCardPage {
     notes: '', 
     recentid: ''
   };
+  photos = [];
 
   constructor(
+    public modalCtrl: ModalController,
     public nav: NavController, 
     public navParams: NavParams, 
     public translate: TranslateService,
@@ -46,6 +49,20 @@ export class CreditCardPage {
       } else {
         this.auth.getCreditCard(this.key).once('value').then(snapshot => {
           this.account = snapshot.val();
+
+          var photosRef = this.auth.getCreditCardPhotosRef(this.key);
+          this.photos = [];
+          photosRef.on('value', element => {
+            element.forEach(snap => {
+              var photo = snap.val();
+              let tempPhoto = ({
+                $key: snap.key,
+                photourl: photo.photourl
+              });
+              this.photos.push(tempPhoto);
+            });            
+          });
+
           this.account.recentid = this.account.recentid === undefined ?  '' : this.account.recentid;
           this.title = values.EDIT_TITLE + ' ' + this.account.name;
           this.mode = "Edit";
@@ -88,7 +105,13 @@ export class CreditCardPage {
   }
 
   takePhotopage() {
-    this.nav.push(TakePhotoPage, { source: 'CreditCardPage', key: this.key });
+    let modal = this.modalCtrl.create(TakePhotoPage, { source: 'CreditCardPage', key: this.key });
+    modal.present(modal);
+    modal.onDidDismiss((data: any[]) => {
+      if (data) {
+        //this.savePhoto(data);
+      }
+    });
   }
   
 }
