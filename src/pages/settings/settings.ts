@@ -21,6 +21,7 @@ export class SettingsPage {
   showFeature: boolean = false;
   appversion: string = '';
   buildversion: string = '';
+  ver: string = '';
   language: string = 'en';
   mode: string = '';
   profile: {fullname: string, email: string, vaultnumber: string, paymentplan: string, touchid: boolean} = {
@@ -38,15 +39,24 @@ export class SettingsPage {
       
      platform.ready().then(() => {
       AppVersion.getVersionNumber().then(ver => {
+        
+        // Get version number
         this.appversion = ver;
+
+        AppVersion.getVersionCode().then( build => {
+          
+          // Get build number
+          this.buildversion = build;
+
+          this.ver = this.appversion + '(' + this.buildversion + ')';
+
+        }).catch(err => {
+          console.log(err);
+        })
+
       }).catch(err => {
         console.log(err);
       });
-      AppVersion.getVersionCode().then( build => {
-        this.buildversion = build;
-      }).catch(err => {
-        console.log(err);
-      })
     });
 
   }
