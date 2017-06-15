@@ -44,7 +44,7 @@
       <ion-icon item-left name="code"></ion-icon>
       {{ 'VERSION_LABEL' | translate }}
       <ion-note item-right>
-        {{appversion}}
+        {{ appversion }} ({{ buildversion }})
       </ion-note>
     </button>
     <button ion-item (click)="openAboutPage()" *ngIf="showFeature">

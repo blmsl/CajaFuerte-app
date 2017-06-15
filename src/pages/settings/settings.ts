@@ -19,9 +19,10 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 export class SettingsPage {
 
   showFeature: boolean = false;
-  appversion = '';
-  language = 'en';
-  mode: string;
+  appversion: string = '';
+  buildversion: string = '';
+  language: string = 'en';
+  mode: string = '';
   profile: {fullname: string, email: string, vaultnumber: string, paymentplan: string, touchid: boolean} = {
     fullname: '', 
     email: '', 
@@ -38,9 +39,14 @@ export class SettingsPage {
      platform.ready().then(() => {
       AppVersion.getVersionNumber().then(ver => {
         this.appversion = ver;
-      }).catch(function(error) {
-        console.log(error);
+      }).catch(err => {
+        console.log(err);
       });
+      AppVersion.getVersionCode().then( build => {
+        this.buildversion = build;
+      }).catch(err => {
+        console.log(err);
+      })
     });
 
   }
