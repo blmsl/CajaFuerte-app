@@ -9,4 +9,8 @@ page-picknotes {
     background-color: #fff;
   }
 
+  textarea.text-input {
+    min-height: calc(100vh - 145px);
+  }
+
 }
