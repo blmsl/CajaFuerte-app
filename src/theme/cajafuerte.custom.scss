@@ -146,6 +146,9 @@
 
 // Input Forms custom styles
 // --------------------------------------------------
+[dir="ltr"] .ml-input.item {
+  padding-left: 0;
+}
 .ml-input.item {
   padding-left: 0;
   padding: 0;
@@ -154,9 +157,6 @@
 }
 .ml-input .text-input[disabled] {
   opacity: 1;
-}
-.ml-input .input .text-input[disabled] {
-  width: calc(100% - 35px);
 }
 .ml-input.item.item-ios .fa {
   margin-left: 0;
@@ -175,7 +175,6 @@
   background-color: #f0f0f0;
   width: 61px;
   height: 60px;
-  /*margin: 0;*/
 }
 .ml-input ion-icon[item-left]:before {
   color: #999999;
@@ -195,7 +194,7 @@
 .ml-input .label-ios {
   margin-top: 6px;
 }
-.ml-input ion-label[floating] {
+[dir="ltr"] .ml-input ion-label[floating] {
   -webkit-transform: translate3d(0, 11px, 0);
   transform: translate3d(0, 11px, 0);
   color: #7f7f7f;
