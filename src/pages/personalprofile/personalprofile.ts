@@ -6,7 +6,7 @@ import { TutorialPage } from '../../pages/tutorial/tutorial';
 import { ChangeNamePage } from '../../pages/myinfo/changename/changename';
 import { ChangeEmailPage } from '../../pages/myinfo/changeemail/changeemail';
 import { ChangePasswordPage } from '../../pages/myinfo/changepassword/changepassword';
-import { PersonalProfilePhotoPage } from '../../pages/myinfo/personalprofilephoto/personalprofilephoto';
+import { TakePhotoPage } from '../../pages/takephoto/takephoto';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -37,8 +37,14 @@ export class PersonalProfilePage {
     });
   }
 
-  takePicture() {
-    this.nav.push(PersonalProfilePhotoPage);
+  takePhotopage() {
+    let modal = this.modalCtrl.create(TakePhotoPage, { source: 'PersonalProfilePage', key: '' });
+    modal.present(modal);
+    modal.onDidDismiss((data: any[]) => {
+      if (data) {
+        //this.savePhoto(data);
+      }
+    });
   }
 
   changeEmail() {

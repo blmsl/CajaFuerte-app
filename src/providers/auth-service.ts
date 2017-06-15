@@ -280,16 +280,15 @@ export class AuthService {
     });
   }
 
-  saveProfilePicture(pic) {
-    this.profilepicdata.child(firebase.auth().currentUser.uid).child('profilepicture.png')
-    .putString(pic, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
-      this.userdata.child(firebase.auth().currentUser.uid).update({'profilepic' : savedpicture.downloadURL});
-    });
-  }
-
   savePhoto(pic, source, key) {
     let photoname = moment().valueOf() + '.png';
     switch (source) {
+      case 'PersonalProfilePage': {
+        this.profilepicdata.child(firebase.auth().currentUser.uid).child('profilepicture.png')
+        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
+          this.userdata.child(firebase.auth().currentUser.uid).update({'profilepic' : savedpicture.downloadURL});
+        });
+      }
       case 'DriverLicensePage': {
         this.vaultpicdata.child(firebase.auth().currentUser.uid + '/driverlicensephotos/').child(photoname)
         .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {

@@ -42,7 +42,6 @@ import { TakePhotoPage } from '../pages/takephoto/takephoto';
 import { ChangeNamePage } from '../pages/myinfo/changename/changename';
 import { ChangeEmailPage } from '../pages/myinfo/changeemail/changeemail';
 import { ChangePasswordPage } from '../pages/myinfo/changepassword/changepassword';
-import { PersonalProfilePhotoPage } from '../pages/myinfo/personalprofilephoto/personalprofilephoto';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -108,7 +107,6 @@ let pages = [
   ChangeNamePage,
   ChangeEmailPage,
   ChangePasswordPage,
-  PersonalProfilePhotoPage,
   TakePhotoPage
 ];
 
