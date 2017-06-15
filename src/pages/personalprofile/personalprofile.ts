@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, AlertController, ModalController, LoadingController, NavParams } from 'ionic-angular';
+import { App, NavController, AlertController, ModalController, LoadingController, NavParams } from 'ionic-angular';
 
 import { TutorialPage } from '../../pages/tutorial/tutorial';
 import { ChangeNamePage } from '../../pages/myinfo/changename/changename';
@@ -20,6 +20,7 @@ export class PersonalProfilePage {
   public userPicture: any;
 
   constructor(
+      public app: App,
       public nav: NavController,
       public modalCtrl: ModalController,
       public alertController: AlertController,
@@ -215,7 +216,7 @@ export class PersonalProfilePage {
 
   doLogout(): void {
     this.auth.signOut();
-    this.nav.setRoot(TutorialPage);
+    this.app.getRootNav().setRoot(TutorialPage, {}, {animate: true, direction: 'forward'});
   }
   
   DisplayResult(myAlert, loading, logoff): void {
