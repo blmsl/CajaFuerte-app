@@ -17,6 +17,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content class='picturebg'>
-  <img [src]="displayPhoto" width="100%" />
+  <progress-bar [progress]="loadProgress"></progress-bar>
+  <img [src]="displayThisPic" width="100%" />
   {{ errormessage }}
 </ion-content>

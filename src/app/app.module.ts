@@ -42,6 +42,7 @@ import { TakePhotoPage } from '../pages/takephoto/takephoto';
 import { ChangeNamePage } from '../pages/myinfo/changename/changename';
 import { ChangeEmailPage } from '../pages/myinfo/changeemail/changeemail';
 import { ChangePasswordPage } from '../pages/myinfo/changepassword/changepassword';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -107,7 +108,8 @@ let pages = [
   ChangeNamePage,
   ChangeEmailPage,
   ChangePasswordPage,
-  TakePhotoPage
+  TakePhotoPage,
+  ProgressBarComponent
 ];
 
 export function declarations() {

@@ -280,7 +280,7 @@ export class AuthService {
     });
   }
 
-  savePhoto(pic, source, key) {
+  /*savePhoto(pic, source, key) {
     let photoname = moment().valueOf() + '.png';
     switch (source) {
       case 'PersonalProfilePage': {
@@ -305,7 +305,7 @@ export class AuthService {
       }
     }
 
-  }
+  }*/
 
   updateEmailNode(newemail) {
     this.userdata.child(this.userauth.uid).update({'email' : newemail});
