@@ -17,7 +17,7 @@ export class PasswordPage {
 
   title: string;
   lockicon: string;
-  showSkip = false;
+  showpwd: boolean = false;
   mode: string;
   key: string;
   isFav: boolean = false;
@@ -91,9 +91,9 @@ export class PasswordPage {
     this.nav.pop();
   }
 
-  showPassword(input: any): any {
-    input.type = input.type === 'password' ?  'text' : 'password';
-    this.lockicon = input.type === 'password' ?  'lock' : 'unlock-alt faRed';
+  showPassword(pwinput: any): any {
+    this.showpwd = !this.showpwd;
+    this.lockicon = this.showpwd ?  'unlock-alt faRed' : 'lock';
   }
 
   openSite(): any {
