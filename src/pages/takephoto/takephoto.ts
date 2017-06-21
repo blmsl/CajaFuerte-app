@@ -21,10 +21,6 @@ export class TakePhotoPage {
   public source: string;
   public key: string;
   private loadProgress: number = 0;
-  private userdata;
-  private vaultdata;
-  private profilepicdata;
-  private vaultpicdata;
 
   constructor(
     public actionSheetCtrl: ActionSheetController,
@@ -33,19 +29,12 @@ export class TakePhotoPage {
     public viewCtrl: ViewController,
     public camera: Camera,
     public auth: AuthService) {
-
       this.source = navParams.get('source');
       this.key = navParams.get('key');
-
-      this.userdata = firebase.database().ref('/users/');
-      this.vaultdata = firebase.database().ref('/vaults/');
-      this.profilepicdata = firebase.storage().ref().child('/profilepics/');
-      this.vaultpicdata = firebase.storage().ref().child('/vaultpics/');
-
     }
   
   ionViewDidLoad() {
-    //this.photoSource();
+    this.photoSource();
   }
 
   cancel() {
@@ -116,77 +105,19 @@ export class TakePhotoPage {
   }
 
   save() {
-    //this.auth.savePhoto(this.savePhoto, this.source, this.key);
-    //this.viewCtrl.dismiss();
-    
-    //this.testProgressBar();
-
-    this.savePhoto(this.savePhoto, this.source, this.key);
-
+    this.auth.savePhoto(this.saveThisPic, this.source, this.key);
+    this.showProgressBar();
   }
 
-  testProgressBar() {
-    
+  showProgressBar() {
     setInterval(() => {
 			if(this.loadProgress < 100){
 				this.loadProgress++;
-			}
+			} else {
+        // go back
+        this.viewCtrl.dismiss();
+      }
 		}, 50);
-  }
-
-  savePhoto(pic, source, key) {
-    let photoname = moment().valueOf() + '.png';
-    switch (source) {
-      case 'PersonalProfilePage': {
-        this.profilepicdata.child(firebase.auth().currentUser.uid).child('profilepicture.png')
-        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedpicture) => {
-          this.userdata.child(firebase.auth().currentUser.uid).update({'profilepic' : savedpicture.downloadURL});
-        });
-      }
-      case 'DriverLicensePage': {
-        
-        var uploadTask = this.vaultpicdata.child(firebase.auth().currentUser.uid + '/driverlicensephotos/').child(photoname).put(pic);
-
-        uploadTask.on('state_changed', function(snapshot){
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-          console.log('Upload is ' + progress + '% done');
-          this.loadProgress = progress;
-
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
-              break;
-          }
-        }, function(error) {
-          // Handle unsuccessful uploads
-        }, function() {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          var downloadURL = uploadTask.snapshot.downloadURL;
-          this.vaultdata.child(this.auth.user.vaultid + '/driverlicenses/' + key + '/photos/').push({'photourl' : downloadURL});
-        });
-        
-        /*this.vaultpicdata.child(firebase.auth().currentUser.uid + '/driverlicensephotos/').child(photoname)
-        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {
-          this.vaultdata.child(this.auth.user.vaultid + '/driverlicenses/' + key + '/photos/').push({'photourl' : savedphoto.downloadURL});
-        });*/
-        break;
-      }
-      case 'CreditCardPage': {
-        this.vaultpicdata.child(firebase.auth().currentUser.uid + '/creditcardphotos/').child(photoname)
-        .putString(pic, 'base64', {contentType: 'image/png'}).then((savedphoto) => {
-          this.vaultdata.child(this.auth.user.vaultid + '/creditcards/' + key + '/photos/').push({'photourl' : savedphoto.downloadURL});
-        });
-        break;
-      }
-    }
-
   }
   
 }
