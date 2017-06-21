@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Platform, NavController } from 'ionic-angular';
-import { AppVersion } from 'ionic-native';
+import { AppVersion } from '@ionic-native/app-version';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { AboutPage } from '../../pages/about/about';
 import { TouchIDPage } from '../../pages/touchid/touchid';
@@ -32,18 +33,21 @@ export class SettingsPage {
     touchid: false
   };
 
-  constructor(public platform: Platform,
+  constructor(
+    public platform: Platform,
     public nav: NavController,
+    public appVersion: AppVersion,
+    public emailComposer: EmailComposer,
     public translate: TranslateService,
     public auth: AuthService) {
-      
+
      platform.ready().then(() => {
-      AppVersion.getVersionNumber().then(ver => {
+      this.appVersion.getVersionNumber().then(ver => {
         
         // Get version number
         this.appversion = ver;
 
-        AppVersion.getVersionCode().then( build => {
+        this.appVersion.getVersionCode().then( build => {
           
           // Get build number
           this.buildversion = build;
@@ -59,6 +63,36 @@ export class SettingsPage {
       });
     });
 
+  }
+
+  reportBug() {
+    let email = {
+      to: 'cajafuerteapp@outlook.com',
+      subject: 'Report a Bug',
+      body: 'I found a bug...',
+      isHtml: true
+    }
+    this.emailComposer.open(email);
+  }
+
+  suggestFeature() {
+    let email = {
+      to: 'cajafuerteapp@outlook.com',
+      subject: 'Suggesting a Feature',
+      body: 'I want to suggest a feature for CajaFuerte...',
+      isHtml: true
+    }
+    this.emailComposer.open(email);
+  }
+
+  contactSupport() {
+    let email = {
+      to: 'cajafuerteapp@outlook.com',
+      subject: 'I need support',
+      body: 'I have a problem with CajaFuerte and I need support...',
+      isHtml: true
+    }
+    this.emailComposer.open(email);
   }
 
   openTouchID() {

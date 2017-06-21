@@ -6,6 +6,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AppVersion } from '@ionic-native/app-version';
 
 import { CajaFuerteApp } from './app.component';
 
@@ -123,6 +126,9 @@ export function entryComponents() {
 export function providers() {
   return [
     Camera,
+    EmailComposer,
+    InAppBrowser,
+    AppVersion,
     AuthService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];

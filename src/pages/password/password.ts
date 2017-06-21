@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import {InAppBrowser} from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { AuthService } from '../../providers/auth-service';
 import { PickNotesPage } from '../../pages/picknotes/picknotes';
@@ -38,6 +38,7 @@ export class PasswordPage {
     public nav: NavController, 
     public navParams: NavParams, 
     public alertCtrl: AlertController,
+    public iab: InAppBrowser,
     public translate: TranslateService,
     public auth: AuthService) {
 
@@ -106,7 +107,8 @@ export class PasswordPage {
         url = 'http://' + urlLower;
       }
       let options = 'location=yes,toolbar=yes,hidden=no';
-      let browser = new InAppBrowser(url, '_blank', options);
+      //let browser = new InAppBrowser(url, '_blank', options);
+      let browser = this.iab.create(url);
       browser.show();
     }
   }
