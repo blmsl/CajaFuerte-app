@@ -47,7 +47,7 @@ export class CajaFuerteApp {
       Splashscreen.hide();
 
       // Enable audio
-      smartAudio.preload('tabSwitch', 'assets/audio/clickSound.mp3');
+      smartAudio.preload('tabSwitch', 'assets/audio/clickSound.wav');
 
       // Get local storage saved settings
       storage.ready().then(() => {
