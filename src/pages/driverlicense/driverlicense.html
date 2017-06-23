@@ -53,6 +53,6 @@
   </ion-list>
   <ion-card *ngFor="let photo of photos; let id = index" class="releative">
     <ion-icon  name="md-close-circle" class="deleteIcon" (click)="deletePhoto(photo)"></ion-icon>
-    <img [src]="photo.photourl" *ngIf="photo" />
+    <img [src]="photo.photourl" *ngIf="photo" imageViewer />
   </ion-card>
 </ion-content>

@@ -9,6 +9,7 @@ import { Camera } from '@ionic-native/camera';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { CajaFuerteApp } from './app.component';
 
@@ -165,6 +166,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     CloudModule.forRoot(cloudSettings),
+    IonicImageViewerModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
