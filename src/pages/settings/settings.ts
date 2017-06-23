@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Platform, NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { AppVersion } from '@ionic-native/app-version';
 import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -23,6 +24,7 @@ export class SettingsPage {
   appversion: string = '';
   buildversion: string = '';
   ver: string = '';
+  soundsenabled: boolean = false;
   language: string = 'en';
   mode: string = '';
   profile: {fullname: string, email: string, vaultnumber: string, paymentplan: string, touchid: boolean} = {
@@ -36,10 +38,16 @@ export class SettingsPage {
   constructor(
     public platform: Platform,
     public nav: NavController,
+    public storage: Storage,
     public appVersion: AppVersion,
     public emailComposer: EmailComposer,
     public translate: TranslateService,
     public auth: AuthService) {
+
+      // Get touchid settings
+    this.storage.get('option4').then( sounds => {
+      this.soundsenabled = sounds;
+    })
 
      platform.ready().then(() => {
       this.appVersion.getVersionNumber().then(ver => {
@@ -55,11 +63,11 @@ export class SettingsPage {
           this.ver = this.appversion + '(' + this.buildversion + ')';
 
         }).catch(err => {
-          console.log(err);
+          //console.log(err);
         })
 
       }).catch(err => {
-        console.log(err);
+        //console.log(err);
       });
     });
 
@@ -83,6 +91,11 @@ export class SettingsPage {
       isHtml: true
     }
     this.emailComposer.open(email);
+  }
+
+  toggleSound(item) {
+    this.storage.set('option4', item);
+    this.auth.storageSound = item;
   }
 
   contactSupport() {

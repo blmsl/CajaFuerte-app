@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { SmartAudio } from '../../providers/smart-audio';
 
+import { AuthService } from '../../providers/auth-service';
+
 import { Tab1Root } from '../pages';
 import { Tab2Root } from '../pages';
 import { Tab3Root } from '../pages';
@@ -26,7 +28,8 @@ export class TabsPage {
   constructor(
     public navCtrl: NavController, 
     public translateService: TranslateService,
-    public smartAudio: SmartAudio) {
+    public smartAudio: SmartAudio,
+    public auth: AuthService) {
 
     translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE']).subscribe(values => {
       this.tab1Title = values['TAB1_TITLE'];
@@ -38,7 +41,9 @@ export class TabsPage {
   }
 
   changeTab() {
-    this.smartAudio.play('tabSwitch');
+    if(this.auth.storageSound) {
+      this.smartAudio.play('tabSwitch');
+    }
   }
 
 }

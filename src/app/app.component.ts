@@ -51,6 +51,11 @@ export class CajaFuerteApp {
 
       // Get local storage saved settings
       storage.ready().then(() => {
+        
+        this.storage.get('option4').then(sound => {
+          this.auth.storageSound = sound;
+        });
+
         this.storage.get('option1').then( touchid => {
           this.isTouchId = touchid;
           if (this.isTouchId) {

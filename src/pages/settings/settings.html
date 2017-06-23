@@ -27,6 +27,11 @@
       <ion-label>TouchID</ion-label>
     </button>
     <ion-item>
+      <ion-icon item-left name="ios-musical-notes-outline"></ion-icon>
+      <ion-label>Sound Effects</ion-label>
+      <ion-toggle [(ngModel)]="soundsenabled" (ionChange)="toggleSound(soundsenabled)" color="mllightblue"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf='showFeature'>
       <ion-icon item-left name="ios-flag-outline"></ion-icon>
       <ion-label>{{ 'LANGUAGE_LABEL' | translate }}</ion-label>
       <ion-select (ionChange)="toggleSelect($event)" [(ngModel)]="language">

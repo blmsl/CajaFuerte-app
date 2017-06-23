@@ -28,6 +28,7 @@ export class AuthService {
   public storageTouchid: boolean = false;
   public storageEmail: string;
   public storagePwd: string;
+  public storageSound: boolean = false;
   public referrer: string;
   public pwdNotes: string;
   pages: Array<{id: string, title: string, component: any, icon: string, color: string}>;
@@ -143,9 +144,11 @@ export class AuthService {
     this.storageTouchid = false;
     this.storagePwd = '';
     this.storageEmail = '';
+    this.storageSound = false;
     this.storage.set('option1', false);
     this.storage.set('option2', '');
     this.storage.set('option3', '');
+    this.storage.set('option4', false);
   }
 
   //
