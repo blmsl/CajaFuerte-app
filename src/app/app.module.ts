@@ -9,6 +9,7 @@ import { Camera } from '@ionic-native/camera';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { CajaFuerteApp } from './app.component';
@@ -49,6 +50,7 @@ import { ChangePasswordPage } from '../pages/myinfo/changepassword/changepasswor
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 import { AuthService } from '../providers/auth-service';
+import { SmartAudio } from '../providers/smart-audio';
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
@@ -131,6 +133,8 @@ export function providers() {
     InAppBrowser,
     AppVersion,
     AuthService,
+    SmartAudio,
+    NativeAudio,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
 }

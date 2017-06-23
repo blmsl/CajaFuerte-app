@@ -11,6 +11,7 @@ import { StatusBar, Splashscreen, TouchID } from 'ionic-native';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { AuthService } from '../providers/auth-service';
+import { SmartAudio } from '../providers/smart-audio';
 
 import { FirstRunPage } from '../pages/pages';
 import { LoginAutoPage } from '../pages/loginauto/loginauto';
@@ -27,6 +28,7 @@ export class CajaFuerteApp {
   @ViewChild(Nav) nav: Nav;
 
   constructor(
+    smartAudio: SmartAudio,
     translate: TranslateService, 
     platform: Platform,
     public deploy: Deploy,
@@ -43,6 +45,9 @@ export class CajaFuerteApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
       Splashscreen.hide();
+
+      // Enable audio
+      smartAudio.preload('tabSwitch', 'assets/audio/clickSound.mp3');
 
       // Get local storage saved settings
       storage.ready().then(() => {
