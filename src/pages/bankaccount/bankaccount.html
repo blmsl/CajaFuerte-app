@@ -13,10 +13,13 @@
     <ion-list-header color="light">
       {{ 'EDIT_BANK_ACCOUNT_SUBTITLE' | translate }}
     </ion-list-header>
+    <div #expandWrapper class='expand-wrapper validation-message' [class.collapsed]="!expanded">
+      {{ validationMessage }}
+    </div>
     <ion-item class="ml-input">
       <i class="fa fa-user" item-left></i>
       <ion-label floating>{{ 'BANK_ACCOUNT_OWNER' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="account.owner"></ion-input>
+      <ion-input type="text" [(ngModel)]="account.owner" (change)="inputChange(account.owner)"></ion-input>
     </ion-item>
     <ion-item class="ml-input">
       <i class="fa fa-university" item-left></i>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -8,11 +8,14 @@ import { PickNotesPage } from '../../pages/picknotes/picknotes';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
+  selector: 'page-bankaccount',
   templateUrl: 'bankaccount.html'
 })
 
 export class BankAccountPage {
 
+  validationMessage: string;
+  showValidationMessage: boolean = false;
   title: string;
   showSkip = false;
   mode: string;
@@ -29,7 +32,14 @@ export class BankAccountPage {
     recentid: ''
   };
 
+  @ViewChild('expandWrapper', {read: ElementRef}) expandWrapper;
+	@Input('expanded') expanded;
+	@Input('expandHeight') expandHeight;
+
+	currentHeight: number = 0;
+
   constructor(
+    public renderer: Renderer,
     public nav: NavController, 
     public navParams: NavParams, 
     public translate: TranslateService,
@@ -55,6 +65,10 @@ export class BankAccountPage {
     });
   }
 
+  ngAfterViewInit(){
+    this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', '40px');
+	}
+
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
@@ -71,6 +85,14 @@ export class BankAccountPage {
   }
 
   save() {
+
+    // Validate form data
+    if (this.account.owner === 'undefined' || this.account.owner === '') {
+      this.expanded = true;
+      this.validationMessage = "Please enter owner's name"
+      return;
+    }
+
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
@@ -79,6 +101,14 @@ export class BankAccountPage {
       this.auth.updateBankAccount(this.account, this.key);
     }
     this.nav.pop();
+  }
+
+  inputChange(account) {
+    if (account != '') {
+      this.expanded = false;
+    } else {
+      this.expanded = true;
+    }
   }
 
   pickNotes() {

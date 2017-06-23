@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 
@@ -15,6 +15,8 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 
 export class CreditCardPage {
 
+  validationMessage: string;
+  showValidationMessage: boolean = false;
   title: string;
   showSkip = false;
   mode: string;
@@ -32,7 +34,14 @@ export class CreditCardPage {
   };
   photos = [];
 
+  @ViewChild('expandWrapper', {read: ElementRef}) expandWrapper;
+	@Input('expanded') expanded;
+	@Input('expandHeight') expandHeight;
+
+	currentHeight: number = 0;
+
   constructor(
+    public renderer: Renderer,
     public modalCtrl: ModalController,
     public nav: NavController, 
     public navParams: NavParams, 
@@ -73,6 +82,10 @@ export class CreditCardPage {
     });
   }
 
+  ngAfterViewInit(){
+    this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', '40px');
+	}
+
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
@@ -89,6 +102,14 @@ export class CreditCardPage {
   }
 
   save() {
+
+    // Validate form data
+    if (this.account.owner === 'undefined' || this.account.owner === '') {
+      this.expanded = true;
+      this.validationMessage = "Please enter card owner"
+      return;
+    }
+
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
@@ -97,6 +118,14 @@ export class CreditCardPage {
       this.auth.updateCreditCard(this.account, this.key);
     }
     this.nav.pop();
+  }
+
+  inputChange(account) {
+    if (account != '') {
+      this.expanded = false;
+    } else {
+      this.expanded = true;
+    }
   }
 
   pickNotes() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
@@ -10,11 +10,14 @@ import { PickNotesPage } from '../../pages/picknotes/picknotes';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
+  selector: 'page-password',
   templateUrl: 'password.html'
 })
 
 export class PasswordPage {
 
+  validationMessage: string;
+  showValidationMessage: boolean = false;
   title: string;
   lockicon: string;
   showpwd: boolean = false;
@@ -34,7 +37,14 @@ export class PasswordPage {
     notes: ''
   };
 
+  @ViewChild('expandWrapper', {read: ElementRef}) expandWrapper;
+	@Input('expanded') expanded;
+	@Input('expandHeight') expandHeight;
+
+	currentHeight: number = 0;
+
   constructor(
+    public renderer: Renderer,
     public nav: NavController, 
     public navParams: NavParams, 
     public alertCtrl: AlertController,
@@ -66,6 +76,10 @@ export class PasswordPage {
     this.lockicon = 'lock';
   }
 
+  ngAfterViewInit(){
+    this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', '40px');
+	}
+
   ionViewWillEnter() {
     let referrer = this.auth.referrer;
     switch (referrer) {
@@ -82,6 +96,14 @@ export class PasswordPage {
   }
 
   save() {
+
+    // Validate form data
+    if (this.account.name === 'undefined' || this.account.name === '') {
+      this.expanded = true;
+      this.validationMessage = "Please enter account/password name"
+      return;
+    }
+    
     this.account.notes = this.account.notes === undefined ?  '' : this.account.notes;
     this.account.namelower = this.account.name.toLowerCase();
     if (this.mode === 'New') {
@@ -90,6 +112,14 @@ export class PasswordPage {
       this.auth.updateAccount(this.account, this.key);
     }
     this.nav.pop();
+  }
+
+  inputChange(account) {
+    if (account != '') {
+      this.expanded = false;
+    } else {
+      this.expanded = true;
+    }
   }
 
   showPassword(pwinput: any): any {
@@ -106,8 +136,6 @@ export class PasswordPage {
       } else {
         url = 'http://' + urlLower;
       }
-      let options = 'location=yes,toolbar=yes,hidden=no';
-      //let browser = new InAppBrowser(url, '_blank', options);
       let browser = this.iab.create(url);
       browser.show();
     }
