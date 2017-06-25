@@ -14,6 +14,8 @@ import { PasswordPage } from '../password/password';
 export class PasswordsPage {
 
   groupedAccounts = [];
+  currentAccounts = [];
+  loadedGroupedAccounts = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -26,7 +28,6 @@ export class PasswordsPage {
 
       var that = this;
       this.groupedAccounts = [];
-      let currentAccounts = [];
       let currentLetter = '';
 
       accounts.forEach( spanshot => {
@@ -51,14 +52,17 @@ export class PasswordsPage {
             letter: currentLetter,
             accounts: []
           };
-          currentAccounts = newGroup.accounts;
+          this.currentAccounts = newGroup.accounts;
           that.groupedAccounts.push(newGroup);
         }
-        currentAccounts.push(tempAccount);
+        this.currentAccounts.push(tempAccount);
       })
+
+      this.loadedGroupedAccounts = that.groupedAccounts;
+
       // Disable loading controller when the promise is complete
       this.auth.LoadingControllerDismiss();
-    });  
+    });
   }
 
   addItem() {
@@ -93,6 +97,35 @@ export class PasswordsPage {
       ]
     });
     alert.present();
+  }
+
+  getItems(searchbar) {
+    
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      return;
+    }
+
+    var filtered = [];
+    for(var i = 0; i < this.groupedAccounts.length; i++){
+      var objAccounts = this.groupedAccounts[i].accounts[0].name;
+      if(objAccounts && q) {
+        if (objAccounts.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          filtered.push(this.groupedAccounts[i]);
+        }
+      }
+    }
+    this.groupedAccounts = filtered;
+  }
+
+  initializeItems(): void {
+    this.groupedAccounts = this.loadedGroupedAccounts;
   }
 
 }
