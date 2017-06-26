@@ -113,12 +113,36 @@ export class PasswordsPage {
     }
 
     var filtered = [];
+    let currentLetter = '';
     for(var i = 0; i < this.groupedAccounts.length; i++){
-      var objAccounts = this.groupedAccounts[i].accounts[0].name;
-      if(objAccounts && q) {
-        if (objAccounts.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-          filtered.push(this.groupedAccounts[i]);
-        }
+      var objAccounts = this.groupedAccounts[i].accounts;
+      for(var y = 0; y < objAccounts.length; y++) {
+        var objAccount = this.groupedAccounts[i].accounts[y];
+        if(objAccount.name && q) {
+          if (objAccount.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+            let tempAccount = ({
+              $key: objAccount.key,
+              description: objAccount.description,
+              name: objAccount.name,
+              favoriteid: objAccount.favoriteid,
+              icon: this.auth.pages[0].icon,
+              color: this.auth.pages[0].color,
+            });
+            let thisLetter = tempAccount.name.charAt(0);
+            thisLetter = thisLetter.toUpperCase();
+            if(thisLetter != currentLetter){
+              currentLetter = tempAccount.name.charAt(0).toUpperCase();
+              currentLetter = currentLetter.toUpperCase();
+              let newGroup = {
+                letter: currentLetter,
+                accounts: []
+              };
+              this.currentAccounts = newGroup.accounts;
+              filtered.push(newGroup);
+            }
+            this.currentAccounts.push(tempAccount);
+          }
+        }        
       }
     }
     this.groupedAccounts = filtered;

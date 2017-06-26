@@ -13,7 +13,6 @@ export class SmartAudio {
     if (platform.is('cordova')) {
       this.audioType = 'native';
     }
-    console.log(this.audioType);
   }
 
   preload(key, asset) {
