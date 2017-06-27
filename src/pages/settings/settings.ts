@@ -4,6 +4,7 @@ import { Platform, NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AppVersion } from '@ionic-native/app-version';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { AppRate } from '@ionic-native/app-rate';
 
 import { AboutPage } from '../../pages/about/about';
 import { TouchIDPage } from '../../pages/touchid/touchid';
@@ -41,6 +42,7 @@ export class SettingsPage {
     public storage: Storage,
     public appVersion: AppVersion,
     public emailComposer: EmailComposer,
+    public appRate: AppRate,
     public translate: TranslateService,
     public auth: AuthService) {
 
@@ -50,6 +52,7 @@ export class SettingsPage {
     })
 
      platform.ready().then(() => {
+      
       this.appVersion.getVersionNumber().then(ver => {
         
         // Get version number
@@ -69,6 +72,11 @@ export class SettingsPage {
       }).catch(err => {
         //console.log(err);
       });
+
+      this.appRate.preferences.storeAppURL = {
+        ios: '1206710447'
+      };
+
     });
 
   }
@@ -123,6 +131,10 @@ export class SettingsPage {
 
   openPersonalProfile() {
     this.nav.push(PersonalProfilePage, {paramSettings: this.auth.user});
+  }
+
+  writeReview() {
+    this.appRate.promptForRating(true);
   }
   
 }

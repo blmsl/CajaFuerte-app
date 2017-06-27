@@ -11,6 +11,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { AppRate } from '@ionic-native/app-rate';
 
 import { CajaFuerteApp } from './app.component';
 
@@ -135,6 +136,7 @@ export function providers() {
     AuthService,
     SmartAudio,
     NativeAudio,
+    AppRate,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
 }
