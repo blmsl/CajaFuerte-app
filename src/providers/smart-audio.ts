@@ -24,7 +24,8 @@ export class SmartAudio {
       };
       this.sounds.push(audio);
     } else {
-      this.nativeAudio.preloadSimple(key, asset);
+      //this.nativeAudio.preloadSimple(key, asset);
+      this.nativeAudio.preloadComplex(key, asset, 0.1, 1, 0);
       let audio = {
         key: key,
         asset: key,
