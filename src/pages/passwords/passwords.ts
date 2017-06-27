@@ -121,7 +121,7 @@ export class PasswordsPage {
         if(objAccount.name && q) {
           if (objAccount.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
             let tempAccount = ({
-              $key: objAccount.key,
+              $key: objAccount.$key,
               description: objAccount.description,
               name: objAccount.name,
               favoriteid: objAccount.favoriteid,
