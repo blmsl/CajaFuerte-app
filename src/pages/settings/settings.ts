@@ -73,9 +73,11 @@ export class SettingsPage {
         //console.log(err);
       });
 
-      this.appRate.preferences.storeAppURL = {
-        ios: '1206710447'
-      };
+      if (platform.is('cordova')) {
+        this.appRate.preferences.storeAppURL = {
+          ios: '1206710447'
+        };
+      }
 
     });
 
