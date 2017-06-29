@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
+
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { AuthService } from '../../providers/auth-service';
 
@@ -14,8 +16,16 @@ export class PickNotesPage {
   transaction;
   msg;
    
-  constructor(public nav: NavController, public auth: AuthService) {
-
+  constructor(
+    public nav: NavController, 
+    public platform: Platform, 
+    private keyboard: Keyboard,
+    public auth: AuthService) {
+    
+    this.platform.ready().then(() => {
+      keyboard.disableScroll(true);
+    });
+    
   }
 
   ionViewDidLoad() {

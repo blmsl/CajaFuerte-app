@@ -12,6 +12,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { AppRate } from '@ionic-native/app-rate';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { CajaFuerteApp } from './app.component';
 
@@ -137,6 +138,7 @@ export function providers() {
     SmartAudio,
     NativeAudio,
     AppRate,
+    Keyboard,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];
 }
