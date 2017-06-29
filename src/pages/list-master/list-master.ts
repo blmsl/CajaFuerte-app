@@ -10,11 +10,8 @@ import { PasswordsPage } from '../passwords/passwords';
 import { DriverLicensesPage } from '../driverlicenses/driverlicenses';
 import { BankAccountsPage } from '../bankaccounts/bankaccounts';
 import { CreditCardsPage } from '../creditcards/creditcards';
-import { InsurancesPage } from '../insurances/insurances';
 
 declare var TimelineMax: any;
-declare var TweenMax: any;
-declare var Back: any;
 declare var CustomEase
 
 @Component({

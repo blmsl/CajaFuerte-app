@@ -5,10 +5,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { AuthService } from '../../providers/auth-service';
 
-import * as firebase from 'firebase';
-
-import * as moment from 'moment';
-
 @Component({
   selector: 'page-takephoto',
   templateUrl: 'takephoto.html'

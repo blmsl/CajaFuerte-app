@@ -19,7 +19,7 @@ export class PickNotesPage {
   constructor(
     public nav: NavController, 
     public platform: Platform, 
-    private keyboard: Keyboard,
+    public keyboard: Keyboard,
     public auth: AuthService) {
     
     this.platform.ready().then(() => {
