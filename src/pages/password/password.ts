@@ -136,7 +136,7 @@ export class PasswordPage {
       } else {
         url = 'http://' + urlLower;
       }
-      let browser = this.iab.create(url);
+      let browser = this.iab.create(url, '_blank', 'location=yes');
       browser.show();
     }
   }
